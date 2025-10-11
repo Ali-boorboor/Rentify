@@ -18,7 +18,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
           "bg-transparent text-primary transform-gpu will-change-transform hover:-translate-x-0.5",
-        link: "bg-transparent text-white hover:text-white/80",
+        link: "bg-transparent text-white hover:text-white/60",
       },
       size: {
         default: "h-10 px-3 py-2 has-[>svg]:px-3",
