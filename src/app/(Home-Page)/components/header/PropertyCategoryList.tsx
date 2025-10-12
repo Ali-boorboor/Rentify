@@ -3,7 +3,7 @@ import PropertyCategoryCard from "@homePage/components/header/PropertyCategoryCa
 
 const PropertyCategoryList = () => {
   return (
-    <section className="container m-auto flex flex-wrap gap-4 md:gap-8 items-center justify-center md:justify-between lg:translate-y-[30%]">
+    <section className="container m-auto flex flex-wrap gap-6 items-center justify-center md:justify-between lg:translate-y-[30%]">
       <PropertyCategoryCard
         image="/images/png/home-page/property-category/villa.png"
         title="ویلا"

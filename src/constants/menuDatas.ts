@@ -1,4 +1,4 @@
-const menuDatas = [
+const menuItems = [
   {
     id: 1,
     title: "رهن و اجاره‌ی خانه",
@@ -17,4 +17,4 @@ const menuDatas = [
   },
 ];
 
-export default menuDatas;
+export default menuItems;

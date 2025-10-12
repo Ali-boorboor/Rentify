@@ -1,0 +1,27 @@
+import ServiceCard from "@homePage/components/services/ServiceCard";
+import services from "@homePage/constants/servicesDatas";
+import React from "react";
+
+const Services = () => {
+  return (
+    <section className="container m-auto space-y-4 md:space-y-8">
+      <h2 className="text-lg md:text-2xl font-semibold text-center">
+        با خدمات <span className="text-primary">رنتی‌فای</span> آشنا شوید
+      </h2>
+
+      <div className="flex flex-wrap items-center justify-center md:justify-between gap-6">
+        {services.map((service) => (
+          <ServiceCard
+            key={service.id}
+            image={service.image}
+            title={service.title}
+            description={service.description}
+            buttonTitle={service.buttonTitle}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Services;

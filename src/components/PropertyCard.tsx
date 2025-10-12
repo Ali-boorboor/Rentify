@@ -63,7 +63,7 @@ const PropertyCard = ({
         </Button>
       </card.CardHeader>
 
-      <card.CardContent className="py-2 px-3 flex flex-col justify-between gap-4 basis-1/3">
+      <card.CardContent className="py-3.5 px-3 flex flex-col justify-between gap-4 basis-1/3">
         <div className="flex items-center gap-2">
           <Badge variant="success">{propertyType}</Badge>
 

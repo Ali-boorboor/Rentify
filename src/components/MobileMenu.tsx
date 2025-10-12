@@ -1,5 +1,5 @@
 import React from "react";
-import menuDatas from "@/constants/menuDatas";
+import menuItems from "@/constants/menuDatas";
 import * as dropdownMenu from "@/components/ui/dropdown-menu";
 import { Plus, TextAlignJustify } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ const MobileMenu = () => {
         <dropdownMenu.DropdownMenuContent className="w-60 md:w-80 text-center">
           <dropdownMenu.DropdownMenuLabel>منو</dropdownMenu.DropdownMenuLabel>
 
-          {menuDatas.map((item) => (
+          {menuItems.map((item) => (
             <div key={item.id}>
               <dropdownMenu.DropdownMenuSeparator />
               <dropdownMenu.DropdownMenuItem className="cursor-pointer justify-center">

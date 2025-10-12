@@ -1,6 +1,6 @@
 import React from "react";
 import MainLogo from "@/components/MainLogo";
-import menuDatas from "@/constants/menuDatas";
+import menuItems from "@/constants/menuDatas";
 import MobileMenu from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -25,7 +25,7 @@ const NavMenu = ({
       <MainLogo className="w-24 md:w-32" src={logoSrc} />
 
       <ul className="hidden lg:flex items-center gap-1">
-        {menuDatas.map((item) => (
+        {menuItems.map((item) => (
           <li key={item.id}>
             <Button className="lg:text-base" variant="link">
               {item.title}
