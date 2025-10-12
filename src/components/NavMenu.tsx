@@ -18,7 +18,7 @@ const NavMenu = ({
   return (
     <nav
       className={cn(
-        "container m-auto flex justify-between items-center p-4 text-white",
+        "container m-auto flex justify-between items-center py-4",
         className
       )}
     >

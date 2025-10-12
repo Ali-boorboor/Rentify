@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@loginRegister/*": ["./src/app/login-register/*"],
-      "@otpVerify/*": ["./src/app/login-register/otp-verify/*"]
+      "@otpVerify/*": ["./src/app/login-register/otp-verify/*"],
+      "@homePage/*": ["./src/app/(Home-Page)/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
