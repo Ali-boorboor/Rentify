@@ -1,20 +1,20 @@
 import React from "react";
 import MainLogo from "@/components/MainLogo";
 import menuItems from "@/constants/menuDatas";
-import MobileMenu from "@/components/MobileMenu";
+import MobileMenu from "@/components/navigation-menu/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface NavMenuProps {
+interface NavigationMenuProps {
   logoSrc?: string;
   className?: string;
 }
 
-const NavMenu = ({
+const NavigationMenu = ({
   logoSrc = "/images/png/white-main-logo.png",
   className,
-}: NavMenuProps) => {
+}: NavigationMenuProps) => {
   return (
     <nav
       className={cn(
@@ -52,4 +52,4 @@ const NavMenu = ({
   );
 };
 
-export default NavMenu;
+export default NavigationMenu;

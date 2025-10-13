@@ -1,5 +1,5 @@
 import React from "react";
-import NavMenu from "@/components/NavMenu";
+import NavigationMenu from "@/components/navigation-menu";
 import SearchForm from "@homePage/components/header/SearchForm";
 import PropertyCategoryList from "@homePage/components/header/PropertyCategoryList";
 import { cn } from "@/lib/utils";
@@ -12,7 +12,7 @@ const Header = () => {
         "flex flex-col gap-20 md:gap-40 justify-between items-center"
       )}
     >
-      <NavMenu />
+      <NavigationMenu />
 
       <section className="flex flex-col gap-6 justify-center items-center">
         <h1 className="text-2xl md:text-4xl font-bold text-center">

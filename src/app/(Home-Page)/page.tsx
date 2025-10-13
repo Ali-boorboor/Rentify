@@ -3,7 +3,7 @@ import Advertisement from "@homePage/components/advertisement";
 import HowItWorks from "@homePage/components/how-it-works";
 import Services from "@homePage/components/services";
 import Header from "@homePage/components/header";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import React from "react";
 
 const HomePage = () => {
