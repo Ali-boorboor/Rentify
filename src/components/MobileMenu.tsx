@@ -32,7 +32,7 @@ const MobileMenu = () => {
             asChild
           >
             <Button className="w-full">
-              <Plus className="size-4" />
+              <Plus className="size-4 text-inherit" />
               ثبت آگهی رایگان
             </Button>
           </dropdownMenu.DropdownMenuItem>
@@ -44,6 +44,17 @@ const MobileMenu = () => {
           >
             <Button className="w-full">ورود | ثبت‌نام</Button>
           </dropdownMenu.DropdownMenuItem>
+
+          {/* <dropdownMenu.DropdownMenuSeparator /> show this if user was logged in
+          <dropdownMenu.DropdownMenuItem
+            className="cursor-pointer justify-center"
+            asChild
+          >
+            <Button className="w-full">
+              <UserRound className="size-4 text-inherit" />
+              حساب من
+            </Button>
+          </dropdownMenu.DropdownMenuItem> */}
         </dropdownMenu.DropdownMenuContent>
       </dropdownMenu.DropdownMenu>
     </div>

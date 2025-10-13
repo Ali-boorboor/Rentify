@@ -4,4 +4,6 @@ interface LayoutProps {
   children: Readonly<ReactNode>;
 }
 
-export type { LayoutProps };
+type PropertyTypes = "villa-house" | "apartment" | "villa";
+
+export type { LayoutProps, PropertyTypes };

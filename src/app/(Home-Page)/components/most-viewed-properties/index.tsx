@@ -6,7 +6,7 @@ import PropertyCard from "@/components/PropertyCard";
 const MostViewedProperties = () => {
   return (
     <section className="container m-auto space-y-4 md:space-y-8">
-      <div className="flex flex-wrap items-center justify-center md:justify-between">
+      <div className="flex flex-col sm:flex-row items-center sm:justify-between">
         <h2 className="text-lg md:text-2xl font-semibold">
           پر بازدید ترین‌های هفته‌ی گذشته
         </h2>
@@ -17,7 +17,7 @@ const MostViewedProperties = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+      <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
         {[...Array(8)].map((_, index) => (
           <PropertyCard
             key={index}

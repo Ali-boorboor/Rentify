@@ -24,6 +24,10 @@ const SearchForm = () => {
           </select.SelectTrigger>
           <select.SelectContent>
             <select.SelectItem value="villa">ویلا</select.SelectItem>
+            <select.SelectItem value="apartment">آپارتمان</select.SelectItem>
+            <select.SelectItem value="villa-house">
+              خانه ویلایی
+            </select.SelectItem>
           </select.SelectContent>
         </select.Select>
 
@@ -33,6 +37,7 @@ const SearchForm = () => {
           </select.SelectTrigger>
           <select.SelectContent>
             <select.SelectItem value="mortgage">رهن</select.SelectItem>
+            <select.SelectItem value="rent">اجاره</select.SelectItem>
           </select.SelectContent>
         </select.Select>
       </div>

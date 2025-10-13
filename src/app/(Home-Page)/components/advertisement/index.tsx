@@ -2,11 +2,13 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
+const IMAGE_SRC = "/images/png/home-page/advertisement.png";
+
 const Advertisement = () => {
   return (
-    <section className="container m-auto h-56 md:h-96 flex justify-between items-center bg-accent text-accent-foreground rounded-xl px-4 mb-40">
-      <div className="flex flex-col justify-around items-center gap-4 py-4 basis-1/2 h-full grow">
-        <div className="text-center">
+    <section className="container m-auto h-56 md:h-96 flex justify-between items-center gap-4 bg-accent text-accent-foreground rounded-xl px-4 md:pl-0 overflow-hidden">
+      <div className="flex flex-col justify-around items-center gap-4 basis-1/2 h-full grow">
+        <div className="text-center space-y-2">
           <h6 className="text-lg md:text-2xl font-semibold">
             برای دریافت وام رهن خانه کلیک کنید
           </h6>
@@ -19,11 +21,11 @@ const Advertisement = () => {
         <Button className="w-56">اطلاعات بیشتر...</Button>
       </div>
 
-      <div className="hidden lg:block basis-1/2 h-full">
+      <div className="hidden md:block basis-1/2 h-full">
         <Image
           className="w-full h-full object-cover object-center"
-          src="/images/png/home-page/advertisement.png"
           alt="advertisement image"
+          src={IMAGE_SRC}
           height={800}
           width={800}
         />

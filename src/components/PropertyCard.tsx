@@ -1,26 +1,21 @@
-import * as card from "@/components/ui/card";
-import Image from "next/image";
 import React from "react";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { CameraOff, Heart, MapPin } from "lucide-react";
+import Image from "next/image";
+import * as card from "@/components/ui/card";
+import propertyTypes from "@/constants/propertyDatas";
 import { toPersianDigits } from "@/utils/convertNumbers";
+import { CameraOff, Heart, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { PropertyTypes } from "@/types";
 
 interface PropertyCardProps {
   image?: string;
-  type: "apartment" | "villa" | "villa-house";
+  type: PropertyTypes;
   location: string;
   title: string;
   rentAmount: number;
   mortgageAmount: number;
 }
-
-const propertyTypes = {
-  "villa-house": "خانه ویلایی",
-  apartment: "آپارتمان",
-  villa: "ویلا",
-};
 
 const PropertyCard = ({
   image,
@@ -39,8 +34,8 @@ const PropertyCard = ({
   const propertyType = propertyTypes[type];
 
   return (
-    <card.Card className="aspect-square overflow-hidden gap-0 p-0">
-      <card.CardHeader className="relative h-full basis-2/3 bg-muted">
+    <card.Card className="h-96 sm:h-[28rem] overflow-hidden gap-0 p-0">
+      <card.CardHeader className="relative h-full bg-muted">
         {image ? (
           <Image
             className="object-cover object-center"
@@ -63,7 +58,7 @@ const PropertyCard = ({
         </Button>
       </card.CardHeader>
 
-      <card.CardContent className="py-3.5 px-3 flex flex-col justify-between gap-4 basis-1/3">
+      <card.CardContent className="py-3.5 px-3 flex flex-col justify-between gap-4">
         <div className="flex items-center gap-2">
           <Badge variant="success">{propertyType}</Badge>
 
@@ -77,7 +72,7 @@ const PropertyCard = ({
           {title}
         </p>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 bg-muted p-1.5 rounded-lg">
+        <div className="flex flex-wrap items-center justify-around gap-4 bg-muted p-1.5 rounded-lg">
           <div className="flex gap-1 items-center">
             <span className="text-sm">رهن</span>
 

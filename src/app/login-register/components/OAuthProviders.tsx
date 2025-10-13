@@ -7,11 +7,11 @@ const OAuthProviders = () => {
   return (
     <>
       <div className="flex items-center gap-3 max-w-full">
-        <Separator className="basis-1/3 grow hidden md:inline-block" />
+        <Separator className="shrink" />
         <span className="text-nowrap text-muted-foreground grow-0 m-auto">
           یا ورود از طریق
         </span>
-        <Separator className="basis-1/3 grow hidden md:inline-block" />
+        <Separator className="shrink" />
       </div>
 
       <div className="flex gap-6 justify-center items-center">

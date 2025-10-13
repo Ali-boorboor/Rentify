@@ -9,7 +9,7 @@ const Services = () => {
         با خدمات <span className="text-primary">رنتی‌فای</span> آشنا شوید
       </h2>
 
-      <div className="flex flex-wrap items-center justify-center md:justify-between gap-6">
+      <div className="flex flex-wrap items-center justify-between gap-6">
         {services.map((service) => (
           <ServiceCard
             key={service.id}
