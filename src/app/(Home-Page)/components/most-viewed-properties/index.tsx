@@ -7,9 +7,9 @@ const MostViewedProperties = () => {
   return (
     <section className="container m-auto space-y-4 md:space-y-8">
       <div className="flex flex-col sm:flex-row items-center sm:justify-between">
-        <h2 className="text-lg md:text-2xl font-semibold">
+        <h3 className="text-lg md:text-2xl font-semibold">
           پر بازدید ترین‌های هفته‌ی گذشته
-        </h2>
+        </h3>
 
         <Button variant="ghost">
           مشاهده همه

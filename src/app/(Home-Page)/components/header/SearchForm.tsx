@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 
 const SearchForm = () => {
   return (
-    <form className="bg-card text-card-foreground p-4 pl-28 rounded-4xl md:rounded-full overflow-hidden relative">
+    <form className="bg-card text-card-foreground p-4 pl-28 rounded-4xl md:rounded-full overflow-hidden relative border-2 shadow-sm">
       <div className="flex flex-wrap items-center gap-4">
         <select.Select dir="rtl">
           <select.SelectTrigger className="w-36 grow lg:w-48 border-0 outline-0 md:shadow-none">

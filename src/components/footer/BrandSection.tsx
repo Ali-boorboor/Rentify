@@ -9,7 +9,7 @@ const BrandSection = () => {
     <div className="space-y-4 basis-full md:basis-1/3 flex flex-col items-center md:items-start md:max-w-80">
       <MainLogo className="md:w-40" />
 
-      <p className="text-sm font-normal text-card-foreground text-center sm:text-right">
+      <p className="text-sm md:text-base font-normal text-card-foreground text-center sm:text-right">
         در بین آگهی‌های ملکی ثبت شده روزانه جستجو کنید و ملک مورد نظرتان را پیدا
         کنید.
       </p>

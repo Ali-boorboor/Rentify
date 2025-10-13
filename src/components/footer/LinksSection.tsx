@@ -7,7 +7,7 @@ const LinksSection = () => {
       {linkGroups.map((linkGroup) => (
         <ul className="space-y-2 text-center sm:text-right" key={linkGroup.id}>
           <li>
-            <h6 className="text-primary font-semibold text-lg">
+            <h6 className="text-primary font-semibold md:text-lg">
               {linkGroup.title}
             </h6>
           </li>

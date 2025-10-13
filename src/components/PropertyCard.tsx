@@ -68,11 +68,9 @@ const PropertyCard = ({
           </Badge>
         </div>
 
-        <p className="text-sm font-medium line-clamp-1 md:line-clamp-2">
-          {title}
-        </p>
+        <p className="text-sm md:text-base font-medium line-clamp-1">{title}</p>
 
-        <div className="flex flex-wrap items-center justify-around gap-4 bg-muted p-1.5 rounded-lg">
+        <div className="flex flex-wrap items-center justify-evenly gap-4 bg-muted p-1.5 rounded-lg">
           <div className="flex gap-1 items-center">
             <span className="text-sm">رهن</span>
 

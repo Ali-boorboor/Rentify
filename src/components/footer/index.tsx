@@ -10,6 +10,11 @@ const Footer = () => {
 
         <LinksSection />
       </div>
+
+      <p className="text-sm md:text-base text-center mt-4">
+        ساخته شده با 💙 توسط{" "}
+        <span className="text-primary text-nowrap font-medium">علی بوربور</span>
+      </p>
     </footer>
   );
 };
