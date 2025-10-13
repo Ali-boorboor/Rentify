@@ -5,7 +5,7 @@ import OwnerTenantForm from "@loginRegister/components/OwnerTenantForm";
 import EstateAgencyForm from "@loginRegister/components/EstateAgencyForm";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const LoginPage = () => {
+const LoginRegisterPage = () => {
   return (
     <section className="bg-card text-card-foreground rounded-2xl basis-1/2 grow p-4">
       <div className="max-w-xl min-h-[90svh] m-auto flex flex-col gap-4 md:gap-12 justify-center items-center">
@@ -34,4 +34,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LoginRegisterPage;

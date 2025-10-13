@@ -31,7 +31,7 @@ const PropertyCategoryCard = ({
       </card.CardHeader>
 
       <card.CardContent className="absolute bottom-0 w-full p-4">
-        <div className="flex items-center justify-between bg-card w-full rounded-md p-2 md:p-4">
+        <div className="flex items-center justify-between bg-card w-full rounded-xl p-2 md:p-4">
           <div>
             <h2 className="md:text-lg font-semibold">{title}</h2>
             <p className="text-sm md:text-base text-muted-foreground">

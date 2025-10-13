@@ -1,7 +1,7 @@
 import React from "react";
 import MainLogo from "@/components/MainLogo";
 import menuItems from "@/constants/menuDatas";
-import MobileMenu from "@/components/navigation-menu/MobileMenu";
+import MobileMenu from "@/components/header/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
