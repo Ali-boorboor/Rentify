@@ -101,12 +101,28 @@ const FiltersBar = () => {
                 </accordion.AccordionContent>
               </accordion.AccordionItem>
             </accordion.Accordion>
+
+            <dialog.DialogFooter>
+              <dialog.DialogClose asChild>
+                <div className="flex flex-wrap-reverse items-center gap-4 w-full">
+                  <Button className="grow text-destructive" variant="ghost">
+                    حذف همه
+                  </Button>
+                  <Button className="grow hover:bg-primary">
+                    مشاهده نتایج
+                  </Button>
+                </div>
+              </dialog.DialogClose>
+            </dialog.DialogFooter>
           </dialog.DialogContent>
         </dialog.Dialog>
 
         <Separator className="mr-2 hidden sm:block" orientation="vertical" />
 
-        <ScrollArea className="line-clamp-1 whitespace-nowrap hidden sm:block" dir="rtl">
+        <ScrollArea
+          className="line-clamp-1 whitespace-nowrap hidden sm:block"
+          dir="rtl"
+        >
           <div className="space-x-2 px-2">
             <dropdownMenu.DropdownMenu dir="rtl">
               <dropdownMenu.DropdownMenuTrigger asChild>

@@ -16,8 +16,7 @@ const buttonVariants = cva(
           "border bg-transparent shadow-xs text-primary hover:bg-primary/10 dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
-          "bg-transparent text-primary transform-gpu will-change-transform hover:-translate-x-0.5",
+        ghost: "bg-transparent text-primary hover:opacity-60",
         link: "bg-transparent text-inherit hover:opacity-60",
         success: "bg-success text-success-foreground hover:bg-success/80",
         orange: "bg-orange text-orange-foreground hover:bg-orange/80",
