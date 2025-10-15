@@ -31,7 +31,9 @@ const PropertyCard = ({
   const persianMortgageAmount = toPersianDigits(String(localedMortgageAmount));
   const persianRentAmount = toPersianDigits(String(localedRentAmount));
 
-  const propertyType = propertyTypes[type];
+  const propertyType = propertyTypes.find(
+    (propertyType) => propertyType.enTitle === type
+  )?.faTitle;
 
   return (
     <card.Card className="h-96 sm:h-[28rem] overflow-hidden gap-0 p-0">

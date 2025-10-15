@@ -47,7 +47,7 @@ const OwnerTenantForm = () => {
           <inputGroup.InputGroup>
             <inputGroup.InputGroupInput
               placeholder="09xxxxxxxxx"
-              className="!px-1"
+              className="!px-2"
               type="text"
               id="phone"
             />

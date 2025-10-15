@@ -1,7 +1,7 @@
 import React from "react";
+import PropertiesGrid from "@/components/PropertiesGrid";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import PropertyCard from "@/components/PropertyCard";
 
 const MostViewedProperties = () => {
   return (
@@ -17,18 +17,7 @@ const MostViewedProperties = () => {
         </Button>
       </div>
 
-      <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-        {[...Array(8)].map((_, index) => (
-          <PropertyCard
-            key={index}
-            title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
-            mortgageAmount={4_000_000_000}
-            rentAmount={50_000_000}
-            location="تهران-الهیه"
-            type="apartment"
-          />
-        ))}
-      </div>
+      <PropertiesGrid />
     </section>
   );
 };

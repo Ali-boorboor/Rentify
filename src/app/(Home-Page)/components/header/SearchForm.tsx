@@ -1,5 +1,6 @@
 import React from "react";
 import * as select from "@/components/ui/select";
+import propertyTypes from "@/constants/propertyDatas";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
@@ -23,11 +24,14 @@ const SearchForm = () => {
             <select.SelectValue placeholder="نوع ملک" />
           </select.SelectTrigger>
           <select.SelectContent>
-            <select.SelectItem value="villa">ویلا</select.SelectItem>
-            <select.SelectItem value="apartment">آپارتمان</select.SelectItem>
-            <select.SelectItem value="villa-house">
-              خانه ویلایی
-            </select.SelectItem>
+            {propertyTypes.map((propertyType) => (
+              <select.SelectItem
+                value={propertyType.enTitle}
+                key={propertyType.id}
+              >
+                {propertyType.faTitle}
+              </select.SelectItem>
+            ))}
           </select.SelectContent>
         </select.Select>
 
