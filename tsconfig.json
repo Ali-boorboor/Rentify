@@ -24,7 +24,8 @@
       "@otpVerify/*": ["./src/app/login-register/otp-verify/*"],
       "@homePage/*": ["./src/app/(Home-Page)/*"],
       "@propertiesPage/*": ["./src/app/properties/*"],
-      "@singlePropertyPage/*": ["./src/app/properties/[propertyID]/*"]
+      "@singlePropertyPage/*": ["./src/app/properties/[propertyID]/*"],
+      "@contactUsPage/*": ["./src/app/contact-us/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
