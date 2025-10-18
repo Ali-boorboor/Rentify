@@ -15,7 +15,7 @@ const PropertiesSection = () => {
 
         <PropertiesGrid />
 
-        <Button className="m-auto mt-6 md:mt-12">نمایش آگهی‌های بیشتر</Button>
+        <Button className="m-auto my-6">نمایش آگهی‌های بیشتر</Button>
         {/* if datas was loading show => <Button className="m-auto mt-6 md:mt-12" disabled>
           در حال بارگذاری
           <Spinner />
