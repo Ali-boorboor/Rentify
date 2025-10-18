@@ -1,5 +1,5 @@
 import React from "react";
-import MainLogo from "@/components/MainLogo";
+import MainLogo from "@/components/ui/MainLogo";
 import menuItems from "@/constants/menuDatas";
 import MobileMenu from "@/components/header/MobileMenu";
 import { Button } from "@/components/ui/button";

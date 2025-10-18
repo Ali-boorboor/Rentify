@@ -1,6 +1,6 @@
 import React from "react";
 import SortBar from "@propertiesPage/components/SortBar";
-import PropertiesGrid from "@/components/PropertiesGrid";
+import PropertiesGrid from "@/components/ui/PropertiesGrid";
 import { Button } from "@/components/ui/button";
 
 const PropertiesSection = () => {

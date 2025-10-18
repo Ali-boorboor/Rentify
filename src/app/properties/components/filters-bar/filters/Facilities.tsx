@@ -41,13 +41,14 @@ const Facilities = () => {
   return (
     <accordion.AccordionItem value="facilities">
       <accordion.AccordionTrigger>امکانات</accordion.AccordionTrigger>
-      
+
       <accordion.AccordionContent className="flex flex-wrap gap-4 px-2">
         {equipmentsAndFacilities.map((equipment) => (
           <Label
             className={cn(
               "grow flex items-center gap-3 rounded-xl border shadow-sm p-3 text-foreground hover:bg-primary/10 hover:border-primary/30",
-              "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50"
+              "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50",
+              "transition-all duration-200 ease-linear"
             )}
             key={equipment.id}
           >

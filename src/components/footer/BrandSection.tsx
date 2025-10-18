@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import MainLogo from "@/components/MainLogo";
+import MainLogo from "@/components/ui/MainLogo";
 import { Separator } from "@/components/ui/separator";
 import { socialMedias, enamadBadges } from "@/constants/footerDatas";
 

@@ -15,7 +15,8 @@ const ImageFacilities = () => {
         <Label
           className={cn(
             "flex items-center justify-between gap-4 rounded-xl border shadow-sm p-3 text-foreground hover:bg-primary/10 hover:border-primary/30",
-            "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50"
+            "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50",
+            "transition-all duration-200 ease-linear"
           )}
           dir="ltr"
         >
@@ -31,7 +32,8 @@ const ImageFacilities = () => {
         <Label
           className={cn(
             "flex items-center justify-between gap-4 rounded-xl border shadow-sm p-3 text-foreground hover:bg-primary/10 hover:border-primary/30",
-            "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50"
+            "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50",
+            "transition-all duration-200 ease-linear"
           )}
           dir="ltr"
         >

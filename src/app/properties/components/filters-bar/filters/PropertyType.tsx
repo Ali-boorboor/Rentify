@@ -15,7 +15,8 @@ const PropertyType = () => {
           <Label
             className={cn(
               "flex items-center gap-3 rounded-xl border shadow-sm p-3 text-foreground hover:bg-primary/10 hover:border-primary/30",
-              "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50"
+              "has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-primary/50",
+              "transition-all duration-200 ease-linear"
             )}
             key={propertyType.id}
           >

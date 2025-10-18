@@ -2,10 +2,10 @@ import React from "react";
 import Slider from "@singlePropertyPage/components/property-details/Slider";
 import MainDetails from "@singlePropertyPage/components/property-details/details/Main";
 import PropertyMenu from "@singlePropertyPage/components/property-details/PropertyMenu";
+import PropertyAgentCard from "@/app/properties/[propertyID]/components/property-details/agent-card";
 import PropertyHeader from "@singlePropertyPage/components/property-details/PropertyHeader";
 import LocationDetails from "@singlePropertyPage/components/property-details/details/Location";
 import EquipmentDetails from "@singlePropertyPage/components/property-details/details/Equipment";
-import PropertyAgentCard from "@singlePropertyPage/components/property-details/PropertyAgentCard";
 import DescriptionDetails from "@singlePropertyPage/components/property-details/details/Description";
 
 const PropertyDetails = () => {

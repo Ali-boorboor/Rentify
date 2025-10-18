@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { MessagesSquare, Phone } from "lucide-react";
+import VisitRequestDialog from "@singlePropertyPage/components/property-details/agent-card/VisitRequestDialog";
 import { Card, CardContent } from "@/components/ui/card";
+import { MessagesSquare, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const PropertyAgentCard = () => {
   return (
@@ -37,7 +38,7 @@ const PropertyAgentCard = () => {
             </Button>
           </div>
 
-          <Button className="w-full">درخواست بازدید</Button>
+          <VisitRequestDialog />
         </div>
       </CardContent>
     </Card>

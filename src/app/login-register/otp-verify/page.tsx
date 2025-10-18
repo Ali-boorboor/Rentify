@@ -1,5 +1,5 @@
 import OtpForm from "@otpVerify/components/OtpForm";
-import MainLogo from "@/components/MainLogo";
+import MainLogo from "@/components/ui/MainLogo";
 import React from "react";
 
 const OtpVerifyPage = () => {

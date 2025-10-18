@@ -1,4 +1,4 @@
-import PropertyCard from "@/components/PropertyCard";
+import PropertyCard from "@/components/ui/PropertyCard";
 import React from "react";
 
 interface PropertiesGridProps {

@@ -1,5 +1,5 @@
 import React from "react";
-import PropertiesGrid from "@/components/PropertiesGrid";
+import PropertiesGrid from "@/components/ui/PropertiesGrid";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 

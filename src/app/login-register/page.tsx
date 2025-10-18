@@ -1,5 +1,5 @@
 import React from "react";
-import MainLogo from "@/components/MainLogo";
+import MainLogo from "@/components/ui/MainLogo";
 import OAuthProviders from "@loginRegister/components/OAuthProviders";
 import OwnerTenantForm from "@loginRegister/components/OwnerTenantForm";
 import EstateAgencyForm from "@loginRegister/components/EstateAgencyForm";
