@@ -1,10 +1,16 @@
 import PropertyCard from "@/components/PropertyCard";
 import React from "react";
 
-const PropertiesGrid = () => {
+interface PropertiesGridProps {
+  properties?: Array<object>;
+}
+
+const PropertiesGrid = ({
+  properties = [...Array(8)],
+}: PropertiesGridProps) => {
   return (
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-      {[...Array(8)].map((_, index) => (
+      {properties.map((_, index) => (
         <PropertyCard
           key={index}
           title="۷۰ متری‌۲‌خوابه - تهران محمدیه"

@@ -23,7 +23,8 @@
       "@loginRegister/*": ["./src/app/login-register/*"],
       "@otpVerify/*": ["./src/app/login-register/otp-verify/*"],
       "@homePage/*": ["./src/app/(Home-Page)/*"],
-      "@propertiesPage/*": ["./src/app/properties/*"]
+      "@propertiesPage/*": ["./src/app/properties/*"],
+      "@singlePropertyPage/*": ["./src/app/properties/[propertyID]/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
