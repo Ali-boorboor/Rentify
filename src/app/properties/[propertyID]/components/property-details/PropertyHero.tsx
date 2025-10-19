@@ -3,7 +3,7 @@ import { Clock, Flag, Heart, MapPin, Share2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
-const PropertyHeader = () => {
+const PropertyHero = () => {
   return (
     <div className="space-y-4 md:space-y-8">
       <div className="space-y-2">
@@ -61,4 +61,4 @@ const PropertyHeader = () => {
   );
 };
 
-export default PropertyHeader;
+export default PropertyHero;

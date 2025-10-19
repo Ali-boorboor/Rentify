@@ -1,6 +1,6 @@
-import ContactLocation from "@contactUsPage/components/ContactLocation";
-import ContactForm from "@contactUsPage/components/ContactForm";
-import ContactInfo from "@contactUsPage/components/ContactInfo";
+import ContactLocation from "@contactUsPage/components/contact-location";
+import ContactForm from "@contactUsPage/components/contact-form";
+import ContactInfo from "@contactUsPage/components/contact-info";
 import React from "react";
 
 const ContactUsPage = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import InfoCard from "@contactUsPage/components/InfoCard";
+import InfoCard from "@contactUsPage/components/contact-info/InfoCard";
 import { Clock, Mail, MapPin } from "lucide-react";
 
 const infoCards = [

@@ -2,8 +2,8 @@
 
 import React from "react";
 import * as inputOtp from "@/components/ui/input-otp";
-import OtpTimer from "@otpVerify/components/OtpTimer";
-import PhoneSection from "@otpVerify/components/PhoneSection";
+import OtpTimer from "@loginRegister/otp-verify/components/otp-form/OtpTimer";
+import PhoneSection from "@loginRegister/otp-verify/components/otp-form/PhoneSection";
 import { Button } from "@/components/ui/button";
 
 const OtpForm = () => {

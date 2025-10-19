@@ -1,8 +1,8 @@
 import React from "react";
 import MainLogo from "@/components/ui/MainLogo";
-import OAuthProviders from "@loginRegister/components/OAuthProviders";
-import OwnerTenantForm from "@loginRegister/components/OwnerTenantForm";
-import EstateAgencyForm from "@loginRegister/components/EstateAgencyForm";
+import OAuthProviders from "@loginRegister/components/oauth-providers";
+import OwnerTenantForm from "@loginRegister/components/owner-tenant-form";
+import EstateAgencyForm from "@loginRegister/components/estate-agency-form";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const LoginRegisterPage = () => {

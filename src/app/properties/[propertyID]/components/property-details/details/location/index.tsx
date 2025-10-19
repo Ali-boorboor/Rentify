@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 
 const Map = dynamic(
-  () => import("@singlePropertyPage/components/property-details/details/Map"),
+  () =>
+    import(
+      "@singlePropertyPage/components/property-details/details/location/Map"
+    ),
   { ssr: false }
 );
 

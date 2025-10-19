@@ -1,5 +1,5 @@
 import React from "react";
-import SortBar from "@propertiesPage/components/SortBar";
+import SortBar from "@/app/properties/components/properties-section/SortBar";
 import PropertiesGrid from "@/components/ui/PropertiesGrid";
 import { Button } from "@/components/ui/button";
 

@@ -3,9 +3,12 @@
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Map = dynamic(() => import("@contactUsPage/components/Map"), {
-  ssr: false,
-});
+const Map = dynamic(
+  () => import("@contactUsPage/components/contact-location/Map"),
+  {
+    ssr: false,
+  }
+);
 
 const ContactLocation = () => {
   return (

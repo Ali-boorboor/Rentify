@@ -1,4 +1,4 @@
-import OtpForm from "@otpVerify/components/OtpForm";
+import OtpForm from "@loginRegister/otp-verify/components/otp-form";
 import MainLogo from "@/components/ui/MainLogo";
 import React from "react";
 

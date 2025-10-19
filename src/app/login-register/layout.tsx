@@ -1,4 +1,4 @@
-import AuthLayoutImage from "@loginRegister/components/AuthLayoutImage";
+import AuthLayoutImage from "@loginRegister/components/auth-layout-image";
 import { LayoutProps } from "@/types";
 import { Metadata } from "next";
 

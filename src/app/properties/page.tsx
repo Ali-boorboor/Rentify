@@ -1,4 +1,4 @@
-import PropertiesSection from "@propertiesPage/components/PropertiesSection";
+import PropertiesSection from "@propertiesPage/components/properties-section";
 import FiltersBar from "@propertiesPage/components/filters-bar";
 import React from "react";
 
