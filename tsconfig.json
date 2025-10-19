@@ -20,12 +20,17 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@loginRegister/*": ["./src/app/login-register/*"],
-      "@otpVerify/*": ["./src/app/login-register/otp-verify/*"],
-      "@homePage/*": ["./src/app/(Home-Page)/*"],
-      "@propertiesPage/*": ["./src/app/properties/*"],
-      "@singlePropertyPage/*": ["./src/app/properties/[propertyID]/*"],
-      "@contactUsPage/*": ["./src/app/contact-us/*"]
+      "@loginRegister/*": ["./src/app/(Login-Register)/*"],
+      "@otpVerify/*": [
+        "./src/app/(Login-Register)/login-register/(Otp-Verify)/*"
+      ],
+      "@home/*": ["./src/app/(Home-Page)/*"],
+      "@properties/*": ["./src/app/(Properties-Page)/*"],
+      "@singleProperty/*": [
+        "./src/app/(Properties-Page)/properties/(Single-Property-Page)/*"
+      ],
+      "@contactUs/*": ["./src/app/(Contact-Us)/*"],
+      "@userPanel/*": ["./src/app/(User-Panel)/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

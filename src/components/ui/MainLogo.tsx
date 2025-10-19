@@ -18,6 +18,7 @@ const MainLogo = ({
         alt="main logo image"
         sizes="200px"
         src={src}
+        priority
         fill
       />
     </div>

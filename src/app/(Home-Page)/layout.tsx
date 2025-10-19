@@ -1,4 +1,4 @@
-import HeroHeader from "@homePage/components/hero-header";
+import HeroHeader from "@home/components/hero-header";
 import Footer from "@/components/footer";
 import { LayoutProps } from "@/types";
 

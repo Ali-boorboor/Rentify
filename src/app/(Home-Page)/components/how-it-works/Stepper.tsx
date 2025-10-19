@@ -1,5 +1,5 @@
 import React from "react";
-import Step from "@homePage/components/how-it-works/Step";
+import Step from "@home/components/how-it-works/Step";
 import { CalendarDays, HandCoins, ScanEye, Search } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 

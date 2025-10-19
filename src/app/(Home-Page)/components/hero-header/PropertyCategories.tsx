@@ -1,5 +1,5 @@
-import PropertyCategoryCard from "@homePage/components/hero-header/PropertyCategoryCard";
-import propertyCategories from "@homePage/constants/propertyCategoryDatas";
+import PropertyCategoryCard from "@home/components/hero-header/PropertyCategoryCard";
+import propertyCategories from "@home/constants/propertyCategoryDatas";
 import React from "react";
 
 const PropertyCategories = () => {

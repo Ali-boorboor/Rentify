@@ -1,5 +1,5 @@
-import ServiceCard from "@homePage/components/services/ServiceCard";
-import services from "@homePage/constants/servicesDatas";
+import ServiceCard from "@home/components/services/ServiceCard";
+import services from "@home/constants/servicesDatas";
 import React from "react";
 
 const Services = () => {

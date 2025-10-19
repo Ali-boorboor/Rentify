@@ -1,7 +1,7 @@
-import MostViewedProperties from "@homePage/components/most-viewed-properties";
-import PromoBanner from "@homePage/components/promo-banner";
-import HowItWorks from "@homePage/components/how-it-works";
-import Services from "@homePage/components/services";
+import MostViewedProperties from "@home/components/most-viewed-properties";
+import PromoBanner from "@home/components/promo-banner";
+import HowItWorks from "@home/components/how-it-works";
+import Services from "@home/components/services";
 import React from "react";
 
 const HomePage = () => {

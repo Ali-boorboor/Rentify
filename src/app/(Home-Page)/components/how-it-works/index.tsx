@@ -1,4 +1,4 @@
-import Stepper from "@homePage/components/how-it-works/Stepper";
+import Stepper from "@home/components/how-it-works/Stepper";
 import React from "react";
 
 const HowItWorks = () => {

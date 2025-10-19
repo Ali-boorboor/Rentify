@@ -1,6 +1,6 @@
 import React from "react";
-import SearchForm from "@homePage/components/hero-header/SearchForm";
-import PropertyCategories from "@homePage/components/hero-header/PropertyCategories";
+import SearchForm from "@home/components/hero-header/SearchForm";
+import PropertyCategories from "@home/components/hero-header/PropertyCategories";
 import { NavigationMenu } from "@/components/header";
 import { cn } from "@/lib/utils";
 
