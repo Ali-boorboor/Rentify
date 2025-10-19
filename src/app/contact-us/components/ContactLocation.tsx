@@ -7,7 +7,7 @@ const Map = dynamic(() => import("@contactUsPage/components/Map"), {
   ssr: false,
 });
 
-const ContactMap = () => {
+const ContactLocation = () => {
   return (
     <section className="px-4">
       <div className="container m-auto h-96 rounded-xl border shadow-sm overflow-hidden">
@@ -17,4 +17,4 @@ const ContactMap = () => {
   );
 };
 
-export default ContactMap;
+export default ContactLocation;

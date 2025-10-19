@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const LOGIN_IMAGE_SRC = "/images/png/login-image.png";
+const IMAGE = "/images/png/login-image.png";
 
 const AuthLayoutImage = () => {
   return (
@@ -9,9 +9,9 @@ const AuthLayoutImage = () => {
       <div className="relative max-w-2xl w-full aspect-video m-auto">
         <Image
           className="object-contain object-center"
-          src={LOGIN_IMAGE_SRC}
           alt="login image"
           sizes="600px"
+          src={IMAGE}
           fill
         />
       </div>

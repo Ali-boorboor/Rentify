@@ -1,16 +1,16 @@
-import ContactHero from "@contactUsPage/components/ContactHero";
+import ContactLocation from "@contactUsPage/components/ContactLocation";
+import ContactForm from "@contactUsPage/components/ContactForm";
 import ContactInfo from "@contactUsPage/components/ContactInfo";
-import ContactMap from "@contactUsPage/components/ContactMap";
 import React from "react";
 
 const ContactUsPage = () => {
   return (
     <>
-      <ContactHero />
+      <ContactForm />
 
       <ContactInfo />
 
-      <ContactMap />
+      <ContactLocation />
     </>
   );
 };

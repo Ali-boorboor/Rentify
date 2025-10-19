@@ -6,9 +6,11 @@ import { UserRound } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const ContactHero = () => {
+const IMAGE = "/images/png/contact-us-image.png";
+
+const ContactForm = () => {
   return (
-    <section className="px-4">
+    <section className="px-4 mt-6">
       <div className="container m-auto space-y-10 md:space-y-20">
         <div className="text-center">
           <h1 className="text-2xl md:text-4xl font-bold">تماس با ما</h1>
@@ -94,9 +96,9 @@ const ContactHero = () => {
           <div className="relative w-md aspect-square rounded-xl overflow-hidden border shadow-sm grow">
             <Image
               className="object-cover object-center"
-              src="/images/png/contact-us-image.png"
               alt="contact us image"
               sizes="500px"
+              src={IMAGE}
               priority
               fill
             />
@@ -107,4 +109,4 @@ const ContactHero = () => {
   );
 };
 
-export default ContactHero;
+export default ContactForm;
