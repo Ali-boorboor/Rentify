@@ -3,6 +3,11 @@ import Image from "next/image";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Page Not Found !",
+};
 
 const NotFoundPage = () => {
   return (

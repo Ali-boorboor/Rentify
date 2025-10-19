@@ -3,13 +3,13 @@ import { toPersianDigits } from "@/utils/convertNumbers";
 
 interface StepProps {
   icon: React.ReactNode;
-  stepCount: number;
+  stepNumber: number;
   title: string;
   description: string;
 }
 
-const Step = ({ icon, stepCount, title, description }: StepProps) => {
-  const persianStepCount = toPersianDigits(String(stepCount));
+const Step = ({ icon, stepNumber, title, description }: StepProps) => {
+  const persianStepNumber = toPersianDigits(String(stepNumber));
 
   return (
     <div className="flex flex-col items-center max-w-40 w-full">
@@ -17,7 +17,7 @@ const Step = ({ icon, stepCount, title, description }: StepProps) => {
         {icon}
 
         <span className="absolute top-0 left-0 bg-secondary text-secondary-foreground w-6 h-6 rounded-full flex justify-center items-center border text-sm">
-          {persianStepCount}
+          {persianStepNumber}
         </span>
       </div>
 

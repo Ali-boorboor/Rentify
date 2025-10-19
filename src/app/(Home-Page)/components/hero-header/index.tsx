@@ -1,14 +1,18 @@
 import React from "react";
-import SearchForm from "@homePage/components/header/SearchForm";
-import PropertyCategoryList from "@homePage/components/header/PropertyCategoryList";
+import SearchForm from "@homePage/components/hero-header/SearchForm";
+import PropertyCategories from "@homePage/components/hero-header/PropertyCategories";
 import { NavigationMenu } from "@/components/header";
 import { cn } from "@/lib/utils";
 
-const Header = () => {
+const backgroundImage =
+  "bg-[url('/images/png/home-page/hero-header-background.png')]";
+
+const HeroHeader = () => {
   return (
     <header
       className={cn(
-        "bg-[url('/images/png/home-page/header-background.png')] bg-no-repeat bg-cover text-card min-h-[90svh] rounded-b-4xl px-4",
+        backgroundImage,
+        "bg-no-repeat bg-cover text-card min-h-[90svh] rounded-b-4xl px-4",
         "flex flex-col gap-20 md:gap-40 justify-between items-center"
       )}
     >
@@ -22,9 +26,9 @@ const Header = () => {
         <SearchForm />
       </section>
 
-      <PropertyCategoryList />
+      <PropertyCategories />
     </header>
   );
 };
 
-export default Header;
+export default HeroHeader;

@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-const IMAGE_SRC = "/images/png/home-page/advertisement.png";
+const BANNER = "/images/png/home-page/promo-banner.png";
 
-const Advertisement = () => {
+const PromoBanner = () => {
   return (
     <section className="container m-auto h-56 md:h-96 flex justify-between items-center gap-4 bg-accent text-accent-foreground rounded-xl px-4 md:pl-0 overflow-hidden shadow-sm">
       <div className="flex flex-col justify-around items-center gap-4 basis-1/2 h-full grow">
@@ -24,8 +24,8 @@ const Advertisement = () => {
       <div className="hidden md:block basis-1/2 h-full">
         <Image
           className="w-full h-full object-cover object-center"
-          alt="advertisement image"
-          src={IMAGE_SRC}
+          alt="promo banner"
+          src={BANNER}
           height={800}
           width={800}
         />
@@ -34,4 +34,4 @@ const Advertisement = () => {
   );
 };
 
-export default Advertisement;
+export default PromoBanner;

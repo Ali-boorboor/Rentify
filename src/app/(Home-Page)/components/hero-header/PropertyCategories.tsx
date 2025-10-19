@@ -1,8 +1,8 @@
-import PropertyCategoryCard from "@homePage/components/header/PropertyCategoryCard";
+import PropertyCategoryCard from "@homePage/components/hero-header/PropertyCategoryCard";
 import propertyCategories from "@homePage/constants/propertyCategoryDatas";
 import React from "react";
 
-const PropertyCategoryList = () => {
+const PropertyCategories = () => {
   return (
     <section className="container m-auto flex flex-wrap gap-6 items-center justify-center md:justify-between lg:translate-y-[30%]">
       {propertyCategories.map((category) => (
@@ -16,4 +16,4 @@ const PropertyCategoryList = () => {
   );
 };
 
-export default PropertyCategoryList;
+export default PropertyCategories;
