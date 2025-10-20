@@ -30,7 +30,10 @@
         "./src/app/(Properties-Page)/properties/(Single-Property-Page)/*"
       ],
       "@contactUs/*": ["./src/app/(Contact-Us)/*"],
-      "@userPanel/*": ["./src/app/(User-Panel)/*"]
+      "@userPanel/*": ["./src/app/(User-Panel)/*"],
+      "@userPanel/editInfos/*": [
+        "./src/app/(User-Panel)/my-account/(Edit-Infos)/*"
+      ]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
