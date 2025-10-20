@@ -45,6 +45,9 @@
       ],
       "@userPanel/userProperties/*": [
         "./src/app/(User-Panel)/my-account/(User-Properties)/*"
+      ],
+      "@userPanel/propertyComparison/*": [
+        "./src/app/(User-Panel)/my-account/(Property-Comparison)/*"
       ]
     }
   },

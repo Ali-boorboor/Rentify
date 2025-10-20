@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
 import * as card from "@/components/ui/card";
@@ -10,13 +11,14 @@ import { PropertyTypes } from "@/types";
 import { cn } from "@/lib/utils";
 
 type BaseProps = {
-  image?: string;
-  type: PropertyTypes;
-  location: string;
   title: string;
+  image?: string;
+  location: string;
+  className?: string;
   rentAmount: number;
+  type: PropertyTypes;
   mortgageAmount: number;
-  isFavoriteProperty?: boolean;
+  isFavourable?: boolean;
 };
 
 type UserPropertyProps = BaseProps & {
@@ -54,10 +56,12 @@ const PropertyCard = ({
   image,
   title,
   location,
+  className,
   rentAmount,
   mortgageAmount,
   isUserProperty,
   propertyStatus,
+  isFavourable = true,
 }: PropertyCardProps) => {
   const persianMortgageAmount = toPersianDigits(
     mortgageAmount.toLocaleString()
@@ -71,21 +75,23 @@ const PropertyCard = ({
   const statusInfo = propertyStatus ? propertyStatusMap[propertyStatus] : null;
 
   return (
-    <card.Card className="h-96 sm:h-[28rem] gap-0 p-0">
+    <card.Card className={cn("h-96 sm:h-[28rem] gap-0 p-0", className)}>
       <card.CardHeader className="relative h-full bg-muted rounded-t-xl">
-        {image ? (
-          <Image
-            className="object-cover object-center"
-            alt="property image"
-            sizes="600px"
-            src={image}
-            fill
-          />
-        ) : (
-          <icon.CameraOff className="absolute inset-0 m-auto size-full" />
-        )}
+        <Link href="/properties/1">
+          {image ? (
+            <Image
+              className="object-cover object-center"
+              alt="property image"
+              sizes="600px"
+              src={image}
+              fill
+            />
+          ) : (
+            <icon.CameraOff className="absolute inset-0 m-auto size-full" />
+          )}
+        </Link>
 
-        {isUserProperty ? (
+        {isUserProperty && (
           <>
             <Button
               className="absolute -top-2 -left-2 bg-destructive"
@@ -108,7 +114,9 @@ const PropertyCard = ({
               </Button>
             )}
           </>
-        ) : (
+        )}
+
+        {isFavourable && (
           <Button
             className="absolute top-3 right-3 bg-card"
             variant="link"
@@ -130,7 +138,11 @@ const PropertyCard = ({
           </Badge>
         </div>
 
-        <p className="text-sm md:text-base font-medium line-clamp-1">{title}</p>
+        <Link href="/properties/1">
+          <p className="text-sm md:text-base font-medium line-clamp-1">
+            {title}
+          </p>
+        </Link>
 
         <div className="flex flex-wrap items-center justify-evenly gap-4 bg-muted p-1.5 rounded-lg">
           <div className="flex gap-1 items-center">

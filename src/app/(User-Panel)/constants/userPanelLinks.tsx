@@ -23,7 +23,7 @@ const userPanelLinks = [
     id: 4,
     title: "مقایسه املاک",
     icon: <icon.TableProperties />,
-    href: "/my-account/compare-properties",
+    href: "/my-account/property-comparison",
   },
 ];
 
