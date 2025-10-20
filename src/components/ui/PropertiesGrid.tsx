@@ -1,15 +1,23 @@
-import PropertyCard from "@/components/ui/PropertyCard";
 import React from "react";
+import PropertyCard from "@/components/ui/PropertyCard";
+import { cn } from "@/lib/utils";
 
 interface PropertiesGridProps {
   properties?: Array<object>;
+  className?: string;
 }
 
 const PropertiesGrid = ({
   properties = [...Array(8)],
+  className,
 }: PropertiesGridProps) => {
   return (
-    <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+    <div
+      className={cn(
+        "grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6",
+        className
+      )}
+    >
       {properties.map((_, index) => (
         <PropertyCard
           key={index}

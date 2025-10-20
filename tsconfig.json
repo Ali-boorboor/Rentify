@@ -20,19 +20,28 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+
       "@loginRegister/*": ["./src/app/(Login-Register)/*"],
       "@otpVerify/*": [
         "./src/app/(Login-Register)/login-register/(Otp-Verify)/*"
       ],
+
       "@home/*": ["./src/app/(Home-Page)/*"],
+
       "@properties/*": ["./src/app/(Properties-Page)/*"],
+
       "@singleProperty/*": [
         "./src/app/(Properties-Page)/properties/(Single-Property-Page)/*"
       ],
+
       "@contactUs/*": ["./src/app/(Contact-Us)/*"],
+
       "@userPanel/*": ["./src/app/(User-Panel)/*"],
       "@userPanel/editInfos/*": [
         "./src/app/(User-Panel)/my-account/(Edit-Infos)/*"
+      ],
+      "@userPanel/favorites/*": [
+        "./src/app/(User-Panel)/my-account/(Favorites)/*"
       ]
     }
   },
