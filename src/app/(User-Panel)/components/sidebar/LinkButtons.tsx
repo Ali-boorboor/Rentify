@@ -10,8 +10,7 @@ import { cn } from "@/lib/utils";
 const ACTIVE_LINK_STYLE = cn(
   "justify-start bg-card border shadow-sm rounded-xl relative",
   "after:absolute after:right-0 after:h-6 after:w-1 after:bg-primary after:top-0 after:bottom-0 after:m-auto after:rounded-xl",
-  "after:transition-all after:duration-200 after:ease-linear",
-  "[&_svg]:transition-all [&_svg]:duration-200 [&_svg]:ease-linear [&_svg]:stroke-primary"
+  "[&_svg]:stroke-primary"
 );
 
 const LinkButtons = () => {
@@ -24,7 +23,8 @@ const LinkButtons = () => {
           className={cn(
             pathname.includes(link.href) && ACTIVE_LINK_STYLE,
             "grow justify-center md:justify-start",
-            "[&_svg:not([class*='size-'])]:size-5"
+            "[&_svg:not([class*='size-'])]:size-5",
+            "transition-none"
           )}
           variant="link"
           key={link.id}

@@ -42,6 +42,9 @@
       ],
       "@userPanel/favorites/*": [
         "./src/app/(User-Panel)/my-account/(Favorites)/*"
+      ],
+      "@userPanel/userProperties/*": [
+        "./src/app/(User-Panel)/my-account/(User-Properties)/*"
       ]
     }
   },

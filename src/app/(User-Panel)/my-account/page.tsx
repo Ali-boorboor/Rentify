@@ -4,12 +4,12 @@ import React from "react";
 
 const UserPanelPage = () => {
   return (
-    <section className="grow flex flex-col gap-6">
+    <section className="w-full space-y-6">
       <h2 className="text-xl md:text-2xl font-semibold text-center md:text-right">
         خوش آمدید به پنل کاربری
       </h2>
 
-      <div className="bg-card border shadow-sm rounded-xl grow flex items-center justify-between flex-wrap gap-6 p-6">
+      <div className="bg-card border shadow-sm rounded-xl flex items-center justify-between flex-wrap gap-6 p-6">
         {userPanelLinks.map((link) => (
           <LinkCard
             title={link.title}
