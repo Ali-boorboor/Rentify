@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 const MostViewedProperties = () => {
   return (
-    <section className="container m-auto space-y-4 md:space-y-8">
+    <section className="container m-auto space-y-6">
       <div className="flex flex-col sm:flex-row items-center sm:justify-between">
         <h3 className="text-lg md:text-2xl font-semibold">
           پر بازدید ترین‌های هفته‌ی گذشته

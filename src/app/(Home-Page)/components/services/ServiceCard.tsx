@@ -29,8 +29,8 @@ const ServiceCard = ({
         />
       </card.CardHeader>
 
-      <card.CardContent className="space-y-4">
-        <div className="text-center space-y-4">
+      <card.CardContent className="space-y-6">
+        <div className="text-center space-y-6">
           <h4 className="md:text-lg font-semibold line-clamp-1">{title}</h4>
 
           <p className="text-sm md:text-base line-clamp-2 text-muted-foreground">

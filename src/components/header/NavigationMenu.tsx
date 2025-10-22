@@ -24,7 +24,7 @@ const NavigationMenu = ({
     >
       <MainLogo className="w-24 md:w-32" src={logoSrc} />
 
-      <ul className="hidden lg:flex items-center gap-1">
+      <ul className="hidden lg:flex items-center gap-2">
         {menuItems.map((item) => (
           <li key={item.id}>
             <Button className="lg:text-base" variant="link">
@@ -36,7 +36,7 @@ const NavigationMenu = ({
 
       <MobileMenu />
 
-      <div className="hidden lg:flex items-center gap-1">
+      <div className="hidden lg:flex items-center gap-2">
         <Button variant="link">ورود | ثبت‌نام</Button>
         {/* <Button variant="link"> ! show when user is login !
           <UserRound />

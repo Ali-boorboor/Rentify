@@ -4,7 +4,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <section className="container m-auto space-y-4 md:space-y-8">
+    <section className="container m-auto space-y-6 lg:space-y-8">
       <h3 className="text-lg md:text-2xl font-semibold text-center">
         با خدمات <span className="text-primary">رنتی‌فای</span> آشنا شوید
       </h3>

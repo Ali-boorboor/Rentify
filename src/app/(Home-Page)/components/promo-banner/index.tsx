@@ -6,8 +6,8 @@ const BANNER = "/images/png/home-page/promo-banner.png";
 
 const PromoBanner = () => {
   return (
-    <section className="container m-auto h-56 md:h-96 flex justify-between items-center gap-4 bg-accent text-accent-foreground rounded-xl px-4 md:pl-0 overflow-hidden shadow-sm">
-      <div className="flex flex-col justify-around items-center gap-4 basis-1/2 h-full grow">
+    <section className="container m-auto h-56 md:h-96 flex justify-between items-center gap-6 bg-accent text-accent-foreground rounded-xl px-4 md:pl-0 overflow-hidden shadow-sm">
+      <div className="flex flex-col justify-around items-center gap-6 basis-1/2 h-full grow">
         <div className="text-center space-y-2">
           <h6 className="text-lg md:text-2xl font-semibold">
             برای دریافت وام رهن خانه کلیک کنید
