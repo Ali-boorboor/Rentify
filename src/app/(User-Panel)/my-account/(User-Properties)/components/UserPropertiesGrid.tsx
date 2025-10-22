@@ -1,3 +1,5 @@
+"use client";
+
 import PropertyCard from "@/components/ui/PropertyCard";
 import React from "react";
 
@@ -8,11 +10,13 @@ const UserPropertiesGrid = () => {
         <PropertyCard
           title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
           mortgageAmount={4_000_000_000}
+          removeButtonHandler={() => {}}
           propertyStatus="warning"
           rentAmount={50_000_000}
           location="تهران-الهیه"
+          isFavourable={false}
           type="apartment"
-          isUserProperty
+          hasRemoveButton
           key={index}
         />
       ))}

@@ -4,14 +4,14 @@ import * as accordion from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Funnel, X } from "lucide-react";
 
-import ImageFacilitiesFilter from "@properties/components/filters-bar/filters/ImageFacilities";
-import MortgagePriceFilter from "@properties/components/filters-bar/filters/MortgagePrice";
-import PropertyTypeFilter from "@properties/components/filters-bar/filters/PropertyType";
-import FacilitiesFilter from "@properties/components/filters-bar/filters/Facilities";
-import RentPriceFilter from "@properties/components/filters-bar/filters/RentPrice";
-import MeterageFilter from "@properties/components/filters-bar/filters/Meterage";
-import LocationFilter from "@properties/components/filters-bar/filters/Location";
-import RoomsFilter from "@properties/components/filters-bar/filters/Rooms";
+import ImageFacilitiesFilter from "@/components/filters-bar/filters/ImageFacilities";
+import MortgagePriceFilter from "@/components/filters-bar/filters/MortgagePrice";
+import PropertyTypeFilter from "@/components/filters-bar/filters/PropertyType";
+import FacilitiesFilter from "@/components/filters-bar/filters/Facilities";
+import RentPriceFilter from "@/components/filters-bar/filters/RentPrice";
+import MeterageFilter from "@/components/filters-bar/filters/Meterage";
+import LocationFilter from "@/components/filters-bar/filters/Location";
+import RoomsFilter from "@/components/filters-bar/filters/Rooms";
 
 const FiltersDialog = () => {
   return (

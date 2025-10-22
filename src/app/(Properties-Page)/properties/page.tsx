@@ -1,5 +1,5 @@
 import PropertiesSection from "@properties/components/properties-section";
-import FiltersBar from "@properties/components/filters-bar";
+import FiltersBar from "@/components/filters-bar";
 import React from "react";
 
 const PropertiesPage = () => {

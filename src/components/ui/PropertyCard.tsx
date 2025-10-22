@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,19 +21,20 @@ type BaseProps = {
   type: PropertyTypes;
   mortgageAmount: number;
   isFavourable?: boolean;
+  propertyStatus?: "success" | "error" | "warning";
 };
 
-type UserPropertyProps = BaseProps & {
-  isUserProperty: true;
-  propertyStatus: "success" | "error" | "warning";
+type HasRemoveButtonProps = BaseProps & {
+  hasRemoveButton: true;
+  removeButtonHandler: () => void;
 };
 
-type NonUserPropertyProps = BaseProps & {
-  isUserProperty?: false;
-  propertyStatus?: never;
+type HasNoRemoveButtonProps = BaseProps & {
+  hasRemoveButton?: false;
+  removeButtonHandler?: never;
 };
 
-type PropertyCardProps = UserPropertyProps | NonUserPropertyProps;
+type PropertyCardProps = HasRemoveButtonProps | HasNoRemoveButtonProps;
 
 const propertyStatusMap = {
   success: {
@@ -59,9 +62,10 @@ const PropertyCard = ({
   className,
   rentAmount,
   mortgageAmount,
-  isUserProperty,
   propertyStatus,
   isFavourable = true,
+  hasRemoveButton = false,
+  removeButtonHandler,
 }: PropertyCardProps) => {
   const persianMortgageAmount = toPersianDigits(
     mortgageAmount.toLocaleString()
@@ -91,29 +95,28 @@ const PropertyCard = ({
           )}
         </Link>
 
-        {isUserProperty && (
-          <>
-            <Button
-              className="absolute -top-2 -left-2 bg-destructive"
-              variant="link"
-              size="icon-sm"
-            >
-              <icon.X className="size-4.5 text-card" />
-            </Button>
+        {hasRemoveButton && (
+          <Button
+            className="absolute -top-2 -left-2 bg-destructive"
+            onClick={removeButtonHandler}
+            variant="link"
+            size="icon-sm"
+          >
+            <icon.X className="size-4.5 text-card" />
+          </Button>
+        )}
 
-            {statusInfo && (
-              <Button
-                className={cn(
-                  "absolute top-3 right-3 bg-card border shadow-sm cursor-auto rounded-xl hover:opacity-100",
-                  statusInfo.className
-                )}
-                variant="link"
-              >
-                {statusInfo.label}
-                <statusInfo.icon className="size-4.5" />
-              </Button>
+        {statusInfo && (
+          <Button
+            className={cn(
+              "absolute top-3 right-3 bg-card border shadow-sm cursor-auto rounded-xl hover:opacity-100",
+              statusInfo.className
             )}
-          </>
+            variant="link"
+          >
+            {statusInfo.label}
+            <statusInfo.icon className="size-4.5" />
+          </Button>
         )}
 
         {isFavourable && (
@@ -139,7 +142,7 @@ const PropertyCard = ({
         </div>
 
         <Link href="/properties/1">
-          <p className="text-sm md:text-base font-medium line-clamp-1">
+          <p className="text-sm md:text-base text-right font-medium line-clamp-1">
             {title}
           </p>
         </Link>

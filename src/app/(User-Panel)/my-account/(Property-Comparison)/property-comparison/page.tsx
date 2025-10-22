@@ -1,13 +1,15 @@
 import React from "react";
-import PropertyComparisonCard from "@userPanel/propertyComparison/components/PropertyComparisonCard";
+import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
 const PropertyComparisonPage = () => {
   return (
     <section className="w-full space-y-6">
-      <div className="text-center md:text-right">
-        <h2 className="text-xl md:text-2xl font-semibold">مقایسه املاک</h2>
+      <div className="text-center md:text-right space-y-2">
+        <h2 className="text-xl md:text-2xl font-semibold">
+          مقایسه املاک ذخیره شده
+        </h2>
 
         <p className="text-sm md:text-base text-muted-foreground font-normal">
           (حداقل ۲ کارت و حداکثر ۳ کارت را برای مقایسه انتخاب کنید)
@@ -21,7 +23,7 @@ const PropertyComparisonPage = () => {
           ))}
         </div>
 
-        <div className="flex justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
+        <div className="flex flex-wrap-reverse justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
           <Button className="flex-1" variant="outline" type="button">
             <Search />
             جستجو

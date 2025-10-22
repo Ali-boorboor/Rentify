@@ -1,7 +1,7 @@
 import React from "react";
 import propertyTypes from "@/constants/propertyDatas";
 import * as dropdownMenu from "@/components/ui/dropdown-menu";
-import FiltersDialog from "@properties/components/filters-bar/FiltersDialog";
+import FiltersDialog from "@/components/filters-bar/FiltersDialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";

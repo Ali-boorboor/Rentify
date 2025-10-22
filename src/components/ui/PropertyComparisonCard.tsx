@@ -16,7 +16,7 @@ const PropertyComparisonCard = () => {
       htmlFor="property-checkbox"
     >
       <PropertyCard
-        className="border-0 shadow-none w-full h-full pointer-events-none"
+        className="border-0 shadow-none pointer-events-none grow"
         title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
         mortgageAmount={4_000_000_000}
         rentAmount={50_000_000}
