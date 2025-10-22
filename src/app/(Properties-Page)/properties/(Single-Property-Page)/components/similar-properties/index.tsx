@@ -5,8 +5,8 @@ import { ArrowLeft } from "lucide-react";
 
 const SimilarProperties = () => {
   return (
-    <section className="px-4 py-10">
-      <div className="container m-auto space-y-4 md:space-y-8">
+    <section className="px-4 py-6">
+      <div className="container m-auto space-y-6">
         <div className="flex flex-col sm:flex-row items-center sm:justify-between">
           <h4 className="text-lg md:text-2xl font-semibold">
             خانه هایی با ارزش مشابه

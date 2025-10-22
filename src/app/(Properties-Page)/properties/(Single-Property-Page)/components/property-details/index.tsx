@@ -9,7 +9,7 @@ import DescriptionDetails from "@singleProperty/components/property-details/deta
 
 const PropertyDetails = () => {
   return (
-    <div className="flex flex-wrap-reverse items-end justify-between gap-4 md:gap-8">
+    <div className="flex flex-wrap-reverse items-end justify-between gap-6">
       <div className="grow-[10] space-y-10 md:space-y-20">
         <PropertyHero />
 

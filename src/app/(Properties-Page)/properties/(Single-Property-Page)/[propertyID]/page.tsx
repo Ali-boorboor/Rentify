@@ -6,8 +6,8 @@ import React from "react";
 const SinglePropertyPage = () => {
   return (
     <>
-      <section className="bg-card px-4 py-10 border shadow-sm">
-        <div className="container m-auto space-y-4 md:space-y-8">
+      <section className="bg-card px-4 py-6 border shadow-sm">
+        <div className="container m-auto space-y-6">
           <Slider />
 
           <PropertyDetails />

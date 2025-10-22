@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const PropertyHero = () => {
   return (
-    <div className="space-y-4 md:space-y-8">
+    <div className="space-y-6">
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-lg md:text-2xl font-semibold">
@@ -39,13 +39,13 @@ const PropertyHero = () => {
         </div>
       </div>
 
-      <div className="text-base md:text-lg font-medium space-y-2 mb-">
+      <div className="text-base md:text-lg font-medium space-y-2">
         <p>رهن ۴,۰۰۰,۰۰۰,۰۰۰ تومان</p>
 
         <p>اجاره ۵۰,۰۰۰,۰۰۰ تومان</p>
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-2">
         <Separator />
 
         <div className="flex items-center justify-between">

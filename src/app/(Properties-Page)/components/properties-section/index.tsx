@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const PropertiesSection = () => {
   return (
     <section className="px-4">
-      <div className="container m-auto flex flex-col gap-4 md:gap-8">
+      <div className="container m-auto flex flex-col gap-6">
         <h1 className="text-2xl md:text-4xl font-bold text-center sm:text-right">
           رهن و اجاره آپارتمان در تهران
         </h1>

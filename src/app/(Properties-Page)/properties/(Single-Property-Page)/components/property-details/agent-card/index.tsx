@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const PropertyAgentCard = () => {
   return (
     <Card className="w-96 lg:sticky top-28 grow">
-      <CardContent className="w-full flex flex-col items-center gap-4 md:gap-8">
+      <CardContent className="w-full flex flex-col items-center gap-6">
         <div className="flex items-center gap-6">
           <Image
             className="w-24 h-24 object-cover object-center"

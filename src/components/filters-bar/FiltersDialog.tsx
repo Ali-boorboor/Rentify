@@ -70,7 +70,7 @@ const FiltersDialog = () => {
 
         <dialog.DialogFooter>
           <dialog.DialogClose asChild>
-            <div className="flex flex-wrap-reverse items-center gap-4 w-full">
+            <div className="flex flex-wrap-reverse items-center gap-6 w-full">
               <Button className="grow text-destructive" variant="ghost">
                 حذف همه
               </Button>
