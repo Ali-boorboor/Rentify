@@ -1,6 +1,6 @@
 import React from "react";
-import * as inputGroup from "@/components/ui/input-group";
-import { Building2, Phone, UserRound, X } from "lucide-react";
+import LabeledInput from "@/components/ui/LabeledInput";
+import { Building2, Phone, UserRound } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -9,74 +9,36 @@ import { Label } from "@/components/ui/label";
 const EstateAgencyForm = () => {
   return (
     <TabsContent value="estate-agency-form">
-      <form className="space-y-4 md:space-y-6">
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-          <div className="grid w-full flex-1 items-center gap-2">
-            <Label htmlFor="name">نام</Label>
-            <inputGroup.InputGroup>
-              <inputGroup.InputGroupInput
-                placeholder="نام"
-                className="pr-1"
-                type="text"
-                id="name"
-              />
-              <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                <UserRound />
-              </inputGroup.InputGroupAddon>
-            </inputGroup.InputGroup>
-          </div>
+      <form className="space-y-6">
+        <div className="flex flex-col md:flex-row gap-6">
+          <LabeledInput
+            icon={<UserRound />}
+            placeholder="نام"
+            label="نام"
+            id="name"
+          />
 
-          <div className="grid w-full flex-1 items-center gap-2">
-            <Label htmlFor="family-name">نام خانوادگی</Label>
-            <inputGroup.InputGroup>
-              <inputGroup.InputGroupInput
-                placeholder="نام خانوادگی"
-                className="pr-1"
-                id="family-name"
-                type="text"
-              />
-              <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                <UserRound />
-              </inputGroup.InputGroupAddon>
-            </inputGroup.InputGroup>
-          </div>
+          <LabeledInput
+            icon={<UserRound />}
+            placeholder="نام خانوادگی"
+            label="نام خانوادگی"
+            id="family-name"
+          />
         </div>
 
-        <div className="grid w-full flex-1 items-center gap-2">
-          <Label htmlFor="agency-name">نام دفتر</Label>
-          <inputGroup.InputGroup>
-            <inputGroup.InputGroupInput
-              placeholder="نام دفتر"
-              className="pr-1"
-              id="agency-name"
-              type="text"
-            />
-            <inputGroup.InputGroupAddon className="pl-0 pr-2">
-              <Building2 />
-            </inputGroup.InputGroupAddon>
-          </inputGroup.InputGroup>
-        </div>
+        <LabeledInput
+          icon={<Building2 />}
+          placeholder="نام دفتر"
+          label="نام دفتر"
+          id="agency-name"
+        />
 
-        <div className="grid w-full flex-1 items-center gap-2">
-          <Label htmlFor="phone">تلفن همراه</Label>
-          <inputGroup.InputGroup>
-            <inputGroup.InputGroupInput
-              placeholder="09xxxxxxxxx"
-              className="!px-2"
-              type="text"
-              id="phone"
-            />
-            <inputGroup.InputGroupAddon
-              className="pl-0 pr-2"
-              align="inline-start"
-            >
-              <Phone />
-            </inputGroup.InputGroupAddon>
-            <inputGroup.InputGroupAddon align="inline-end" className="pl-2">
-              <X />
-            </inputGroup.InputGroupAddon>
-          </inputGroup.InputGroup>
-        </div>
+        <LabeledInput
+          icon={<Phone />}
+          placeholder="09999999999"
+          label="تلفن همراه"
+          id="phone"
+        />
 
         <div className="flex items-center space-x-2">
           <Checkbox id="terms" />

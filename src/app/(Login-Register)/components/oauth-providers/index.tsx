@@ -6,22 +6,22 @@ import { Separator } from "@/components/ui/separator";
 const OAuthProviders = () => {
   return (
     <>
-      <div className="flex items-center gap-3 max-w-full">
+      <div className="flex items-center gap-2 max-w-full">
         <Separator className="shrink" />
-        <span className="text-nowrap text-muted-foreground grow-0 m-auto">
+        <span className="text-nowrap text-muted-foreground">
           یا ورود از طریق
         </span>
         <Separator className="shrink" />
       </div>
 
-      <div className="flex gap-6 justify-center items-center">
+      <div className="m-auto">
         <Button variant="link" size="icon">
           <Image
             className="size-full object-contain"
             src="/images/svg/google.svg"
             alt="google login icon"
-            height={24}
-            width={24}
+            height={30}
+            width={30}
           />
         </Button>
       </div>

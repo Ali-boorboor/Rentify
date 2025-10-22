@@ -8,17 +8,17 @@ import { Button } from "@/components/ui/button";
 
 const OtpForm = () => {
   return (
-    <form className="w-full space-y-4 md:space-y-6">
+    <form className="w-full space-y-6">
       <PhoneSection />
 
-      <div dir="ltr" className="w-full space-y-3">
+      <div dir="ltr" className="w-full space-y-2">
         <inputOtp.InputOTP
+          containerClassName="justify-center flex-wrap gap-6"
           maxLength={6}
-          containerClassName="justify-between flex-wrap gap-1"
         >
           {[...Array(6)].map((_, index) => (
-            <inputOtp.InputOTPGroup key={index}>
-              <inputOtp.InputOTPSlot index={index} />
+            <inputOtp.InputOTPGroup className="flex-1" key={index}>
+              <inputOtp.InputOTPSlot className="flex-1" index={index} />
             </inputOtp.InputOTPGroup>
           ))}
         </inputOtp.InputOTP>
