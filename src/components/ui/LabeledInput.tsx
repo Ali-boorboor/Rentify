@@ -30,7 +30,7 @@ const LabeledInput = ({
       <Label htmlFor={id}>{label}</Label>
 
       <inputGroup.InputGroup>
-        <inputGroup.InputGroupInput className="pr-1" id={id} {...props} />
+        <inputGroup.InputGroupInput id={id} {...props} />
 
         {hasIcon && (
           <inputGroup.InputGroupAddon className="pl-0 pr-2">

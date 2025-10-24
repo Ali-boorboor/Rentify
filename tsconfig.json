@@ -50,8 +50,26 @@
         "./src/app/(User-Panel)/my-account/(Property-Comparison)/*"
       ],
 
-      "@propertyComparison/*": [
-        "./src/app/(Property-Comparison)/*"
+      "@propertyComparison/*": ["./src/app/(Property-Comparison)/*"],
+
+      "@propertyRegistration/*": ["./src/app/(Property-Registration)/*"],
+      "@propertyTypeRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Type)/*"
+      ],
+      "@propertyLocationRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Location)/*"
+      ],
+      "@propertyDetailsRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Details)/*"
+      ],
+      "@propertyEquipmentsRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Equipments)/*"
+      ],
+      "@propertyDescriptionRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Description)/*"
+      ],
+      "@propertyImagesRegistration/*": [
+        "./src/app/(Property-Registration)/property-registration/(Property-Images)/*"
       ]
     }
   },

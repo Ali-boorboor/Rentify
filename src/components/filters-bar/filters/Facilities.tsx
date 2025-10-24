@@ -1,41 +1,9 @@
 import React from "react";
 import * as accordion from "@/components/ui/accordion";
+import equipmentsAndFacilities from "@/constants/propertyEquipmentsDatas";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-
-const equipmentsAndFacilities = [
-  { id: 1, title: "آسانسور" },
-  { id: 2, title: "کاغذ دیواری" },
-  { id: 3, title: "چیلر" },
-  { id: 4, title: "پارکینگ" },
-  { id: 5, title: "گاز رو میزی" },
-  { id: 6, title: "کولر آبی" },
-  { id: 7, title: "انباری" },
-  { id: 8, title: "هود" },
-  { id: 9, title: "بخاری" },
-  { id: 10, title: "کمد دیواری" },
-  { id: 11, title: "حمام مستر" },
-  { id: 12, title: "پکیج" },
-  { id: 13, title: "نقاشی" },
-  { id: 14, title: "استخر" },
-  { id: 15, title: "رادیاتور" },
-  { id: 16, title: "تراس" },
-  { id: 17, title: "سونا" },
-  { id: 18, title: "آبگرم کن" },
-  { id: 19, title: "درب ضد سرقت" },
-  { id: 20, title: "جکوزی" },
-  { id: 21, title: "کولر گازی" },
-  { id: 22, title: "آیفون تصویری" },
-  { id: 23, title: "لابی" },
-  { id: 24, title: "شوفاژ" },
-  { id: 25, title: "دوربین مدار بسته" },
-  { id: 26, title: "روف گاردن" },
-  { id: 27, title: "گرمایش از کف" },
-  { id: 28, title: "سرویس فرنگی" },
-  { id: 29, title: "سالن ورزش" },
-  { id: 30, title: "هواساز" },
-];
 
 const Facilities = () => {
   return (
@@ -54,7 +22,7 @@ const Facilities = () => {
           >
             <Checkbox className="data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" />
             <p className="font-medium text-sm leading-none">
-              {equipment.title}
+              {equipment.label}
             </p>
           </Label>
         ))}
