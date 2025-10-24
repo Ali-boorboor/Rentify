@@ -6,7 +6,7 @@ import { Filter } from "lucide-react";
 
 const FiltersBar = () => {
   return (
-    <div className="bg-card p-3 rounded-xl border shadow-sm">
+    <div className="bg-card p-4 rounded-xl border shadow-sm">
       <collapsible.Collapsible>
         <div className="flex justify-between items-center gap-6">
           <h1 className="text-xl md:text-2xl font-semibold">مقایسه املاک</h1>
@@ -20,7 +20,7 @@ const FiltersBar = () => {
 
         <collapsible.CollapsibleContent>
           <scrollArea.ScrollArea className="whitespace-nowrap py-4">
-            <div className="w-full flex items-center gap-6">
+            <div className="w-full flex items-center gap-2">
               {[...Array(30)].map((_, index) => (
                 // todo: if button filter was selected set bg-primary/10 & hover:bg-transparent for its class
                 <Button variant="outline" key={index}>

@@ -25,7 +25,7 @@ const NotFoundPage = () => {
           />
         </div>
 
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-6">
           <h1 className="text-xl md:text-2xl font-bold">
             صفحه‌ی مورد نظر یافت نشد!
           </h1>

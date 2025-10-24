@@ -9,7 +9,7 @@ interface InfoCardProps {
 
 const InfoCard = ({ icon, title, description }: InfoCardProps) => {
   return (
-    <div className="grow flex flex-col gap-6 items-center justify-center bg-card text-card-foreground border shadow-sm rounded-xl p-6">
+    <div className="grow flex flex-col gap-6 items-center justify-center bg-card text-card-foreground border shadow-sm rounded-xl p-4">
       <div
         className={cn(
           "bg-accent text-accent-foreground w-16 h-16 md:w-20 md:h-20 rounded-full",

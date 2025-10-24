@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const Form = () => {
   return (
     <form className="flex flex-col gap-6">
-      <div className="bg-card text-card-foreground border shadow-sm p-6 rounded-xl space-y-6">
+      <div className="bg-card text-card-foreground border shadow-sm p-4 rounded-xl space-y-6">
         <div className="flex flex-col md:flex-row justify-center md:justify-start md:items-end gap-6">
           <Image
             className="w-24 h-24 md:w-28 md:h-28 object-cover object-center mx-auto md:mx-0"

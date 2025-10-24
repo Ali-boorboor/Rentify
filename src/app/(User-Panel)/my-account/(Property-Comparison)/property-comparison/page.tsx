@@ -16,8 +16,8 @@ const PropertyComparisonPage = () => {
         </p>
       </div>
 
-      <form className="bg-card border shadow-sm rounded-xl space-y-6 p-2">
-        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 p-4">
+      <form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
+        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
           {[...Array(10)].map((_, index) => (
             <PropertyComparisonCard key={index} />
           ))}

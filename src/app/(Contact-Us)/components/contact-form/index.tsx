@@ -1,17 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import * as inputGroup from "@/components/ui/input-group";
+import LabeledInput from "@/components/ui/LabeledInput";
+import { Mail, Phone, UserRound } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { UserRound } from "lucide-react";
 
 const IMAGE = "/images/png/contact-us-image.png";
 
 const ContactForm = () => {
   return (
-    <section className="px-4 mt-6">
-      <div className="container m-auto space-y-10 md:space-y-20">
+    <section className="px-4">
+      <div className="container m-auto space-y-6">
         <div className="text-center">
           <h1 className="text-2xl md:text-4xl font-bold">تماس با ما</h1>
           <p className="text-primary font-medium">
@@ -22,67 +21,35 @@ const ContactForm = () => {
         <div className="flex flex-wrap gap-6 justify-between">
           <form className="grow basis-1/2 flex flex-col gap-6 bg-card p-4 rounded-xl border shadow-sm">
             <div className="flex flex-wrap gap-6 items-center">
-              <div className="grid grow items-center gap-2">
-                <Label htmlFor="name">نام</Label>
-                <inputGroup.InputGroup>
-                  <inputGroup.InputGroupInput
-                    placeholder="نام"
-                    className="pr-1"
-                    type="text"
-                    id="name"
-                  />
-                  <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                    <UserRound />
-                  </inputGroup.InputGroupAddon>
-                </inputGroup.InputGroup>
-              </div>
+              <LabeledInput
+                icon={<UserRound />}
+                placeholder="نام"
+                label="نام"
+                id="name"
+              />
 
-              <div className="grid grow items-center gap-2">
-                <Label htmlFor="name">نام</Label>
-                <inputGroup.InputGroup>
-                  <inputGroup.InputGroupInput
-                    placeholder="نام"
-                    className="pr-1"
-                    type="text"
-                    id="name"
-                  />
-                  <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                    <UserRound />
-                  </inputGroup.InputGroupAddon>
-                </inputGroup.InputGroup>
-              </div>
+              <LabeledInput
+                placeholder="نام‌ خانوادگی"
+                icon={<UserRound />}
+                label="نام‌ خانوادگی"
+                id="family-name"
+              />
             </div>
 
             <div className="flex flex-wrap gap-6 items-center">
-              <div className="grid grow items-center gap-2">
-                <Label htmlFor="name">نام</Label>
-                <inputGroup.InputGroup>
-                  <inputGroup.InputGroupInput
-                    placeholder="نام"
-                    className="pr-1"
-                    type="text"
-                    id="name"
-                  />
-                  <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                    <UserRound />
-                  </inputGroup.InputGroupAddon>
-                </inputGroup.InputGroup>
-              </div>
+              <LabeledInput
+                placeholder="ایمیل"
+                icon={<Mail />}
+                label="ایمیل"
+                id="email"
+              />
 
-              <div className="grid grow items-center gap-2">
-                <Label htmlFor="name">نام</Label>
-                <inputGroup.InputGroup>
-                  <inputGroup.InputGroupInput
-                    placeholder="نام"
-                    className="pr-1"
-                    type="text"
-                    id="name"
-                  />
-                  <inputGroup.InputGroupAddon className="pl-0 pr-2">
-                    <UserRound />
-                  </inputGroup.InputGroupAddon>
-                </inputGroup.InputGroup>
-              </div>
+              <LabeledInput
+                placeholder="تلفن همراه"
+                label="تلفن همراه"
+                icon={<Phone />}
+                id="phone"
+              />
             </div>
 
             <Textarea

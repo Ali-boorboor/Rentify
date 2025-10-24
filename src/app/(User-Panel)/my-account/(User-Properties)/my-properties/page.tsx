@@ -9,7 +9,7 @@ const UserPropertiesPage = () => {
         آگهی‌های من
       </h2>
 
-      <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-6">
+      <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-4">
         <UserPropertiesGrid />
 
         <EmptyPropertiesAlert />
