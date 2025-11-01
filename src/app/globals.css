@@ -203,4 +203,10 @@
   body[data-scroll-locked] {
     @apply !overflow-visible !mr-0;
   }
+  .leaflet-control-attribution {
+    @apply hidden;
+  }
+  [data-sonner-toaster] {
+    --offset-right: 16px !important;
+  }
 }

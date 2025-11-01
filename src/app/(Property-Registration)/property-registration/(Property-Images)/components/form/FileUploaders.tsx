@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,30 +9,46 @@ import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const FileUploaders = () => {
-  const [images, setImages] = useState<(string | null)[]>(Array(6).fill(null));
+  const [uploadedImages, setUploadedImages] = useState<(string | null)[]>(
+    Array(6).fill(null)
+  );
 
-  const handleImageChange = (index: number, file?: File) => {
+  const handleImageChange = (
+    index: number,
+    file?: File,
+    input?: HTMLInputElement
+  ) => {
     if (!file) return;
 
-    const newImages = [...images];
+    const newImages = [...uploadedImages];
     newImages[index] = URL.createObjectURL(file);
-    setImages(newImages);
+    setUploadedImages(newImages);
+
+    if (input) input.value = "";
   };
 
   const handleRemoveImage = (index: number) => {
-    const newImages = [...images];
+    const newImages = [...uploadedImages];
     newImages[index] = null;
-    setImages(newImages);
+    setUploadedImages(newImages);
   };
+
+  useEffect(() => {
+    return () => {
+      uploadedImages.forEach(
+        (imageUrl) => imageUrl && URL.revokeObjectURL(imageUrl)
+      );
+    };
+  }, [uploadedImages]);
 
   return (
     <div className="grow flex flex-wrap gap-6">
-      {images.map((image, index) => (
+      {uploadedImages.map((image, index) => (
         <div
           key={index}
           className={cn(
-            "relative min-w-44 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden",
-            image ? "ring-2 ring-primary" : "border-2 border-dashed"
+            "relative min-w-44 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden border-2",
+            image ? "border-primary" : "border-dashed"
           )}
         >
           <Label
@@ -40,7 +56,9 @@ const FileUploaders = () => {
             className="w-full h-full flex justify-center items-center cursor-pointer"
           >
             <Input
-              onChange={(e) => handleImageChange(index, e.target.files?.[0])}
+              onChange={(e) =>
+                handleImageChange(index, e.target.files?.[0], e.target)
+              }
               accept="image/png, image/jpeg, image/jpg"
               id={`image-${index}`}
               type="file"

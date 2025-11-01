@@ -1,9 +1,11 @@
 import React from "react";
-import MainLogo from "@/components/ui/MainLogo";
+import Link from "next/link";
 import menuItems from "@/constants/menuDatas";
+import authenticate from "@/utils/authenticate";
+import MainLogo from "@/components/ui/MainLogo";
 import MobileMenu from "@/components/header/MobileMenu";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavigationMenuProps {
@@ -11,10 +13,12 @@ interface NavigationMenuProps {
   className?: string;
 }
 
-const NavigationMenu = ({
+const NavigationMenu = async ({
   logoSrc = "/images/png/white-main-logo.png",
   className,
 }: NavigationMenuProps) => {
+  const isUserLogin = await authenticate();
+
   return (
     <nav
       className={cn(
@@ -27,8 +31,8 @@ const NavigationMenu = ({
       <ul className="hidden lg:flex items-center gap-2">
         {menuItems.map((item) => (
           <li key={item.id}>
-            <Button className="lg:text-base" variant="link">
-              {item.title}
+            <Button className="lg:text-base" variant="link" asChild>
+              <Link href={item.href}>{item.title}</Link>
             </Button>
           </li>
         ))}
@@ -37,15 +41,24 @@ const NavigationMenu = ({
       <MobileMenu />
 
       <div className="hidden lg:flex items-center gap-2">
-        <Button variant="link">ورود | ثبت‌نام</Button>
-        {/* <Button variant="link"> ! show when user is login !
-          <UserRound />
-          حساب من
-        </Button> */}
+        {isUserLogin ? (
+          <Button variant="link" asChild>
+            <Link href="/my-account/edit-infos">
+              <UserRound />
+              حساب من
+            </Link>
+          </Button>
+        ) : (
+          <Button variant="link" asChild>
+            <Link href="/login-register">ورود | ثبت‌نام</Link>
+          </Button>
+        )}
 
-        <Button>
-          <Plus className="size-4" />
-          ثبت آگهی رایگان
+        <Button asChild>
+          <Link href="/property-registration/property-type">
+            <Plus className="size-4" />
+            ثبت آگهی رایگان
+          </Link>
         </Button>
       </div>
     </nav>

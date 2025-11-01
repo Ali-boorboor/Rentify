@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import * as table from "@/components/ui/table";
 import PropertyCard from "@/components/ui/PropertyCard";
 import { Plus, TextAlignJustify } from "lucide-react";
@@ -14,8 +15,10 @@ const Table = () => {
           <table.TableHead className="p-4">
             <div className="flex justify-center items-center bg-muted rounded-xl border shadow-sm h-80 sm:h-[28rem] p-4 aspect-[3/4]">
               {/* if there was 3 card already user cannot add another one and in that case make the button disabled ! */}
-              <Button className="size-12" variant="ternary" size="icon">
-                <Plus className="size-1/2" />
+              <Button className="size-12" variant="ternary" size="icon" asChild>
+                <Link href="/property-comparison/search">
+                  <Plus className="size-1/2" />
+                </Link>
               </Button>
             </div>
           </table.TableHead>
@@ -27,9 +30,9 @@ const Table = () => {
                 title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
                 mortgageAmount={4_000_000_000}
                 removeButtonHandler={() => {}}
+                propertyType="خانه ویلایی"
                 rentAmount={50_000_000}
                 location="تهران-الهیه"
-                type="apartment"
                 hasRemoveButton
               />
             </table.TableHead>

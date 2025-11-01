@@ -1,7 +1,8 @@
-import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
-import FiltersBar from "@/components/filters-bar";
-import SortBar from "@/components/sort-bar";
 import React from "react";
+import Link from "next/link";
+import SortBar from "@/components/sort-bar";
+import FiltersBar from "@/components/filters-bar";
+import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
 import { Button } from "@/components/ui/button";
 
 const PropertyComparisonSearchPage = () => {
@@ -31,8 +32,15 @@ const PropertyComparisonSearchPage = () => {
 
           <div className="p-4 sticky bottom-0 bg-card border shadow-sm z-40">
             <div className="flex flex-wrap-reverse justify-center items-center gap-6 container m-auto">
-              <Button className="flex-1" variant="outline" type="button">
-                بازگشت به صفحه مقایسه املاک
+              <Button
+                className="flex-1"
+                variant="outline"
+                type="button"
+                asChild
+              >
+                <Link href="/property-comparison">
+                  بازگشت به صفحه مقایسه املاک
+                </Link>
               </Button>
 
               <Button className="flex-1" type="submit">

@@ -1,11 +1,14 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
+import authenticate from "@/utils/authenticate";
 import VisitRequestDialog from "@singleProperty/components/property-details/agent-card/VisitRequestDialog";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessagesSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const PropertyAgentCard = () => {
+const PropertyAgentCard = async () => {
+  const isUserLogin = await authenticate();
+
   return (
     <Card className="w-96 lg:sticky top-28 grow">
       <CardContent className="w-full flex flex-col items-center gap-6">
@@ -25,21 +28,15 @@ const PropertyAgentCard = () => {
           </div>
         </div>
 
-        <div className="space-y-2 w-full">
-          <div className="flex items-center gap-2">
-            <Button className="basis-1/2 shrink" variant="outline">
-              <Phone className="size-4.5" />
-              تماس
-            </Button>
-
-            <Button className="basis-1/2 shrink" variant="outline">
-              <MessagesSquare className="size-4.5" />
-              پیام
-            </Button>
-          </div>
-
+        {isUserLogin ? (
           <VisitRequestDialog />
-        </div>
+        ) : (
+          <Button className="w-full whitespace-normal" asChild>
+            <Link href="/login-register">
+              جهت ثبت درخواست بازدید ابتدا ورود کنید
+            </Link>
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

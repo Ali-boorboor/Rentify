@@ -1,5 +1,5 @@
 import EmptyFavoritesAlert from "@userPanel/favorites/components/EmptyFavoritesAlert";
-import PropertiesGrid from "@/components/ui/PropertiesGrid";
+import PropertyCard from "@/components/ui/PropertyCard";
 import React from "react";
 
 const FavoritesPage = () => {
@@ -10,7 +10,18 @@ const FavoritesPage = () => {
       </h2>
 
       <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-4">
-        <PropertiesGrid />
+        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+          {[...Array(8)].map((_, index) => (
+            <PropertyCard
+              title="{property.title}"
+              key={index}
+              rentAmount={0}
+              location="{property.location.faName}"
+              mortgageAmount={0}
+              propertyType="{property.propertyCategory.faTitle}"
+            />
+          ))}
+        </div>
 
         <EmptyFavoritesAlert />
       </div>

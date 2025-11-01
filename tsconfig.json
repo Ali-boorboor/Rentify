@@ -20,6 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@models/*": ["./src/models/*"],
+      "@configs/*": ["./src/configs/*"],
+      "@validators/*": ["./src/validators/*"],
 
       "@loginRegister/*": ["./src/app/(Login-Register)/*"],
       "@otpVerify/*": [

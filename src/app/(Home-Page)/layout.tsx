@@ -7,7 +7,7 @@ export default function PageLayout({ children }: LayoutProps) {
     <>
       <HeroHeader />
 
-      <main className="mt-10 lg:mt-40 px-4 flex flex-col gap-10 md:gap-20">
+      <main className="mt-10 lg:mt-40 px-4 space-y-10 md:space-y-20">
         {children}
       </main>
 

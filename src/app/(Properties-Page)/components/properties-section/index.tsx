@@ -1,6 +1,6 @@
 import React from "react";
 import SortBar from "@/components/sort-bar";
-import PropertiesGrid from "@/components/ui/PropertiesGrid";
+import PropertyCard from "@/components/ui/PropertyCard";
 import { Button } from "@/components/ui/button";
 
 const PropertiesSection = () => {
@@ -13,7 +13,18 @@ const PropertiesSection = () => {
 
         <SortBar />
 
-        <PropertiesGrid />
+        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+          {[...Array(8)].map((_, index) => (
+            <PropertyCard
+              title="{property.title}"
+              key={index}
+              rentAmount={0}
+              location="{property.location.faName}"
+              mortgageAmount={0}
+              propertyType="{property.propertyCategory.faTitle}"
+            />
+          ))}
+        </div>
 
         <Button className="m-auto my-6">نمایش آگهی‌های بیشتر</Button>
         {/* if datas was loading show => <Button className="m-auto mt-6 md:mt-12" disabled>

@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import localFont from "next/font/local";
+import { Toaster } from "@/components/ui/sonner";
 import { LayoutProps } from "@/types";
 import type { Metadata } from "next";
 
@@ -14,8 +15,12 @@ const persianFont = localFont({
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={`${persianFont.className} antialiased`}>{children}</body>
+    <html lang="fa" dir="rtl" data-scroll-behavior="smooth">
+      <body className={`${persianFont.className} antialiased`}>
+        {children}
+
+        <Toaster position="top-right" />
+      </body>
     </html>
   );
 }

@@ -5,11 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
 import * as card from "@/components/ui/card";
-import propertyTypes from "@/constants/propertyDatas";
 import { toPersianDigits } from "@/utils/convertNumbers";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PropertyTypes } from "@/types";
 import { cn } from "@/lib/utils";
 
 type BaseProps = {
@@ -18,7 +16,7 @@ type BaseProps = {
   location: string;
   className?: string;
   rentAmount: number;
-  type: PropertyTypes;
+  propertyType: string;
   mortgageAmount: number;
   isFavourable?: boolean;
   propertyStatus?: "success" | "error" | "warning";
@@ -55,7 +53,7 @@ const propertyStatusMap = {
 } as const;
 
 const PropertyCard = ({
-  type,
+  propertyType,
   image,
   title,
   location,
@@ -68,20 +66,16 @@ const PropertyCard = ({
   removeButtonHandler,
 }: PropertyCardProps) => {
   const persianMortgageAmount = toPersianDigits(
-    mortgageAmount.toLocaleString()
+    mortgageAmount?.toLocaleString()
   );
-  const persianRentAmount = toPersianDigits(rentAmount.toLocaleString());
-
-  const propertyType = propertyTypes.find(
-    (propertyType) => propertyType.enTitle === type
-  )?.faTitle;
+  const persianRentAmount = toPersianDigits(rentAmount?.toLocaleString());
 
   const statusInfo = propertyStatus ? propertyStatusMap[propertyStatus] : null;
 
   return (
     <card.Card className={cn("h-96 sm:h-[28rem] gap-0 p-0", className)}>
-      <card.CardHeader className="relative h-full bg-muted rounded-t-xl">
-        <Link href="/properties/1">
+      <card.CardHeader className="relative h-full bg-muted rounded-t-xl overflow-hidden flex p-0">
+        <Link className="relative h-full w-full" href="/properties/1">
           {image ? (
             <Image
               className="object-cover object-center"

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import * as card from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ interface ServiceCardProps {
   title: string;
   description: string;
   buttonTitle: string;
-  // buttonHref: string;
+  buttonHref: string;
 }
 
 const ServiceCard = ({
@@ -16,6 +17,7 @@ const ServiceCard = ({
   title,
   description,
   buttonTitle,
+  buttonHref,
 }: ServiceCardProps) => {
   return (
     <card.Card className="grow w-60 border-0 justify-between lg:nth-[2]:scale-y-105">
@@ -38,7 +40,9 @@ const ServiceCard = ({
           </p>
         </div>
 
-        <Button className="w-full">{buttonTitle}</Button>
+        <Button className="w-full" asChild>
+          <Link href={buttonHref}>{buttonTitle}</Link>
+        </Button>
       </card.CardContent>
     </card.Card>
   );

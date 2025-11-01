@@ -1,10 +1,18 @@
 import React from "react";
+import connectToDB from "@configs/database";
+import ProvinceModel from "@models/Province";
 import * as select from "@/components/ui/select";
-import propertyTypes from "@/constants/propertyDatas";
+import ContractTypeModel from "@models/ContractType";
+import PropertyCategoryModel from "@models/PropertyCategory";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
-const SearchForm = () => {
+const SearchForm = async () => {
+  connectToDB();
+  const propertyCategories = await PropertyCategoryModel.find({}).lean();
+  const provinces = await ProvinceModel.find({}).lean();
+  const contractTypes = await ContractTypeModel.find({}).lean();
+
   return (
     <form className="bg-card text-card-foreground p-4 pl-28 rounded-4xl md:rounded-full overflow-hidden relative border-2 shadow-sm">
       <div className="flex flex-wrap items-center gap-2">
@@ -13,9 +21,14 @@ const SearchForm = () => {
             <select.SelectValue placeholder="موقعیت مکانی" />
           </select.SelectTrigger>
           <select.SelectContent>
-            <select.SelectItem value="tehran-niavaran">
-              تهران - نیاوران
-            </select.SelectItem>
+            {provinces.map((province) => (
+              <select.SelectItem
+                key={province._id as string}
+                value={province.enName}
+              >
+                {province.faName}
+              </select.SelectItem>
+            ))}
           </select.SelectContent>
         </select.Select>
 
@@ -24,12 +37,12 @@ const SearchForm = () => {
             <select.SelectValue placeholder="نوع ملک" />
           </select.SelectTrigger>
           <select.SelectContent>
-            {propertyTypes.map((propertyType) => (
+            {propertyCategories.map((propertyCategory) => (
               <select.SelectItem
-                value={propertyType.enTitle}
-                key={propertyType.id}
+                key={propertyCategory._id as string}
+                value={propertyCategory.enTitle}
               >
-                {propertyType.faTitle}
+                {propertyCategory.faTitle}
               </select.SelectItem>
             ))}
           </select.SelectContent>
@@ -40,8 +53,14 @@ const SearchForm = () => {
             <select.SelectValue placeholder="نوع قرارداد" />
           </select.SelectTrigger>
           <select.SelectContent>
-            <select.SelectItem value="mortgage">رهن</select.SelectItem>
-            <select.SelectItem value="rent">اجاره</select.SelectItem>
+            {contractTypes.map((contractType) => (
+              <select.SelectItem
+                key={contractType._id as string}
+                value={contractType.value}
+              >
+                {contractType.title}
+              </select.SelectItem>
+            ))}
           </select.SelectContent>
         </select.Select>
       </div>

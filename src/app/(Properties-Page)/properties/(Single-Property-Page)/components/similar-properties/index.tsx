@@ -1,5 +1,5 @@
 import React from "react";
-import PropertiesGrid from "@/components/ui/PropertiesGrid";
+import PropertyCard from "@/components/ui/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
@@ -18,7 +18,18 @@ const SimilarProperties = () => {
           </Button>
         </div>
 
-        <PropertiesGrid properties={[...Array(4)]} />
+        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+          {[...Array(4)].map((_, index) => (
+            <PropertyCard
+              title="{property.title}"
+              key={index}
+              rentAmount={0}
+              location="{property.location.faName}"
+              mortgageAmount={0}
+              propertyType="{property.propertyCategory.faTitle}"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

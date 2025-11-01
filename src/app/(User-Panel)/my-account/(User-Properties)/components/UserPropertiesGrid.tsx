@@ -11,11 +11,11 @@ const UserPropertiesGrid = () => {
           title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
           mortgageAmount={4_000_000_000}
           removeButtonHandler={() => {}}
+          propertyType="خانه ویلایی"
           propertyStatus="warning"
           rentAmount={50_000_000}
           location="تهران-الهیه"
           isFavourable={false}
-          type="apartment"
           hasRemoveButton
           key={index}
         />

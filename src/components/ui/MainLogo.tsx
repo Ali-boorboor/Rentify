@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +13,10 @@ const MainLogo = ({
   className,
 }: MainLogoProps) => {
   return (
-    <div className={cn("relative w-32 md:w-52 aspect-video", className)}>
+    <Link
+      className={cn("relative w-32 md:w-52 aspect-video", className)}
+      href="/"
+    >
       <Image
         className="object-contain object-center"
         alt="main logo image"
@@ -21,7 +25,7 @@ const MainLogo = ({
         priority
         fill
       />
-    </div>
+    </Link>
   );
 };
 

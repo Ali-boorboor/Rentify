@@ -19,10 +19,10 @@ const PropertyComparisonCard = () => {
         className="border-0 shadow-none pointer-events-none grow"
         title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
         mortgageAmount={4_000_000_000}
+        propertyType="خانه ویلایی"
         rentAmount={50_000_000}
         location="تهران-الهیه"
         isFavourable={false}
-        type="apartment"
       />
 
       <Checkbox
