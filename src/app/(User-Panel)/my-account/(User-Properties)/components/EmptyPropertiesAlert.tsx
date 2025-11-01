@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -22,9 +23,11 @@ const EmptyPropertiesAlert = () => {
         روزانه هزاران مشتری در رنتی‌فای در جستجوی ملک مورد نظرشان هستند
       </p>
 
-      <Button>
-        <Plus className="size-5" />
-        ثبت آگهی رایگان
+      <Button asChild>
+        <Link href="/property-registration/property-type">
+          <Plus className="size-5" />
+          ثبت آگهی رایگان
+        </Link>
       </Button>
     </div>
   );

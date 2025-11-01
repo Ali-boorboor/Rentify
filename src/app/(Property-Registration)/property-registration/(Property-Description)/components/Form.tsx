@@ -15,11 +15,6 @@ const Form = () => {
         />
 
         <div className="flex items-center space-x-2">
-          <Checkbox id="isRented" />
-          <Label htmlFor="isRented">ملک در اجاره است.</Label>
-        </div>
-
-        <div className="flex items-center space-x-2">
           <Checkbox id="isReadyToBeUsed" />
           <Label htmlFor="isReadyToBeUsed">ملک تخلیه و مناسب بازدید است.</Label>
         </div>

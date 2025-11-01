@@ -1,6 +1,8 @@
-import Sidebar from "@propertyRegistration/components/sidebar";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
+import authenticate from "@/utils/authenticate";
+import Sidebar from "@propertyRegistration/components/sidebar";
+import { redirect, RedirectType } from "next/navigation";
 import { LayoutProps } from "@/types";
 import { Metadata } from "next";
 
@@ -8,7 +10,11 @@ export const metadata: Metadata = {
   title: "Rentify | Property Registration",
 };
 
-export default function PageLayout({ children }: LayoutProps) {
+export default async function PageLayout({ children }: LayoutProps) {
+  const isUserLogin = await authenticate();
+
+  if (!isUserLogin) redirect("/", RedirectType.replace);
+
   return (
     <>
       <Header />

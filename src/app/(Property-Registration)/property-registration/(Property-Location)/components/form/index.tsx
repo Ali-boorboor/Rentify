@@ -4,6 +4,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import LabeledInput from "@/components/ui/LabeledInput";
 import LabeledSelectbox from "@/components/ui/LabeledSelectbox";
+import { Province } from "@propertyLocationRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SelectItem } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,11 @@ const Map = dynamic(
   { ssr: false }
 );
 
-const Form = () => {
+interface FormProps {
+  provinces: Province[];
+}
+
+const Form = ({ provinces }: FormProps) => {
   return (
     <form className="grow flex flex-col justify-between gap-6">
       <div className="space-y-6">
@@ -23,7 +28,11 @@ const Form = () => {
             label="شهر"
             id="city"
           >
-            <SelectItem value="tehran-niavaran">تهران - نیاوران</SelectItem>
+            {provinces.map((province) => (
+              <SelectItem value={province.enName} key={province._id}>
+                {province.faName}
+              </SelectItem>
+            ))}
           </LabeledSelectbox>
 
           <LabeledInput

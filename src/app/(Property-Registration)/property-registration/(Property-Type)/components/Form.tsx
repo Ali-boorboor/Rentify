@@ -1,6 +1,8 @@
 import React from "react";
-import propertyTypes from "@/constants/propertyDatas";
+import connectToDB from "@configs/database";
+import ContractTypeModel from "@models/ContractType";
 import LabeledInput from "@/components/ui/LabeledInput";
+import PropertyCategoryModel from "@models/PropertyCategory";
 import LabeledSelectbox from "@/components/ui/LabeledSelectbox";
 import { SelectItem } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,7 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 
-const Form = () => {
+const Form = async () => {
+  connectToDB();
+  const propertyCategories = await PropertyCategoryModel.find({}).lean();
+  const contractTypes = await ContractTypeModel.find({}).lean();
+
   return (
     <form className="grow flex flex-col justify-between gap-6">
       <div className="space-y-6">
@@ -18,9 +24,12 @@ const Form = () => {
             id="property-types"
             label="نوع ملک"
           >
-            {propertyTypes.map((propertyType) => (
-              <SelectItem value={propertyType.enTitle} key={propertyType.id}>
-                {propertyType.faTitle}
+            {propertyCategories.map((propertyCategory) => (
+              <SelectItem
+                key={propertyCategory._id as string}
+                value={propertyCategory.enTitle}
+              >
+                {propertyCategory.faTitle}
               </SelectItem>
             ))}
           </LabeledSelectbox>
@@ -30,8 +39,14 @@ const Form = () => {
             id="contract-type"
             label="نوع معامله"
           >
-            <SelectItem value="mortgage">رهن</SelectItem>
-            <SelectItem value="rent">اجاره</SelectItem>
+            {contractTypes.map((contractType) => (
+              <SelectItem
+                key={contractType._id as string}
+                value={contractType.value}
+              >
+                {contractType.title}
+              </SelectItem>
+            ))}
           </LabeledSelectbox>
         </div>
 

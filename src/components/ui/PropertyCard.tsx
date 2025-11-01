@@ -74,8 +74,11 @@ const PropertyCard = ({
 
   return (
     <card.Card className={cn("h-96 sm:h-[28rem] gap-0 p-0", className)}>
-      <card.CardHeader className="relative h-full bg-muted rounded-t-xl overflow-hidden flex p-0">
-        <Link className="relative h-full w-full" href="/properties/1">
+      <card.CardHeader className="relative h-full bg-muted flex p-0">
+        <Link
+          className="relative h-full w-full rounded-t-xl overflow-hidden"
+          href="/properties/1"
+        >
           {image ? (
             <Image
               className="object-cover object-center"

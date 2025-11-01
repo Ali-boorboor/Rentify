@@ -1,20 +1,24 @@
 import React from "react";
-import equipmentsAndFacilities from "@/constants/propertyEquipmentsDatas";
+import { Facility } from "@propertyEquipmentsRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
-const Form = () => {
+interface FormProps {
+  equipmentsAndFacilities: Facility[];
+}
+
+const Form = ({ equipmentsAndFacilities }: FormProps) => {
   return (
     <form className="grow flex flex-col justify-between gap-6">
       <div className="flex flex-wrap justify-between gap-6 border shadow-sm rounded-xl p-4">
         {equipmentsAndFacilities.map((equipment) => (
           <div
             className="flex items-center space-x-2 min-w-40"
-            key={equipment.id}
+            key={equipment._id}
           >
-            <Checkbox id={equipment.value} />
+            <Checkbox id={equipment.value} name={equipment.value} />
             <Label htmlFor={equipment.value}>{equipment.label}</Label>
           </div>
         ))}

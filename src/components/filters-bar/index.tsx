@@ -1,5 +1,6 @@
 import React from "react";
-import propertyTypes from "@/constants/propertyDatas";
+import connectToDB from "@configs/database";
+import PropertyCategoryModel from "@models/PropertyCategory";
 import * as dropdownMenu from "@/components/ui/dropdown-menu";
 import FiltersDialog from "@/components/filters-bar/FiltersDialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -7,7 +8,10 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, X } from "lucide-react";
 
-const FiltersBar = () => {
+const FiltersBar = async () => {
+  connectToDB();
+  const propertyCategories = await PropertyCategoryModel.find({}).lean();
+
   return (
     <section className="bg-card shadow-sm border p-2 sm:p-4">
       {/* change variant="outline" to variant="default" when a filter added */}
@@ -35,13 +39,13 @@ const FiltersBar = () => {
                   نوع ملک
                 </dropdownMenu.DropdownMenuLabel>
 
-                {propertyTypes.map((propertyType) => (
+                {propertyCategories.map((propertyCategory) => (
                   <dropdownMenu.DropdownMenuItem
                     className="cursor-pointer justify-center"
-                    data-value={propertyType.enTitle}
-                    key={propertyType.id}
+                    data-value={propertyCategory.enTitle}
+                    key={propertyCategory._id as string}
                   >
-                    {propertyType.faTitle}
+                    {propertyCategory.faTitle}
                   </dropdownMenu.DropdownMenuItem>
                 ))}
               </dropdownMenu.DropdownMenuContent>
