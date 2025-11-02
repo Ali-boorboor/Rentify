@@ -2,14 +2,14 @@
 
 import React from "react";
 import * as inputGroup from "@/components/ui/input-group";
-import { toPersianDigits } from "@/utils/convertNumbers";
+import { toEnglishDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { Label } from "@/components/ui/label";
 import { ErrorMessage } from "formik";
 import { cn } from "@/lib/utils";
 
 interface LabeledInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  convertToPersianDigits?: boolean;
+  separateDigitsWithComma?: boolean;
   containerClassName?: string;
   icon?: React.ReactNode;
   label: string;
@@ -17,7 +17,7 @@ interface LabeledInputProps
 }
 
 const LabeledInput = ({
-  convertToPersianDigits,
+  separateDigitsWithComma,
   containerClassName,
   label,
   icon,
@@ -39,10 +39,24 @@ const LabeledInput = ({
         <inputGroup.InputGroupInput
           id={id}
           {...props}
-          onChange={(event) => {
-            if (convertToPersianDigits) {
-              event.target.value = toPersianDigits(event.target.value);
+          className={cn("placeholder:text-right", props.className)}
+          onInput={(event) => {
+            if (!separateDigitsWithComma) return;
+
+            const englishDigits = toEnglishDigits(event.currentTarget.value);
+
+            const cleaned = englishDigits.replace(/[^\d]/g, "");
+
+            if (cleaned) {
+              const formatted = Number(cleaned).toLocaleString("en-US");
+
+              event.currentTarget.value = toPersianDigits(formatted);
+            } else {
+              event.currentTarget.value = "";
             }
+          }}
+          onChange={(event) => {
+            event.target.value = toPersianDigits(event.target.value);
 
             props.onChange?.(event);
           }}

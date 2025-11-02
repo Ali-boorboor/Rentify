@@ -13,7 +13,7 @@ const pinLocationIcon = leaflet.icon({
 interface MapMoverProps {
   shouldRecenter: boolean;
   position: LatLngExpression;
-  setPosition: Dispatch<SetStateAction<LatLngExpression>>;
+  setPosition: (coords: LatLngExpression) => void;
   setShouldRecenter: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -38,28 +38,30 @@ const MapMover = ({
       setPosition([center.lat, center.lng]);
     };
 
-    map.on("move", handleMove);
+    map.on("moveend", handleMove);
 
     return () => {
-      map.off("move", handleMove);
+      map.off("moveend", handleMove);
     };
   }, [map, setPosition]);
 
   return <Marker position={position} icon={pinLocationIcon} />;
 };
 
-const Map = () => {
+interface MapProps {
+  locationCoordinates: LatLngExpression;
+  onLocationChange: (coords: LatLngExpression) => void;
+}
+
+const Map = ({ locationCoordinates, onLocationChange }: MapProps) => {
   const [shouldRecenter, setShouldRecenter] = useState(false);
-  const [position, setPosition] = useState<LatLngExpression>([
-    35.69977180653842, 51.33803060889542,
-  ]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
-      setPosition([coords.latitude, coords.longitude]);
+      onLocationChange([coords.latitude, coords.longitude]);
       setShouldRecenter(true);
     });
-  }, []);
+  }, [onLocationChange]);
 
   return (
     <div className="space-y-2">
@@ -71,7 +73,7 @@ const Map = () => {
         <MapContainer
           className="w-full h-full z-10"
           scrollWheelZoom={false}
-          center={position}
+          center={locationCoordinates}
           zoom={13}
         >
           <TileLayer
@@ -80,8 +82,8 @@ const Map = () => {
           />
 
           <MapMover
-            position={position}
-            setPosition={setPosition}
+            setPosition={onLocationChange}
+            position={locationCoordinates}
             shouldRecenter={shouldRecenter}
             setShouldRecenter={setShouldRecenter}
           />

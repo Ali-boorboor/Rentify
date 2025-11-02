@@ -1,15 +1,14 @@
-import React from "react";
-import parseJson from "@/utils/jsonParser";
-import connectToDB from "@configs/database";
-import Form from "@propertyEquipmentsRegistration/components/Form";
 import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
-import { Facility } from "@propertyEquipmentsRegistration/types";
+import Form from "@propertyEquipmentsRegistration/components/Form";
+import connectToDB from "@configs/database";
+import parseJson from "@/utils/jsonParser";
+import React from "react";
 
 const PropertyEquipmentsPage = async () => {
   connectToDB();
   const equipmentsAndFacilities = await EquipmentAndFacilitieModel.find(
     {}
-  ).lean<Facility[]>();
+  ).lean();
 
   return (
     <section className="flex-1 bg-card border shadow-sm rounded-xl p-4 flex flex-col gap-6">

@@ -42,7 +42,7 @@ const EstateAgencyForm = () => {
       >
         {({ values, errors, handleChange, setFieldValue }) => (
           <Form className="space-y-6">
-            <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col md:flex-row items-baseline gap-6">
               <LabeledInput
                 aria-invalid={!!errors.name}
                 onChange={handleChange}
@@ -79,14 +79,15 @@ const EstateAgencyForm = () => {
 
             <LabeledInput
               aria-invalid={!!errors.phone}
-              placeholder="۰۹۹۸۵۶۴۳۴۲۹"
+              placeholder="۰۹۹۸۵۶۴۳۴۲۹ مثلا"
               onChange={handleChange}
-              convertToPersianDigits
               value={values.phone}
               label="تلفن همراه"
               icon={<Phone />}
+              maxLength={11}
               name="phone"
               id="phone"
+              dir="ltr"
             />
 
             <div className="flex items-center space-x-2">

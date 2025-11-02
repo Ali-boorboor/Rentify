@@ -1,18 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
-const FileUploaders = () => {
-  const [uploadedImages, setUploadedImages] = useState<(string | null)[]>(
-    Array(6).fill(null)
-  );
+interface UploadedImage {
+  file: File | null;
+  preview: string | null;
+}
+interface FileUploadersProps {
+  uploadedImages: UploadedImage[];
+  setUploadedImages: (value: UploadedImage[]) => void;
+}
 
+const FileUploaders = ({
+  uploadedImages,
+  setUploadedImages,
+}: FileUploadersProps) => {
   const handleImageChange = (
     index: number,
     file?: File,
@@ -20,8 +29,20 @@ const FileUploaders = () => {
   ) => {
     if (!file) return;
 
+    if (!file.type.startsWith("image/")) {
+      toast.warning("فرمت عکس‌ها باید jpg، jpeg یا png باشد.");
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+
     const newImages = [...uploadedImages];
-    newImages[index] = URL.createObjectURL(file);
+
+    if (newImages[index].preview) {
+      URL.revokeObjectURL(newImages[index].preview);
+    }
+
+    newImages[index] = { file, preview: previewUrl };
     setUploadedImages(newImages);
 
     if (input) input.value = "";
@@ -29,15 +50,20 @@ const FileUploaders = () => {
 
   const handleRemoveImage = (index: number) => {
     const newImages = [...uploadedImages];
-    newImages[index] = null;
+
+    if (newImages[index].preview) {
+      URL.revokeObjectURL(newImages[index].preview);
+    }
+
+    newImages[index] = { file: null, preview: null };
     setUploadedImages(newImages);
   };
 
   useEffect(() => {
     return () => {
-      uploadedImages.forEach(
-        (imageUrl) => imageUrl && URL.revokeObjectURL(imageUrl)
-      );
+      uploadedImages.forEach((img) => {
+        if (img.preview) URL.revokeObjectURL(img.preview);
+      });
     };
   }, [uploadedImages]);
 
@@ -48,7 +74,7 @@ const FileUploaders = () => {
           key={index}
           className={cn(
             "relative min-w-44 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden border-2",
-            image ? "border-primary" : "border-dashed"
+            image.file ? "border-primary" : "border-dashed"
           )}
         >
           <Label
@@ -56,22 +82,22 @@ const FileUploaders = () => {
             className="w-full h-full flex justify-center items-center cursor-pointer"
           >
             <Input
-              onChange={(e) =>
-                handleImageChange(index, e.target.files?.[0], e.target)
-              }
+              onChange={(e) => {
+                handleImageChange(index, e.target.files?.[0], e.target);
+              }}
               accept="image/png, image/jpeg, image/jpg"
               id={`image-${index}`}
               type="file"
               hidden
             />
 
-            {image ? (
+            {image.preview ? (
               <div className="w-full h-full relative">
                 <Image
                   className="object-center object-cover"
                   alt={`preview-${index}`}
+                  src={image.preview!}
                   sizes="300px"
-                  src={image}
                   fill
                 />
               </div>
@@ -80,7 +106,7 @@ const FileUploaders = () => {
             )}
           </Label>
 
-          {image && (
+          {image.file && (
             <Button
               onClick={() => handleRemoveImage(index)}
               className="absolute top-2 right-2 border shadow-sm"
