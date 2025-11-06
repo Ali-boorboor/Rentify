@@ -24,3 +24,4 @@ const EquipmentAndFacilitieModel: mongoose.Model<IEquipmentAndFacilitie> =
   mongoose.model("EquipmentAndFacilitie", schema);
 
 export default EquipmentAndFacilitieModel;
+export type { IEquipmentAndFacilitie };

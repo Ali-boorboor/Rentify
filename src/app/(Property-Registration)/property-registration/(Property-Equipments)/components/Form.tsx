@@ -2,56 +2,44 @@
 
 import React from "react";
 import * as formik from "formik";
+import useFormsState from "@propertyRegistration/stores/useFormsState";
+import FormCheckboxs from "@propertyEquipmentsRegistration/components/form/FormCheckboxs";
+import { Values, FormProps } from "@propertyEquipmentsRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-
-interface FormProps {
-  equipmentsAndFacilities: { _id: string; label: string; value: string }[];
-}
-
-const initialValues = {
-  equipments: [] as string[],
-};
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const Form = ({ equipmentsAndFacilities }: FormProps) => {
+  const { propertyEquipmentsDatas, setPropertyEquipmentsDatas } =
+    useFormsState.getState();
+
+  const router = useRouter();
+
+  const initialValues = propertyEquipmentsDatas || {
+    equipments: [],
+  };
+
+  const handleSubmit = (values: Values) => {
+    setPropertyEquipmentsDatas(values);
+
+    toast.success("اطلاعات شما با موفقیت ثبت شد");
+    router.push("/property-registration/property-description");
+  };
+
   return (
     <formik.Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={handleSubmit}
+      enableReinitialize
     >
       {({ values, setFieldValue }) => (
         <formik.Form className="grow flex flex-col justify-between gap-6">
-          <div className="flex flex-wrap justify-between gap-6 border shadow-sm rounded-xl p-4">
-            {equipmentsAndFacilities.map((equipment) => (
-              <div
-                className="flex items-center space-x-2 min-w-40"
-                key={equipment._id}
-              >
-                <Checkbox
-                  id={equipment.value}
-                  checked={values.equipments.includes(equipment._id)}
-                  onCheckedChange={(checked) => {
-                    if (checked) {
-                      setFieldValue("equipments", [
-                        ...values.equipments,
-                        equipment._id,
-                      ]);
-                    } else {
-                      setFieldValue(
-                        "equipments",
-                        values.equipments.filter((id) => id !== equipment._id)
-                      );
-                    }
-                  }}
-                />
-                <Label htmlFor={equipment.value}>{equipment.label}</Label>
-              </div>
-            ))}
-          </div>
+          <FormCheckboxs
+            equipmentsAndFacilities={equipmentsAndFacilities}
+            setFieldValue={setFieldValue}
+            values={values}
+          />
 
           <div className="md:self-end self-center flex flex-wrap items-center justify-center gap-2">
             <Button className="min-w-36" variant="ghost" type="button">

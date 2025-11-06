@@ -1,7 +1,7 @@
 import connectToDB from "@/configs/database";
 // import PropertyModel from "@/models/Property";
 
-export const GET = async () => {
+export const GET = () => {
   try {
     connectToDB();
 

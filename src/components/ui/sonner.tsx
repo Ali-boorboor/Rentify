@@ -7,7 +7,6 @@ import {
   OctagonXIcon,
   TriangleAlertIcon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
@@ -17,20 +16,13 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
-      className={cn(
-        "toaster group bg-card text-card-foreground text-sm md:text-base font-medium"
-      )}
+      className="toaster group"
       icons={{
-        success: (
-          <CircleCheckIcon
-            className="size-5 text-success"
-            data-state="success"
-          />
-        ),
-        info: <InfoIcon className="size-5 text-primary" />,
-        warning: <TriangleAlertIcon className="size-5 text-warning" />,
-        error: <OctagonXIcon className="size-5 text-destructive" />,
-        loading: <Loader2Icon className="size-5 animate-spin text-primary" />,
+        success: <CircleCheckIcon className="size-5" />,
+        info: <InfoIcon className="size-5" />,
+        warning: <TriangleAlertIcon className="size-5" />,
+        error: <OctagonXIcon className="size-5" />,
+        loading: <Loader2Icon className="size-5 animate-spin" />,
       }}
       style={
         {
@@ -40,6 +32,15 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--border-radius": "var(--radius)",
         } as React.CSSProperties
       }
+      toastOptions={{
+        classNames: {
+          title: "!text-sm !font-semibold",
+          success: "!bg-success/80 !text-success-foreground",
+          warning: "!bg-warning/80 !text-foreground",
+          error: "!bg-destructive/80 !text-destructive-foreground",
+          info: "!bg-primary/80 !text-primary-foreground",
+        },
+      }}
       {...props}
     />
   );

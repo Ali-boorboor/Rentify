@@ -1,8 +1,8 @@
-import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
-import Form from "@propertyEquipmentsRegistration/components/Form";
-import connectToDB from "@configs/database";
-import parseJson from "@/utils/jsonParser";
 import React from "react";
+import connectToDB from "@configs/database";
+import Form from "@propertyEquipmentsRegistration/components/Form";
+import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
+import { parseJson } from "@/utils/json";
 
 const PropertyEquipmentsPage = async () => {
   connectToDB();

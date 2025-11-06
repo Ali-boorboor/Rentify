@@ -4,6 +4,7 @@ interface IPropertyCategory extends mongoose.Document {
   faTitle: string;
   enTitle: string;
   image: string;
+  labelColor: "secondary" | "success" | "orange";
 }
 
 const schema = new mongoose.Schema(
@@ -20,6 +21,11 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    labelColor: {
+      type: String,
+      enum: ["secondary", "success", "orange"],
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -29,3 +35,4 @@ const PropertyCategoryModel: mongoose.Model<IPropertyCategory> =
   mongoose.model("PropertyCategory", schema);
 
 export default PropertyCategoryModel;
+export type { IPropertyCategory };

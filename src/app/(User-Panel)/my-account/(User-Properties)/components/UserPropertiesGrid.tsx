@@ -1,6 +1,7 @@
 "use client";
 
 import PropertyCard from "@/components/ui/PropertyCard";
+import { IPropertyCategory } from "@/models/PropertyCategory";
 import React from "react";
 
 const UserPropertiesGrid = () => {
@@ -9,15 +10,16 @@ const UserPropertiesGrid = () => {
       {[...Array(6)].map((_, index) => (
         <PropertyCard
           title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
-          mortgageAmount={4_000_000_000}
+          mortgageAmount="4_000_000_000"
           removeButtonHandler={() => {}}
-          propertyType="خانه ویلایی"
           propertyStatus="warning"
-          rentAmount={50_000_000}
-          location="تهران-الهیه"
+          rentAmount="50_000_000"
+          province="تهران-الهیه"
           isFavourable={false}
           hasRemoveButton
-          key={index}
+          propertyCategory={
+            { faTitle: "test", labelColor: "orange" } as IPropertyCategory
+          }
         />
       ))}
     </div>

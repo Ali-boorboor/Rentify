@@ -10,7 +10,3 @@ export function toEnglishDigits(input: string): string {
     return ENGLISH_DIGITS[PERSIAN_DIGITS.indexOf(digit)];
   });
 }
-
-export function toCommaFree(input: string): string {
-  return input.replace(/[^۰-۹]/g, "");
-}

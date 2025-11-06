@@ -5,7 +5,7 @@ import { CircleCheck, X } from "lucide-react";
 
 const SuccessDialog = () => {
   return (
-    <dialog.Dialog defaultOpen>
+    <dialog.Dialog>
       <dialog.DialogContent
         className="flex flex-col gap-6 justify-center items-center"
         showCloseButton={false}

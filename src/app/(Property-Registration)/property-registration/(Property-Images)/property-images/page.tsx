@@ -1,4 +1,5 @@
 import SuccessDialog from "@propertyImagesRegistration/components/SuccessDialog";
+import QueryProvider from "@/components/providers/QueryProvider";
 import Form from "@propertyImagesRegistration/components/form";
 import React from "react";
 
@@ -9,7 +10,9 @@ const PropertyImagesPage = () => {
         عکس‌‌های ملک خود را بارگذاری کنید
       </h4>
 
-      <Form />
+      <QueryProvider>
+        <Form />
+      </QueryProvider>
 
       <SuccessDialog />
     </section>

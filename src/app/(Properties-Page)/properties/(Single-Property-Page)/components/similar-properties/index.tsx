@@ -2,6 +2,7 @@ import React from "react";
 import PropertyCard from "@/components/ui/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { IPropertyCategory } from "@/models/PropertyCategory";
 
 const SimilarProperties = () => {
   return (
@@ -23,10 +24,12 @@ const SimilarProperties = () => {
             <PropertyCard
               title="{property.title}"
               key={index}
-              rentAmount={0}
-              location="{property.location.faName}"
-              mortgageAmount={0}
-              propertyType="{property.propertyCategory.faTitle}"
+              rentAmount="0"
+              province="tehran"
+              mortgageAmount="0"
+              propertyCategory={
+                { faTitle: "test", labelColor: "orange" } as IPropertyCategory
+              }
             />
           ))}
         </div>

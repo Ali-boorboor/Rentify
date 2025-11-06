@@ -6,6 +6,7 @@ import * as table from "@/components/ui/table";
 import PropertyCard from "@/components/ui/PropertyCard";
 import { Plus, TextAlignJustify } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { IPropertyCategory } from "@/models/PropertyCategory";
 
 const Table = () => {
   return (
@@ -28,12 +29,14 @@ const Table = () => {
               <PropertyCard
                 className="aspect-[3/4] h-80 sm:h-[28rem]"
                 title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
-                mortgageAmount={4_000_000_000}
+                mortgageAmount="4_000_000_000"
                 removeButtonHandler={() => {}}
-                propertyType="خانه ویلایی"
-                rentAmount={50_000_000}
-                location="تهران-الهیه"
+                rentAmount="50_000_000"
                 hasRemoveButton
+                province="tehran"
+                propertyCategory={
+                  { faTitle: "test", labelColor: "orange" } as IPropertyCategory
+                }
               />
             </table.TableHead>
           ))}

@@ -1,4 +1,4 @@
-import Form from "@propertyDetailsRegistration/components/Form";
+import Form from "@propertyDetailsRegistration/components/form";
 import React from "react";
 
 const PropertyDetailsPage = () => {

@@ -4,12 +4,23 @@ import PropertyModel from "@models/Property";
 import PropertyCard from "@/components/ui/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { parseJson } from "@/utils/json";
 
 const MostViewedProperties = async () => {
   connectToDB();
   const properties = await PropertyModel.find({})
-    .populate("propertyCategory")
-    .populate("location")
+    .populate({
+      path: "propertyDetails",
+      populate: {
+        path: "propertyCategory",
+      },
+    })
+    .populate({
+      path: "address",
+      populate: {
+        path: "province",
+      },
+    })
     .sort({ _id: -1 })
     .limit(8)
     .lean();
@@ -31,12 +42,14 @@ const MostViewedProperties = async () => {
         {properties.map((property) => (
           <PropertyCard
             title={property.title}
-            image={property?.image}
             key={property._id as string}
-            rentAmount={property.rentAmount}
-            location={property.location.faName}
-            mortgageAmount={property.mortgageAmount}
-            propertyType={property.propertyCategory.faTitle}
+            image={property?.images?.[0]}
+            province={property.address.province.faName}
+            rentAmount={property.propertyDetails.rentAmount}
+            mortgageAmount={property.propertyDetails.mortgageAmount}
+            propertyCategory={parseJson(
+              property.propertyDetails.propertyCategory
+            )}
           />
         ))}
       </div>

@@ -2,36 +2,51 @@
 
 import React from "react";
 import * as formik from "formik";
+import useFormsState from "@propertyRegistration/stores/useFormsState";
+import useBuildFormData from "@propertyImagesRegistration/hooks/useBuildFormData";
 import FileUploaders from "@propertyImagesRegistration/components/form/FileUploaders";
+import usePropertyRegistration from "@propertyImagesRegistration/hooks/usePropertyRegistration";
+import { FormValues } from "@propertyImagesRegistration/types";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { toast } from "sonner";
 
-interface UploadedImage {
-  file: File | null;
-  preview: string | null;
-}
-
-const initialValues = {
+const initialValues: FormValues = {
   uploadedImages: Array(6).fill({
     file: null,
     preview: null,
-  }) as UploadedImage[],
+  }),
 };
 
 const Form = () => {
+  const { mutate, isPending } = usePropertyRegistration();
+  const { buildFormData } = useBuildFormData();
+  const formsStates = useFormsState();
+
+  const submitHandler = async (
+    values: typeof initialValues,
+    { resetForm }: formik.FormikHelpers<typeof initialValues>
+  ) => {
+    if (!formsStates.isAllFormsComplete()) {
+      return toast.warning(
+        "لطفا ابتدا تمامی مراحل و فرم ها را کامل کنید سپس برای ثبت نهایی اقدام کنید"
+      );
+    }
+
+    const formData = buildFormData(formsStates, values);
+
+    mutate(formData, {
+      onSuccess: (result) => {
+        if (result.status === 201) {
+          formsStates.resetAllForms();
+          resetForm();
+        }
+      },
+    });
+  };
+
   return (
-    <formik.Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        const formData = new FormData();
-
-        values.uploadedImages.forEach(({ file }) => {
-          if (file) formData.append("images", file);
-        });
-
-        console.log([...formData.entries()]);
-      }}
-    >
+    <formik.Formik initialValues={initialValues} onSubmit={submitHandler}>
       {({ values, setFieldValue }) => (
         <formik.Form className="grow flex flex-col justify-between gap-6">
           <FileUploaders
@@ -52,7 +67,7 @@ const Form = () => {
               مرحله قبل
             </Button>
 
-            <Button className="min-w-36" type="submit">
+            <Button disabled={isPending} className="min-w-36" type="submit">
               ثبت نهایی
             </Button>
           </div>

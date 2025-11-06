@@ -1,9 +1,9 @@
-import Form from "@propertyTypeRegistration/components/Form";
-import PropertyCategoryModel from "@models/PropertyCategory";
-import ContractTypeModel from "@models/ContractType";
-import connectToDB from "@configs/database";
-import parseJson from "@/utils/jsonParser";
 import React from "react";
+import connectToDB from "@configs/database";
+import ContractTypeModel from "@models/ContractType";
+import Form from "@propertyTypeRegistration/components/form";
+import PropertyCategoryModel from "@models/PropertyCategory";
+import { parseJson } from "@/utils/json";
 
 const PropertyTypePage = async () => {
   connectToDB();

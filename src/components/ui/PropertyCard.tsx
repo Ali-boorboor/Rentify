@@ -5,20 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
 import * as card from "@/components/ui/card";
-import { toPersianDigits } from "@/utils/convertNumbers";
+import { IPropertyCategory } from "@models/PropertyCategory";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { VariantProps } from "class-variance-authority";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 type BaseProps = {
   title: string;
   image?: string;
-  location: string;
+  province: string;
   className?: string;
-  rentAmount: number;
-  propertyType: string;
-  mortgageAmount: number;
+  rentAmount: string;
+  mortgageAmount: string;
   isFavourable?: boolean;
+  propertyCategory: IPropertyCategory;
   propertyStatus?: "success" | "error" | "warning";
 };
 
@@ -53,32 +54,26 @@ const propertyStatusMap = {
 } as const;
 
 const PropertyCard = ({
-  propertyType,
   image,
   title,
-  location,
+  province,
   className,
   rentAmount,
   mortgageAmount,
   propertyStatus,
+  propertyCategory,
   isFavourable = true,
   hasRemoveButton = false,
   removeButtonHandler,
 }: PropertyCardProps) => {
-  const persianMortgageAmount = toPersianDigits(
-    mortgageAmount?.toLocaleString()
-  );
-  const persianRentAmount = toPersianDigits(rentAmount?.toLocaleString());
-
   const statusInfo = propertyStatus ? propertyStatusMap[propertyStatus] : null;
 
   return (
-    <card.Card className={cn("h-96 sm:h-[28rem] gap-0 p-0", className)}>
+    <card.Card
+      className={cn("h-96 sm:h-[28rem] gap-0 p-0 overflow-hidden", className)}
+    >
       <card.CardHeader className="relative h-full bg-muted flex p-0">
-        <Link
-          className="relative h-full w-full rounded-t-xl overflow-hidden"
-          href="/properties/1"
-        >
+        <Link className="relative h-full w-full" href="/properties/1">
           {image ? (
             <Image
               className="object-cover object-center"
@@ -94,7 +89,7 @@ const PropertyCard = ({
 
         {hasRemoveButton && (
           <Button
-            className="absolute -top-2 -left-2 bg-destructive"
+            className="absolute top-3 left-3 bg-destructive"
             onClick={removeButtonHandler}
             variant="link"
             size="icon-sm"
@@ -130,11 +125,19 @@ const PropertyCard = ({
 
       <card.CardContent className="py-3.5 px-3 flex flex-col justify-between gap-4">
         <div className="flex items-center gap-2">
-          <Badge variant="success">{propertyType}</Badge>
+          <Badge
+            variant={
+              propertyCategory.labelColor as VariantProps<
+                typeof badgeVariants
+              >["variant"]
+            }
+          >
+            {propertyCategory.faTitle}
+          </Badge>
 
           <Badge variant="outline">
             <icon.MapPin />
-            {location}
+            {province}
           </Badge>
         </div>
 
@@ -149,7 +152,7 @@ const PropertyCard = ({
             <span className="text-sm">رهن</span>
 
             <Badge className="bg-card" variant="outline">
-              {persianMortgageAmount} تومان
+              {mortgageAmount} تومان
             </Badge>
           </div>
 
@@ -157,7 +160,7 @@ const PropertyCard = ({
             <span className="text-sm">اجاره</span>
 
             <Badge className="bg-card" variant="outline">
-              {persianRentAmount} تومان
+              {rentAmount} تومان
             </Badge>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useEffect } from "react";
+import { UploadedImage } from "@propertyImagesRegistration/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,10 +10,6 @@ import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
-interface UploadedImage {
-  file: File | null;
-  preview: string | null;
-}
 interface FileUploadersProps {
   uploadedImages: UploadedImage[];
   setUploadedImages: (value: UploadedImage[]) => void;
@@ -73,7 +70,7 @@ const FileUploaders = ({
         <div
           key={index}
           className={cn(
-            "relative min-w-44 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden border-2",
+            "relative min-w-20 sm:min-w-44 max-h-60 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden border-2",
             image.file ? "border-primary" : "border-dashed"
           )}
         >
@@ -109,7 +106,7 @@ const FileUploaders = ({
           {image.file && (
             <Button
               onClick={() => handleRemoveImage(index)}
-              className="absolute top-2 right-2 border shadow-sm"
+              className="absolute top-0.5 right-0.5 sm:top-2 sm:right-2 border shadow-sm"
               variant="destructive"
               size="icon-sm"
               type="button"

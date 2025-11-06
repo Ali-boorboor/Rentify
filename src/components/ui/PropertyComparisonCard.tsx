@@ -3,6 +3,7 @@ import PropertyCard from "@/components/ui/PropertyCard";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { IPropertyCategory } from "@/models/PropertyCategory";
 
 const PropertyComparisonCard = () => {
   return (
@@ -18,11 +19,13 @@ const PropertyComparisonCard = () => {
       <PropertyCard
         className="border-0 shadow-none pointer-events-none grow"
         title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
-        mortgageAmount={4_000_000_000}
-        propertyType="خانه ویلایی"
-        rentAmount={50_000_000}
-        location="تهران-الهیه"
+        mortgageAmount="4_000_000_000"
+        rentAmount="50_000_000"
         isFavourable={false}
+        province="tehran"
+        propertyCategory={
+          { faTitle: "test", labelColor: "orange" } as IPropertyCategory
+        }
       />
 
       <Checkbox

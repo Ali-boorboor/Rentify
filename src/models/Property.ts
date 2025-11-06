@@ -1,13 +1,15 @@
+import "@models/Address";
+import "@models/PropertyDetail";
 import mongoose from "mongoose";
+import { IAddress } from "@models/Address";
+import { IPropertyDetail } from "@models/PropertyDetail";
 
 interface IProperty extends mongoose.Document {
   title: string;
-  image?: string;
-  location: { faName: string };
-  rentAmount: number;
-  mortgageAmount: number;
+  address: IAddress;
+  propertyDetails: IPropertyDetail;
+  images?: string[];
   propertyStatus?: "success" | "error" | "warning";
-  propertyCategory: { faTitle: string };
 }
 
 const schema = new mongoose.Schema(
@@ -16,33 +18,25 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: false,
-    },
-    location: {
+    address: {
       type: mongoose.Types.ObjectId,
-      ref: "Province",
+      ref: "Address",
       required: true,
     },
-    rentAmount: {
-      type: Number,
+    propertyDetails: {
+      type: mongoose.Types.ObjectId,
+      ref: "PropertyDetail",
       required: true,
     },
-    mortgageAmount: {
-      type: Number,
-      required: true,
+    images: {
+      type: Array,
+      required: false,
     },
     propertyStatus: {
       type: String,
       required: false,
       enum: ["success", "error", "warning"],
       default: "warning",
-    },
-    propertyCategory: {
-      type: mongoose.Types.ObjectId,
-      ref: "PropertyCategory",
-      required: true,
     },
   },
   { timestamps: true }

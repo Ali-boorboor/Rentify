@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 interface IContractType extends mongoose.Document {
-  title: "";
-  value: "";
+  title: string;
+  value: string;
 }
 
 const schema = new mongoose.Schema(
@@ -23,3 +23,4 @@ const ContractTypeModel: mongoose.Model<IContractType> =
   mongoose.models.ContractType || mongoose.model("ContractType", schema);
 
 export default ContractTypeModel;
+export type { IContractType };

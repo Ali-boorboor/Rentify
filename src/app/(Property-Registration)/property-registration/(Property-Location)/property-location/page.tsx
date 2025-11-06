@@ -1,8 +1,9 @@
 import React from "react";
-import parseJson from "@/utils/jsonParser";
 import connectToDB from "@configs/database";
 import ProvinceModel from "@models/Province";
+import Map from "@propertyLocationRegistration/components/map";
 import Form from "@propertyLocationRegistration/components/form";
+import { parseJson } from "@/utils/json";
 
 const PropertyLocationPage = async () => {
   connectToDB();
@@ -15,6 +16,8 @@ const PropertyLocationPage = async () => {
       </h4>
 
       <Form provinces={parseJson(provinces)} />
+
+      <Map />
     </section>
   );
 };
