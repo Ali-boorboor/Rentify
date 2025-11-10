@@ -55,6 +55,9 @@
       ],
 
       "@propertyComparison/*": ["./src/app/(Property-Comparison)/*"],
+      "@comparisonSearch/*": [
+        "./src/app/(Property-Comparison)/property-comparison/(Search-Property)/*"
+      ],
 
       "@propertyRegistration/*": ["./src/app/(Property-Registration)/*"],
       "@propertyTypeRegistration/*": [

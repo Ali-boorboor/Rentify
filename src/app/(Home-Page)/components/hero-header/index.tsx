@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from "@home/components/hero-header/SearchForm";
+import SearchForm from "@home/components/hero-header/search-form";
 import PropertyCategories from "@home/components/hero-header/PropertyCategories";
 import { NavigationMenu } from "@/components/header";
 import { cn } from "@/lib/utils";

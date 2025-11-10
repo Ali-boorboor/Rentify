@@ -3,14 +3,14 @@
 import React from "react";
 import SortBar from "@/components/sort-bar";
 import PropertyCard from "@/components/ui/PropertyCard";
-import useInfiniteGetRequest from "@properties/hook/useInfiniteGetRequest";
-import EmptyPropertiesAlert from "@properties/components/properties-section/EmptyPropertiesAlert";
+import useGetPropertiesRequest from "@/hook/useGetPropertiesRequest";
+import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
 const PropertiesSection = () => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
-    useInfiniteGetRequest();
+    useGetPropertiesRequest();
 
   const allProperties = data?.pages.flatMap((page) => page.data.properties);
 

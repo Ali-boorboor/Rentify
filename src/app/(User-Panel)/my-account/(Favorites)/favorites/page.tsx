@@ -1,6 +1,6 @@
-import EmptyFavoritesAlert from "@userPanel/favorites/components/EmptyFavoritesAlert";
-import PropertyCard from "@/components/ui/PropertyCard";
 import React from "react";
+import PropertyCard from "@/components/ui/PropertyCard";
+import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { IPropertyCategory } from "@/models/PropertyCategory";
 
 const FavoritesPage = () => {
@@ -26,7 +26,12 @@ const FavoritesPage = () => {
           ))}
         </div>
 
-        <EmptyFavoritesAlert />
+        <EmptyPropertiesAlert
+          description="از طریق آیکون «نشان‌کردن» می‌تونید آگهی‌های مورد نظرتون رو در این لیست ذخیره کنید."
+          image="/images/png/user-panel/empty-favorites.png"
+          title="شما هنوز آگهی‌ای رو ذخیره نکردید!"
+          linkTo=""
+        />
       </div>
     </section>
   );

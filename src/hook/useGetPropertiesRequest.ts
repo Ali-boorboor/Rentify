@@ -15,7 +15,7 @@ interface PaginatedResponse {
   page: number;
 }
 
-const useInfiniteGetRequest = () => {
+const useGetPropertiesRequest = () => {
   const searchParams = useSearchParams();
 
   const filters: Record<string, string> = {};
@@ -56,4 +56,4 @@ const useInfiniteGetRequest = () => {
   });
 };
 
-export default useInfiniteGetRequest;
+export default useGetPropertiesRequest;

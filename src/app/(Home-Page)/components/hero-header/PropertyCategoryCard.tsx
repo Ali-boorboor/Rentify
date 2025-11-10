@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import * as card from "@/components/ui/card";
 import { toPersianDigits } from "@/utils/convertNumbers";
@@ -9,11 +10,13 @@ interface PropertyCategoryCardProps {
   image: string;
   title: string;
   count?: number;
+  linkTo: string;
 }
 
 const PropertyCategoryCard = ({
   image,
   title,
+  linkTo,
   count = 92,
 }: PropertyCategoryCardProps) => {
   const persianCount = toPersianDigits(String(count));
@@ -39,8 +42,10 @@ const PropertyCategoryCard = ({
             </p>
           </div>
 
-          <Button size="icon" className="md:p-6">
-            <ArrowLeft className="size-4 md:size-6" />
+          <Button size="icon" className="md:p-6" asChild>
+            <Link href={linkTo}>
+              <ArrowLeft className="size-4 md:size-6" />
+            </Link>
           </Button>
         </div>
       </card.CardContent>

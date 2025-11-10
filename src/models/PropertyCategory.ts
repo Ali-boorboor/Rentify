@@ -5,6 +5,7 @@ interface IPropertyCategory extends mongoose.Document {
   enTitle: string;
   image: string;
   labelColor: "secondary" | "success" | "orange";
+  link: string;
 }
 
 const schema = new mongoose.Schema(
@@ -24,6 +25,10 @@ const schema = new mongoose.Schema(
     labelColor: {
       type: String,
       enum: ["secondary", "success", "orange"],
+      required: true,
+    },
+    link: {
+      type: String,
       required: true,
     },
   },

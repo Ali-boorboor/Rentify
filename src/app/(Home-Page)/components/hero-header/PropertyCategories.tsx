@@ -13,6 +13,7 @@ const PropertyCategories = async () => {
         <PropertyCategoryCard
           key={category._id as string}
           title={category.faTitle}
+          linkTo={category.link}
           image={category.image}
         />
       ))}
