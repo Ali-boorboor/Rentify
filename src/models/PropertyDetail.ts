@@ -9,8 +9,6 @@ import { IContractType } from "@models/ContractType";
 interface IPropertyDetail extends mongoose.Document {
   propertyCategory: IPropertyCategory;
   contractType: IContractType;
-  rentAmount: number;
-  mortgageAmount: number;
   isTransmutable: boolean;
   unitsCount: string;
   roomsCount: string;
@@ -35,14 +33,6 @@ const schema = new mongoose.Schema(
     contractType: {
       type: mongoose.Types.ObjectId,
       ref: "ContractType",
-      required: true,
-    },
-    rentAmount: {
-      type: Number,
-      required: true,
-    },
-    mortgageAmount: {
-      type: Number,
       required: true,
     },
     isTransmutable: {

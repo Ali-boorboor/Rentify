@@ -45,35 +45,19 @@ const buildFilters = async (searchParams: URLSearchParams) => {
   const mortgageMinAmountSlug = Number(searchParams.get("from-mortgage"));
   const mortgageMaxAmountSlug = Number(searchParams.get("to-mortgage"));
   if (mortgageMinAmountSlug || mortgageMaxAmountSlug) {
-    const propertyMortgageDetailIds = await PropertyDetailModel.find({
-      mortgageAmount: {
-        $gte: mortgageMinAmountSlug || 0,
-        $lte: mortgageMaxAmountSlug || 100_000_000_000,
-      },
-    });
-
-    if (propertyMortgageDetailIds.length) {
-      filters.propertyDetails = { $in: propertyMortgageDetailIds };
-    } else {
-      filters.propertyDetails = { $in: [] };
-    }
+    filters.mortgageAmount = {
+      $gte: mortgageMinAmountSlug || 0,
+      $lte: mortgageMaxAmountSlug || 100_000_000_000,
+    };
   }
 
   const rentMinAmountSlug = Number(searchParams.get("from-rent"));
   const rentMaxAmountSlug = Number(searchParams.get("to-rent"));
   if (rentMinAmountSlug || rentMaxAmountSlug) {
-    const propertyRentDetailIds = await PropertyDetailModel.find({
-      rentAmount: {
-        $gte: rentMinAmountSlug || 0,
-        $lte: rentMaxAmountSlug || 100_000_000_000,
-      },
-    });
-
-    if (propertyRentDetailIds.length) {
-      filters.propertyDetails = { $in: propertyRentDetailIds };
-    } else {
-      filters.propertyDetails = { $in: [] };
-    }
+    filters.rentAmount = {
+      $gte: rentMinAmountSlug || 0,
+      $lte: rentMaxAmountSlug || 100_000_000_000,
+    };
   }
 
   const meterageSlug = Number(searchParams.get("meterage"));

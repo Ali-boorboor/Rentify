@@ -17,9 +17,9 @@ type BaseProps = {
   image?: string;
   province: string;
   className?: string;
-  rentAmount: string;
-  mortgageAmount: string;
   isFavourable?: boolean;
+  rentAmount: string | number;
+  mortgageAmount: string | number;
   propertyCategory: IPropertyCategory;
   propertyStatus?: "success" | "error" | "warning";
 };
@@ -153,7 +153,7 @@ const PropertyCard = ({
             <span className="text-sm">رهن</span>
 
             <Badge className="bg-card" variant="outline">
-              {toPersianDigits(toCommaDigits(mortgageAmount))} تومان
+              {toPersianDigits(toCommaDigits(String(mortgageAmount)))} تومان
             </Badge>
           </div>
 
@@ -161,7 +161,7 @@ const PropertyCard = ({
             <span className="text-sm">اجاره</span>
 
             <Badge className="bg-card" variant="outline">
-              {toPersianDigits(toCommaDigits(rentAmount))} تومان
+              {toPersianDigits(toCommaDigits(String(rentAmount)))} تومان
             </Badge>
           </div>
         </div>

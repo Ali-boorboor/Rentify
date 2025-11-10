@@ -1,5 +1,6 @@
 import buildFilters from "@api/properties/utils/buildFilters";
 import PropertyModel from "@models/Property";
+import { SortOrder } from "mongoose";
 
 export const GET = async (request: Request) => {
   try {
@@ -9,6 +10,27 @@ export const GET = async (request: Request) => {
     const page = Number(searchParams.get("page")) || 1;
 
     const filterQuery = await buildFilters(searchParams);
+
+    const sortParam = searchParams.get("sort-by");
+
+    let sort:
+      | { [key: string]: SortOrder | { $meta: any } }
+      | [string, SortOrder][]
+      | null = {};
+
+    switch (sortParam) {
+      case "cheapest":
+        sort = { rentAmount: 1, mortgageAmount: 1 };
+        break;
+      case "most-expensive":
+        sort = { rentAmount: -1, mortgageAmount: -1 };
+        break;
+      case "newest":
+        sort = { _id: -1 };
+        break;
+      default:
+        sort = { _id: -1 };
+    }
 
     const properties = await PropertyModel.find(filterQuery)
       .populate({
@@ -21,6 +43,7 @@ export const GET = async (request: Request) => {
       })
       .skip((page - 1) * limit)
       .limit(limit)
+      .sort(sort)
       .lean();
 
     const totalDocuments = await PropertyModel.countDocuments(filterQuery);

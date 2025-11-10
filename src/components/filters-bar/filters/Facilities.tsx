@@ -18,7 +18,7 @@ const Facilities = ({ equipments }: FacilitiesProps) => {
     checked: CheckedState,
     equipment: { value: string }
   ) => {
-    if (checked) {
+    if (checked && !field.value.includes(equipment.value)) {
       helpers.setValue([...field.value, equipment.value]);
     } else {
       helpers.setValue(

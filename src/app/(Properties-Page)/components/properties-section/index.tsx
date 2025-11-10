@@ -29,9 +29,9 @@ const PropertiesSection = () => {
               {allProperties?.map((property) => (
                 <PropertyCard
                   propertyCategory={property.propertyDetails.propertyCategory}
-                  mortgageAmount={property.propertyDetails.mortgageAmount}
-                  rentAmount={property.propertyDetails.rentAmount}
                   province={property.address.province.faName}
+                  mortgageAmount={property.mortgageAmount}
+                  rentAmount={property.rentAmount}
                   key={property._id as string}
                   title={property.title}
                 />

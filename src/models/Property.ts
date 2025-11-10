@@ -8,6 +8,8 @@ import { IPropertyDetail } from "@models/PropertyDetail";
 interface IProperty extends mongoose.Document {
   title: string;
   address: IAddress;
+  rentAmount: number;
+  mortgageAmount: number;
   propertyDetails: IPropertyDetail;
   images?: string[];
   propertyStatus?: "success" | "error" | "warning";
@@ -22,6 +24,14 @@ const schema = new mongoose.Schema(
     address: {
       type: mongoose.Types.ObjectId,
       ref: "Address",
+      required: true,
+    },
+    rentAmount: {
+      type: Number,
+      required: true,
+    },
+    mortgageAmount: {
+      type: Number,
       required: true,
     },
     propertyDetails: {

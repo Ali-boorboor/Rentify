@@ -5,9 +5,8 @@ const countActiveFilters = (params: URLSearchParams) => {
   let count = 0;
 
   params.forEach((value) => {
-    if (params.get("sort-by")) {
-      return null;
-    } else if (Array.isArray(value) && value.length > 0) count++;
+    if (params.get("sort-by")) return null;
+    else if (Array.isArray(value) && value.length > 0) count++;
     else if (Boolean(value)) count++;
   });
 

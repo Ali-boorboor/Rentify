@@ -59,8 +59,6 @@ export const POST = async (request: Request) => {
       ...propertyTypeDatas,
       equipments: propertyEquipmentsDatas.equipments,
       meterage: Number(propertyDetailsDatas.meterage),
-      rentAmount: Number(propertyTypeDatas.rentAmount),
-      mortgageAmount: Number(propertyTypeDatas.mortgageAmount),
     });
 
     await PropertyModel.create({
@@ -68,6 +66,8 @@ export const POST = async (request: Request) => {
       address: propertyAddress._id,
       propertyDetails: propertyDetails._id,
       user: user?._id,
+      rentAmount: Number(propertyTypeDatas.rentAmount),
+      mortgageAmount: Number(propertyTypeDatas.mortgageAmount),
     });
 
     return Response.json("ok", { status: 201 });

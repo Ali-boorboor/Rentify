@@ -59,7 +59,8 @@ const FiltersDialog = ({
 
     Object.entries(values).forEach(([key, value]) => {
       if (Array.isArray(value)) {
-        value.forEach((value) => searchParam.append(key, value));
+        searchParam.delete(key);
+        Array.from(new Set(value)).forEach((v) => searchParam.append(key, v));
       } else if (["only-with-image", "only-agency"].includes(key)) {
         value ? searchParam.set(key, String(value)) : searchParam.delete(key);
       } else if (
