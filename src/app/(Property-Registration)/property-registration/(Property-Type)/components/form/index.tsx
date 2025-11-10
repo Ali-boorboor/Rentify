@@ -9,22 +9,49 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import {
+  toCommaFreeDigits,
+  toCommaDigits,
+  toEnglishDigits,
+  toPersianDigits,
+} from "@/utils/convertNumbers";
 
 const Form = ({ propertyCategories, contractTypes }: FormProps) => {
   const { propertyTypeDatas, setPropertyTypeDatas } = useFormsState.getState();
 
   const router = useRouter();
 
-  const initialValues = propertyTypeDatas || {
-    propertyCategory: "",
-    contractType: "",
-    mortgageAmount: "",
-    rentAmount: "",
-    isTransmutable: false,
-  };
+  const initialValues = propertyTypeDatas
+    ? {
+        ...propertyTypeDatas,
+        rentAmount: toPersianDigits(
+          toCommaDigits(propertyTypeDatas.rentAmount)
+        ),
+        mortgageAmount: toPersianDigits(
+          toCommaDigits(propertyTypeDatas.mortgageAmount)
+        ),
+      }
+    : {
+        propertyCategory: "",
+        contractType: "",
+        mortgageAmount: "",
+        rentAmount: "",
+        isTransmutable: false,
+      };
 
   const handleSubmit = (values: Values) => {
-    setPropertyTypeDatas(values);
+    const commaFreeMortgageAmount = toCommaFreeDigits(
+      toEnglishDigits(values.mortgageAmount)
+    );
+    const commaFreeRentAmount = toCommaFreeDigits(
+      toEnglishDigits(values.rentAmount)
+    );
+
+    setPropertyTypeDatas({
+      ...values,
+      mortgageAmount: commaFreeMortgageAmount,
+      rentAmount: commaFreeRentAmount,
+    });
 
     toast.success("اطلاعات شما با موفقیت ثبت شد");
     router.push("/property-registration/property-location");

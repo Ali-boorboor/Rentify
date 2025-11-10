@@ -3,7 +3,7 @@ interface Values {
   propertyAge: string;
   propertyType: string;
   meterage: string;
-  cardinalDirection: "west" | "east" | "north" | "south" | undefined;
+  cardinalDirection?: "west" | "east" | "north" | "south";
   floor: string;
   floorsCount: string;
   unitsCount: string;

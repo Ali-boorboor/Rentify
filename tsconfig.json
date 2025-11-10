@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@api/*": ["./src/app/api/*"],
       "@models/*": ["./src/models/*"],
       "@configs/*": ["./src/configs/*"],
       "@validators/*": ["./src/validators/*"],

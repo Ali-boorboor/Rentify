@@ -1,5 +1,6 @@
 import React from "react";
 import { Values, FormProps } from "@propertyEquipmentsRegistration/types";
+import { CheckedState } from "@radix-ui/react-checkbox";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
@@ -13,6 +14,20 @@ const FormCheckboxs = ({
   setFieldValue,
   values,
 }: FormCheckboxsProps) => {
+  const onCheckedChange = (
+    checked: CheckedState,
+    equipment: { _id: string }
+  ) => {
+    if (checked) {
+      setFieldValue("equipments", [...values.equipments, equipment._id]);
+    } else {
+      setFieldValue(
+        "equipments",
+        values.equipments.filter((id) => id !== equipment._id)
+      );
+    }
+  };
+
   return (
     <div className="flex flex-wrap justify-around gap-6 border shadow-sm rounded-xl p-4">
       {equipmentsAndFacilities.map((equipment) => (
@@ -23,19 +38,7 @@ const FormCheckboxs = ({
           <Checkbox
             id={equipment.value}
             checked={values.equipments.includes(equipment._id)}
-            onCheckedChange={(checked) => {
-              if (checked) {
-                setFieldValue("equipments", [
-                  ...values.equipments,
-                  equipment._id,
-                ]);
-              } else {
-                setFieldValue(
-                  "equipments",
-                  values.equipments.filter((id) => id !== equipment._id)
-                );
-              }
-            }}
+            onCheckedChange={(checked) => onCheckedChange(checked, equipment)}
           />
           <Label htmlFor={equipment.value}>{equipment.label}</Label>
         </div>

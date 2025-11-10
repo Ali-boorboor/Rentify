@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
@@ -35,7 +36,9 @@ const NotFoundPage = () => {
             املاک مورد نظر خود را پیدا کنید
           </p>
 
-          <Button>بازگشت به صفحه اصلی</Button>
+          <Button asChild>
+            <Link href="/">بازگشت به صفحه اصلی</Link>
+          </Button>
         </div>
       </main>
 

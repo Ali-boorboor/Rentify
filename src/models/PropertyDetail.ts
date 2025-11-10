@@ -9,14 +9,14 @@ import { IContractType } from "@models/ContractType";
 interface IPropertyDetail extends mongoose.Document {
   propertyCategory: IPropertyCategory;
   contractType: IContractType;
-  rentAmount: string;
-  mortgageAmount: string;
+  rentAmount: number;
+  mortgageAmount: number;
   isTransmutable: boolean;
   unitsCount: string;
   roomsCount: string;
   propertyType: "residential" | "commercial";
   propertyAge: string;
-  meterage: string;
+  meterage: number;
   cardinalDirection: "west" | "east" | "north" | "south";
   floorsCount: string;
   floor: string;
@@ -38,11 +38,11 @@ const schema = new mongoose.Schema(
       required: true,
     },
     rentAmount: {
-      type: String,
+      type: Number,
       required: true,
     },
     mortgageAmount: {
-      type: String,
+      type: Number,
       required: true,
     },
     isTransmutable: {
@@ -67,7 +67,7 @@ const schema = new mongoose.Schema(
       required: true,
     },
     meterage: {
-      type: String,
+      type: Number,
       required: true,
     },
     cardinalDirection: {

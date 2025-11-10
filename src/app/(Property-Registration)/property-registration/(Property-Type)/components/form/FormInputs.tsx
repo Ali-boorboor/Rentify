@@ -75,8 +75,8 @@ const FormInputs = ({
           aria-invalid={!!errors.mortgageAmount}
           placeholder="مثلا ۵۰۰ میلیون تومان"
           value={values.mortgageAmount}
+          shouldSeparateDigitsWithComma
           containerClassName="min-w-40"
-          separateDigitsWithComma
           onChange={handleChange}
           name="mortgageAmount"
           id="mortgageAmount"
@@ -87,9 +87,9 @@ const FormInputs = ({
         <LabeledInput
           aria-invalid={!!errors.rentAmount}
           placeholder="مثلا ۵۰ میلیون تومان"
+          shouldSeparateDigitsWithComma
           containerClassName="min-w-40"
           value={values.rentAmount}
-          separateDigitsWithComma
           onChange={handleChange}
           name="rentAmount"
           id="rentAmount"

@@ -12,7 +12,9 @@ export default function PageLayout({ children }: LayoutProps) {
     <>
       <Header />
 
-      <main className="flex flex-col gap-10 md:gap-20">{children}</main>
+      <main className="flex flex-col gap-10 md:gap-20 min-h-[60svh]">
+        {children}
+      </main>
 
       <Footer />
     </>

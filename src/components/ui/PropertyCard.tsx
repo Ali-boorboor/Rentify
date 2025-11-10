@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
 import * as card from "@/components/ui/card";
+import { toCommaDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { IPropertyCategory } from "@models/PropertyCategory";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { VariantProps } from "class-variance-authority";
@@ -113,7 +114,7 @@ const PropertyCard = ({
 
         {isFavourable && (
           <Button
-            className="absolute top-3 right-3 bg-card"
+            className="absolute top-3 right-3 bg-card border shadow-sm"
             variant="link"
             size="icon"
           >
@@ -127,12 +128,12 @@ const PropertyCard = ({
         <div className="flex items-center gap-2">
           <Badge
             variant={
-              propertyCategory.labelColor as VariantProps<
+              propertyCategory?.labelColor as VariantProps<
                 typeof badgeVariants
               >["variant"]
             }
           >
-            {propertyCategory.faTitle}
+            {propertyCategory?.faTitle}
           </Badge>
 
           <Badge variant="outline">
@@ -152,7 +153,7 @@ const PropertyCard = ({
             <span className="text-sm">رهن</span>
 
             <Badge className="bg-card" variant="outline">
-              {mortgageAmount} تومان
+              {toPersianDigits(toCommaDigits(mortgageAmount))} تومان
             </Badge>
           </div>
 
@@ -160,7 +161,7 @@ const PropertyCard = ({
             <span className="text-sm">اجاره</span>
 
             <Badge className="bg-card" variant="outline">
-              {rentAmount} تومان
+              {toPersianDigits(toCommaDigits(rentAmount))} تومان
             </Badge>
           </div>
         </div>

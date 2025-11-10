@@ -1,22 +1,29 @@
 import React from "react";
 import connectToDB from "@configs/database";
+import ProvinceModel from "@models/Province";
 import PropertyCategoryModel from "@models/PropertyCategory";
-import * as dropdownMenu from "@/components/ui/dropdown-menu";
-import FiltersDialog from "@/components/filters-bar/FiltersDialog";
+import FiltersBadge from "@/components/filters-bar/FiltersBadge";
+import FiltersDialog from "@/components/filters-bar/filters-dialog";
+import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { ChevronDown, X } from "lucide-react";
+import { parseJson } from "@/utils/json";
 
 const FiltersBar = async () => {
   connectToDB();
   const propertyCategories = await PropertyCategoryModel.find({}).lean();
+  const equipments = await EquipmentAndFacilitieModel.find({}).lean();
+  const provinces = await ProvinceModel.find({}).lean();
 
   return (
     <section className="bg-card shadow-sm border p-2 sm:p-4">
       {/* change variant="outline" to variant="default" when a filter added */}
       <div className="container m-auto flex gap-2 h-10">
-        <FiltersDialog />
+        <FiltersDialog
+          propertyCategories={parseJson(propertyCategories)}
+          equipments={parseJson(equipments)}
+          provinces={parseJson(provinces)}
+        />
 
         <Separator className="mr-2 hidden sm:block" orientation="vertical" />
 
@@ -24,38 +31,11 @@ const FiltersBar = async () => {
           className="line-clamp-1 whitespace-nowrap hidden sm:block"
           dir="rtl"
         >
-          <div className="space-x-2 px-2">
-            <dropdownMenu.DropdownMenu dir="rtl">
-              <dropdownMenu.DropdownMenuTrigger asChild>
-                {/* change variant to success|orange|secondary based on property type */}
-                <Button className="rounded-full" variant="success">
-                  آپارتمان
-                  <ChevronDown className="size-4.5" />
-                </Button>
-              </dropdownMenu.DropdownMenuTrigger>
-
-              <dropdownMenu.DropdownMenuContent className="w-60 md:w-80 text-center">
-                <dropdownMenu.DropdownMenuLabel>
-                  نوع ملک
-                </dropdownMenu.DropdownMenuLabel>
-
-                {propertyCategories.map((propertyCategory) => (
-                  <dropdownMenu.DropdownMenuItem
-                    className="cursor-pointer justify-center"
-                    data-value={propertyCategory.enTitle}
-                    key={propertyCategory._id as string}
-                  >
-                    {propertyCategory.faTitle}
-                  </dropdownMenu.DropdownMenuItem>
-                ))}
-              </dropdownMenu.DropdownMenuContent>
-            </dropdownMenu.DropdownMenu>
-
-            <Button className="rounded-full bg-primary/10" variant="outline">
-              فقط اگهی های عکس دار
-              <X className="size-4.5" />
-            </Button>
-          </div>
+          <FiltersBadge
+            propertyCategories={parseJson(propertyCategories)}
+            equipments={parseJson(equipments)}
+            provinces={parseJson(provinces)}
+          />
 
           <ScrollBar orientation="horizontal" />
         </ScrollArea>

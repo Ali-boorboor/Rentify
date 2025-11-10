@@ -1,39 +1,61 @@
+"use client";
+
 import React from "react";
 import SortBar from "@/components/sort-bar";
 import PropertyCard from "@/components/ui/PropertyCard";
+import useInfiniteGetRequest from "@properties/hook/useInfiniteGetRequest";
+import EmptyPropertiesAlert from "@properties/components/properties-section/EmptyPropertiesAlert";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { IPropertyCategory } from "@/models/PropertyCategory";
 
 const PropertiesSection = () => {
+  const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
+    useInfiniteGetRequest();
+
+  const allProperties = data?.pages.flatMap((page) => page.data.properties);
+
   return (
     <section className="px-4">
       <div className="container m-auto flex flex-col gap-6">
-        <h1 className="text-2xl md:text-4xl font-bold text-center sm:text-right">
-          رهن و اجاره آپارتمان در تهران
-        </h1>
+        {isPending || allProperties?.length ? (
+          <>
+            <h1 className="text-2xl md:text-4xl font-bold text-center sm:text-right">
+              رهن و اجاره آپارتمان
+            </h1>
 
-        <SortBar />
+            <SortBar />
 
-        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {[...Array(8)].map((_, index) => (
-            <PropertyCard
-              title="{property.title}"
-              key={index}
-              rentAmount="0"
-              province="tehran"
-              mortgageAmount="0"
-              propertyCategory={
-                { faTitle: "test", labelColor: "orange" } as IPropertyCategory
-              }
-            />
-          ))}
-        </div>
+            <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+              {allProperties?.map((property) => (
+                <PropertyCard
+                  propertyCategory={property.propertyDetails.propertyCategory}
+                  mortgageAmount={property.propertyDetails.mortgageAmount}
+                  rentAmount={property.propertyDetails.rentAmount}
+                  province={property.address.province.faName}
+                  key={property._id as string}
+                  title={property.title}
+                />
+              ))}
 
-        <Button className="m-auto my-6">نمایش آگهی‌های بیشتر</Button>
-        {/* if datas was loading show => <Button className="m-auto mt-6 md:mt-12" disabled>
-          در حال بارگذاری
-          <Spinner />
-        </Button> */}
+              {(isPending || isFetchingNextPage) &&
+                [...Array(8).fill(0)].map((_, index) => (
+                  <Skeleton className="h-96 sm:h-[28rem]" key={index} />
+                ))}
+            </div>
+
+            {hasNextPage && (
+              <Button
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage}
+                className="m-auto my-6"
+              >
+                نمایش آگهی‌های بیشتر
+              </Button>
+            )}
+          </>
+        ) : (
+          <EmptyPropertiesAlert />
+        )}
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import PropertyCard from "@/components/ui/PropertyCard";
@@ -11,15 +12,11 @@ const MostViewedProperties = async () => {
   const properties = await PropertyModel.find({})
     .populate({
       path: "propertyDetails",
-      populate: {
-        path: "propertyCategory",
-      },
+      populate: { path: "propertyCategory" },
     })
     .populate({
       path: "address",
-      populate: {
-        path: "province",
-      },
+      populate: { path: "province" },
     })
     .sort({ _id: -1 })
     .limit(8)
@@ -32,9 +29,11 @@ const MostViewedProperties = async () => {
           پر بازدید ترین‌های هفته‌ی گذشته
         </h3>
 
-        <Button variant="ghost">
-          مشاهده همه
-          <ArrowLeft className="size-4.5" />
+        <Button variant="ghost" asChild>
+          <Link href="/properties">
+            مشاهده همه
+            <ArrowLeft className="size-4.5" />
+          </Link>
         </Button>
       </div>
 

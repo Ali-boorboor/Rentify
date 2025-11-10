@@ -2,9 +2,15 @@ import React from "react";
 import * as accordion from "@/components/ui/accordion";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { useField } from "formik";
 import { cn } from "@/lib/utils";
 
 const ImageFacilities = () => {
+  const [onlyWithImageField, _, onlyWithImageHelpers] =
+    useField("only-with-image");
+
+  const [onlyAgencyField, __, onlyAgencyHelpers] = useField("only-agency");
+
   return (
     <accordion.AccordionItem value="image-facilities">
       <accordion.AccordionTrigger>
@@ -22,7 +28,10 @@ const ImageFacilities = () => {
         >
           <Switch
             className="data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-            defaultChecked
+            checked={Boolean(onlyWithImageField.value)}
+            onCheckedChange={(checked) => {
+              onlyWithImageHelpers.setValue(checked);
+            }}
           />
           <p className="font-medium text-sm leading-none">
             فقط آگهی های عکس دار
@@ -37,7 +46,13 @@ const ImageFacilities = () => {
           )}
           dir="ltr"
         >
-          <Switch className="data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" />
+          <Switch
+            className="data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+            checked={Boolean(onlyAgencyField.value)}
+            onCheckedChange={(checked) => {
+              onlyAgencyHelpers.setValue(checked);
+            }}
+          />
           <p className="font-medium text-sm leading-none">
             فقط آگهی های ‌آژانس املاک
           </p>

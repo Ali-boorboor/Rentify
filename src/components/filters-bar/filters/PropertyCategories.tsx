@@ -1,17 +1,23 @@
 import React from "react";
-import connectToDB from "@configs/database";
 import * as accordion from "@/components/ui/accordion";
-import PropertyCategoryModel from "@models/PropertyCategory";
+import { IPropertyCategory } from "@models/PropertyCategory";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-const PropertyType = async () => {
-  connectToDB();
-  const propertyCategories = await PropertyCategoryModel.find({}).lean();
+import { useField } from "formik";
+
+interface PropertyCategoriesProps {
+  propertyCategories: IPropertyCategory[];
+}
+
+const PropertyCategories = ({
+  propertyCategories,
+}: PropertyCategoriesProps) => {
+  const [field, _, helpers] = useField("property-category");
 
   return (
-    <accordion.AccordionItem value="property-type">
+    <accordion.AccordionItem value="property-category">
       <accordion.AccordionTrigger>نوع ملک</accordion.AccordionTrigger>
 
       <accordion.AccordionContent className="space-y-4">
@@ -26,7 +32,8 @@ const PropertyType = async () => {
           >
             <Checkbox
               className="data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-              name={propertyCategory.enTitle}
+              onCheckedChange={() => helpers.setValue(propertyCategory.enTitle)}
+              checked={field.value === propertyCategory.enTitle}
             />
 
             <p className="font-medium text-sm leading-none">
@@ -39,4 +46,4 @@ const PropertyType = async () => {
   );
 };
 
-export default PropertyType;
+export default PropertyCategories;

@@ -2,22 +2,26 @@
 
 import React from "react";
 import * as inputGroup from "@/components/ui/input-group";
-import { toEnglishDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { Label } from "@/components/ui/label";
 import { ErrorMessage } from "formik";
 import { cn } from "@/lib/utils";
+import {
+  toCommaDigits,
+  toEnglishDigits,
+  toPersianDigits,
+} from "@/utils/convertNumbers";
 
 interface LabeledInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  separateDigitsWithComma?: boolean;
+  shouldSeparateDigitsWithComma?: boolean;
   containerClassName?: string;
   icon?: React.ReactNode;
-  label: string;
+  label?: string;
   id: string;
 }
 
 const LabeledInput = ({
-  separateDigitsWithComma,
+  shouldSeparateDigitsWithComma,
   containerClassName,
   label,
   icon,
@@ -26,6 +30,24 @@ const LabeledInput = ({
 }: LabeledInputProps) => {
   const hasIcon = icon;
 
+  const separateDigitsWithComma = (
+    event: React.FormEvent<HTMLInputElement>
+  ) => {
+    if (!shouldSeparateDigitsWithComma) return;
+
+    const englishDigits = toEnglishDigits(event.currentTarget.value);
+
+    const cleaned = englishDigits.replace(/[^\d]/g, "");
+
+    if (cleaned) {
+      const formatted = toCommaDigits(cleaned);
+
+      event.currentTarget.value = toPersianDigits(formatted);
+    } else {
+      event.currentTarget.value = "";
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -33,28 +55,14 @@ const LabeledInput = ({
         containerClassName
       )}
     >
-      <Label htmlFor={id}>{label}</Label>
+      {label && <Label htmlFor={id}>{label}</Label>}
 
       <inputGroup.InputGroup>
         <inputGroup.InputGroupInput
           id={id}
           {...props}
           className={cn("placeholder:text-right", props.className)}
-          onInput={(event) => {
-            if (!separateDigitsWithComma) return;
-
-            const englishDigits = toEnglishDigits(event.currentTarget.value);
-
-            const cleaned = englishDigits.replace(/[^\d]/g, "");
-
-            if (cleaned) {
-              const formatted = Number(cleaned).toLocaleString("en-US");
-
-              event.currentTarget.value = toPersianDigits(formatted);
-            } else {
-              event.currentTarget.value = "";
-            }
-          }}
+          onInput={separateDigitsWithComma}
           onChange={(event) => {
             event.target.value = toPersianDigits(event.target.value);
 
@@ -72,8 +80,8 @@ const LabeledInput = ({
       {props.name && (
         <ErrorMessage
           className="text-destructive text-sm font-medium"
-          component="span"
           name={props.name}
+          component="span"
         />
       )}
     </div>

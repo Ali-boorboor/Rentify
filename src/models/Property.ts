@@ -1,3 +1,4 @@
+import "@models/User";
 import "@models/Address";
 import "@models/PropertyDetail";
 import mongoose from "mongoose";
@@ -38,6 +39,11 @@ const schema = new mongoose.Schema(
       enum: ["success", "error", "warning"],
       default: "warning",
     },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -46,3 +52,4 @@ const PropertyModel: mongoose.Model<IProperty> =
   mongoose.models.Property || mongoose.model("Property", schema);
 
 export default PropertyModel;
+export type { IProperty };

@@ -2,8 +2,9 @@
 
 import React from "react";
 import * as formik from "formik";
-import FormInputs from "@propertyDetailsRegistration/components/form/FormInputs";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
+import FormInputs from "@propertyDetailsRegistration/components/form/FormInputs";
+import { toEnglishDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { Values } from "@propertyDetailsRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,19 +17,26 @@ const Form = () => {
 
   const router = useRouter();
 
-  const initialValues = propertyDetailsDatas || {
-    roomsCount: "",
-    propertyAge: "",
-    propertyType: "",
-    meterage: "",
-    cardinalDirection: undefined,
-    floor: "",
-    floorsCount: "",
-    unitsCount: "",
-  };
+  const initialValues = propertyDetailsDatas
+    ? {
+        ...propertyDetailsDatas,
+        meterage: toPersianDigits(propertyDetailsDatas.meterage),
+      }
+    : {
+        roomsCount: "",
+        propertyAge: "",
+        propertyType: "",
+        meterage: "",
+        cardinalDirection: undefined,
+        floor: "",
+        floorsCount: "",
+        unitsCount: "",
+      };
 
   const handleSubmit = (values: Values) => {
-    setPropertyDetailsDatas(values);
+    const englishDigitsMeterage = toEnglishDigits(values.meterage);
+
+    setPropertyDetailsDatas({ ...values, meterage: englishDigitsMeterage });
 
     toast.success("اطلاعات شما با موفقیت ثبت شد");
     router.push("/property-registration/property-equipments");

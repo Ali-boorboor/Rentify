@@ -5,9 +5,7 @@ const authenticate = async () => {
   try {
     const token = (await cookies()).get("access-token")?.value as string;
 
-    validateToken(token) as { phone: string };
-
-    return true;
+    return validateToken(token) as { phone: string };
   } catch (_) {
     return false;
   }
