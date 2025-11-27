@@ -4,6 +4,7 @@ import * as formik from "formik";
 import React, { memo } from "react";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import FormInputs from "@propertyLocationRegistration/components/form/FormInputs";
+import propertyLocationValidations from "@validators/property-registration/propertyLocation";
 import { useLocationStore } from "@propertyLocationRegistration/stores/locationState";
 import { FormProps } from "@propertyLocationRegistration/types";
 import { Values } from "@propertyLocationRegistration/types";
@@ -50,6 +51,7 @@ const Form = ({ provinces }: FormProps) => {
 
   return (
     <formik.Formik
+      validationSchema={propertyLocationValidations}
       initialValues={initialValues as Values}
       onSubmit={handleSubmit}
       enableReinitialize

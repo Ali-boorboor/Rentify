@@ -1,16 +1,18 @@
 import * as Yup from "yup";
 
-const PERSIAN_CHARACTERS_REGEX = /^[\u0600-\u06FF\u200C\s]+$/u;
+const ONLY_PERSIAN_LETTERS_REGEX =
+  /^[\u0621-\u063A\u0641-\u064A\u067E\u0686\u0698\u06A9\u06AF\u06CC]+$/u;
+
 const PHONE_REGEX = /^۰۹[۰-۹]{9}$/;
 
 const baseSchema = {
   name: Yup.string()
-    .matches(PERSIAN_CHARACTERS_REGEX, "نام باید فقط شامل حروف فارسی باشد.")
+    .matches(ONLY_PERSIAN_LETTERS_REGEX, "نام باید فقط شامل حروف فارسی باشد.")
     .required("وارد کردن نام الزامی است."),
 
   familyName: Yup.string()
     .matches(
-      PERSIAN_CHARACTERS_REGEX,
+      ONLY_PERSIAN_LETTERS_REGEX,
       "نام خانوادگی باید فقط شامل حروف فارسی باشد."
     )
     .required("وارد کردن نام خانوادگی الزامی است."),
@@ -28,7 +30,7 @@ const estateAgencySchema = Yup.object().shape({
 
   agencyName: Yup.string()
     .matches(
-      PERSIAN_CHARACTERS_REGEX,
+      ONLY_PERSIAN_LETTERS_REGEX,
       "نام دفتر املاک باید فقط شامل حروف فارسی باشد."
     )
     .required("وارد کردن نام دفتر املاک الزامی است."),

@@ -3,9 +3,12 @@ import { Values, FormProps } from "@propertyEquipmentsRegistration/types";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { FormikErrors } from "formik";
+import { cn } from "@/lib/utils";
 
 interface FormCheckboxsProps extends FormProps {
   setFieldValue: (field: string, value: string[]) => void;
+  errors: FormikErrors<Values>;
   values: Values;
 }
 
@@ -13,6 +16,7 @@ const FormCheckboxs = ({
   equipmentsAndFacilities,
   setFieldValue,
   values,
+  errors,
 }: FormCheckboxsProps) => {
   const onCheckedChange = (
     checked: CheckedState,
@@ -29,7 +33,12 @@ const FormCheckboxs = ({
   };
 
   return (
-    <div className="flex flex-wrap justify-around gap-6 border shadow-sm rounded-xl p-4">
+    <div
+      className={cn(
+        `flex flex-wrap justify-around gap-6 border shadow-sm rounded-xl p-4`,
+        !!errors.equipments ? "border-destructive" : ""
+      )}
+    >
       {equipmentsAndFacilities.map((equipment) => (
         <div
           className="flex items-center space-x-2 min-w-32"

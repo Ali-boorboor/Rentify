@@ -4,6 +4,7 @@ import React from "react";
 import * as formik from "formik";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import FormInputs from "@propertyDetailsRegistration/components/form/FormInputs";
+import propertyDetailsValidations from "@/validators/property-registration/propertyDetails";
 import { toEnglishDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { Values } from "@propertyDetailsRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -44,6 +45,7 @@ const Form = () => {
 
   return (
     <formik.Formik
+      validationSchema={propertyDetailsValidations}
       initialValues={initialValues}
       onSubmit={handleSubmit}
       enableReinitialize

@@ -153,7 +153,7 @@ const PropertyCard = ({
             <span className="text-sm">رهن</span>
 
             <Badge className="bg-card" variant="outline">
-              {toPersianDigits(toCommaDigits(String(mortgageAmount)))} تومان
+              {toPersianDigits(toCommaDigits(mortgageAmount))} تومان
             </Badge>
           </div>
 
@@ -161,7 +161,7 @@ const PropertyCard = ({
             <span className="text-sm">اجاره</span>
 
             <Badge className="bg-card" variant="outline">
-              {toPersianDigits(toCommaDigits(String(rentAmount)))} تومان
+              {toPersianDigits(toCommaDigits(rentAmount))} تومان
             </Badge>
           </div>
         </div>

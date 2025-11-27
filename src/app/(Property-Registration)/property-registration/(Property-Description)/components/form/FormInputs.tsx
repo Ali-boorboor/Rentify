@@ -3,8 +3,8 @@ import LabeledInput from "@/components/ui/LabeledInput";
 import { Values } from "@propertyDescriptionRegistration/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { ErrorMessage, FormikErrors } from "formik";
 import { Label } from "@/components/ui/label";
-import { FormikErrors } from "formik";
 
 interface FormInputsProps {
   handleChange: (
@@ -35,14 +35,21 @@ const FormInputs = ({
         />
       </div>
 
-      <Textarea
-        className="min-h-60 max-h-96 grow resize-none"
-        placeholder="توضیحات خود را اینجا بنویسید..."
-        aria-invalid={!!errors.descriptionMessage}
-        value={values.descriptionMessage}
-        name="descriptionMessage"
-        onChange={handleChange}
-      />
+      <div className="space-y-2">
+        <Textarea
+          className="min-h-60 max-h-96 grow resize-none"
+          placeholder="توضیحات خود را اینجا بنویسید..."
+          aria-invalid={!!errors.descriptionMessage}
+          value={values.descriptionMessage}
+          name="descriptionMessage"
+          onChange={handleChange}
+        />
+        <ErrorMessage
+          className="text-destructive text-sm font-medium"
+          name="descriptionMessage"
+          component="span"
+        />
+      </div>
 
       <div className="flex items-center space-x-2">
         <Checkbox

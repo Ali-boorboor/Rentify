@@ -2,8 +2,9 @@
 
 import React from "react";
 import * as formik from "formik";
-import FormInputs from "@propertyDescriptionRegistration/components/form/FormInputs";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
+import FormInputs from "@propertyDescriptionRegistration/components/form/FormInputs";
+import propertyDescriptionValidations from "@validators/property-registration/propertyDescription";
 import { Values } from "@propertyDescriptionRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const Form = () => {
 
   return (
     <formik.Formik
+      validationSchema={propertyDescriptionValidations}
       initialValues={initialValues}
       onSubmit={handleSubmit}
       enableReinitialize

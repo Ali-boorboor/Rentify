@@ -43,9 +43,9 @@ const MostViewedProperties = async () => {
             title={property.title}
             key={property._id as string}
             image={property?.images?.[0]}
+            rentAmount={property.rentAmount}
+            mortgageAmount={property.mortgageAmount}
             province={property.address.province.faName}
-            rentAmount={property.propertyDetails.rentAmount}
-            mortgageAmount={property.propertyDetails.mortgageAmount}
             propertyCategory={parseJson(
               property.propertyDetails.propertyCategory
             )}

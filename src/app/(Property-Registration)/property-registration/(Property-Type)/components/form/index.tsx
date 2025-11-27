@@ -4,6 +4,7 @@ import React from "react";
 import * as formik from "formik";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import FormInputs from "@propertyTypeRegistration/components/form/FormInputs";
+import propertyTypeValidations from "@validators/property-registration/propertyType";
 import { FormProps, Values } from "@propertyTypeRegistration/types";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -59,6 +60,7 @@ const Form = ({ propertyCategories, contractTypes }: FormProps) => {
 
   return (
     <formik.Formik
+      validationSchema={propertyTypeValidations}
       initialValues={initialValues}
       onSubmit={handleSubmit}
       enableReinitialize

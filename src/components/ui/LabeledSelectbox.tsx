@@ -2,6 +2,7 @@ import React from "react";
 import * as select from "@/components/ui/select";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Label } from "@/components/ui/label";
+import { ErrorMessage } from "formik";
 import { cn } from "@/lib/utils";
 
 interface LabeledSelectboxProps
@@ -42,6 +43,14 @@ const LabeledSelectbox = ({
 
         <select.SelectContent>{children}</select.SelectContent>
       </select.Select>
+
+      {props.name && (
+        <ErrorMessage
+          className="text-destructive text-sm font-medium"
+          name={props.name}
+          component="span"
+        />
+      )}
     </div>
   );
 };

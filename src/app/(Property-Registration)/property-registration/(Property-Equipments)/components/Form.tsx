@@ -4,6 +4,7 @@ import React from "react";
 import * as formik from "formik";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import FormCheckboxs from "@propertyEquipmentsRegistration/components/form/FormCheckboxs";
+import propertyEquipmentsValidations from "@validators/property-registration/propertyEquipments";
 import { Values, FormProps } from "@propertyEquipmentsRegistration/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,17 +30,27 @@ const Form = ({ equipmentsAndFacilities }: FormProps) => {
 
   return (
     <formik.Formik
+      validationSchema={propertyEquipmentsValidations}
       initialValues={initialValues}
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ values, setFieldValue }) => (
+      {({ values, errors, setFieldValue }) => (
         <formik.Form className="grow flex flex-col justify-between gap-6">
-          <FormCheckboxs
-            equipmentsAndFacilities={equipmentsAndFacilities}
-            setFieldValue={setFieldValue}
-            values={values}
-          />
+          <div className="flex flex-col gap-6">
+            <FormCheckboxs
+              equipmentsAndFacilities={equipmentsAndFacilities}
+              setFieldValue={setFieldValue}
+              values={values}
+              errors={errors}
+            />
+
+            <formik.ErrorMessage
+              className="text-destructive text-sm font-medium"
+              name="equipments"
+              component="span"
+            />
+          </div>
 
           <div className="md:self-end self-center flex flex-wrap items-center justify-center gap-2">
             <Button className="min-w-36" variant="ghost" type="button">

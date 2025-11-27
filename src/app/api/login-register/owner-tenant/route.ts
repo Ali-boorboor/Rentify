@@ -48,7 +48,7 @@ export const POST = async (request: Request) => {
     }
 
     await UserModel.create({
-      restOfRequestBody,
+      ...restOfRequestBody,
       phone,
     });
 
