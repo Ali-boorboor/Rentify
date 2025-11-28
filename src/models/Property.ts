@@ -4,14 +4,17 @@ import "@models/PropertyDetail";
 import mongoose from "mongoose";
 import { IAddress } from "@models/Address";
 import { IPropertyDetail } from "@models/PropertyDetail";
+import { IUser } from "@models/User";
 
 interface IProperty extends mongoose.Document {
   title: string;
+  createdAt: Date;
   address: IAddress;
+  images?: string[];
   rentAmount: number;
   mortgageAmount: number;
   propertyDetails: IPropertyDetail;
-  images?: string[];
+  user: IUser;
   propertyStatus?: "success" | "error" | "warning";
 }
 

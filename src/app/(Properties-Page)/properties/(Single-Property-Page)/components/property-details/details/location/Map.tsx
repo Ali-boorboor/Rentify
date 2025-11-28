@@ -5,14 +5,18 @@ import "leaflet/dist/leaflet.css";
 import leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 
-const position: LatLngExpression = [35.69977180653842, 51.33803060889542];
-
 const pinLocationIcon = leaflet.icon({
   iconUrl: "/images/png/location-pin.png",
   iconSize: [45, 45],
 });
 
-const Map = () => {
+interface MapProps {
+  position?: LatLngExpression;
+}
+
+const Map = ({
+  position = [35.69977180653842, 51.33803060889542],
+}: MapProps) => {
   return (
     <MapContainer
       className="w-full h-full z-10"

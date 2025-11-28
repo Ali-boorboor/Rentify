@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 type BaseProps = {
   title: string;
   image?: string;
+  linkTo: string;
   province: string;
   className?: string;
   isFavourable?: boolean;
@@ -57,6 +58,7 @@ const propertyStatusMap = {
 const PropertyCard = ({
   image,
   title,
+  linkTo,
   province,
   className,
   rentAmount,
@@ -74,7 +76,7 @@ const PropertyCard = ({
       className={cn("h-96 sm:h-[28rem] gap-0 p-0 overflow-hidden", className)}
     >
       <card.CardHeader className="relative h-full bg-muted flex p-0">
-        <Link className="relative h-full w-full" href="/properties/1">
+        <Link className="relative h-full w-full" href={linkTo}>
           {image ? (
             <Image
               className="object-cover object-center"
@@ -142,7 +144,7 @@ const PropertyCard = ({
           </Badge>
         </div>
 
-        <Link href="/properties/1">
+        <Link href={linkTo}>
           <p className="text-sm md:text-base text-right font-medium line-clamp-1">
             {title}
           </p>

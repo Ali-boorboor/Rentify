@@ -1,19 +1,17 @@
 import React from "react";
-import { cn } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import * as dialog from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const descriptionDetails = [
-  { id: 1, label: "سند شخصی" },
-  { id: 2, label: "واحد شمالی" },
-  { id: 3, label: "هود و گاز رو میزی" },
-  { id: 4, label: "کابینت ممبران" },
-];
+interface DescriptionDetailsProps {
+  description: string;
+}
 
-const DescriptionDetails = () => {
+const DescriptionDetails = ({ description }: DescriptionDetailsProps) => {
   return (
-    <>
+    <dialog.Dialog>
       <div
         className="space-y-6 scroll-mt-40 md:scroll-mt-96"
         id="description-details"
@@ -28,21 +26,45 @@ const DescriptionDetails = () => {
         </h3>
 
         <div className="space-y-6">
-          {descriptionDetails.map((detail) => (
-            <p className="md:text-lg w-full" key={detail.id}>
-              {detail.label}
-            </p>
-          ))}
+          <p className="md:text-lg line-clamp-2 md:line-clamp-5">
+            {description}
+          </p>
 
-          <Button variant="ghost">
-            مشاهده همه
-            <ArrowLeft className="size-4.5" />
-          </Button>
+          <dialog.DialogContent
+            className="max-w-svw max-h-svh overflow-y-auto"
+            showCloseButton={false}
+            dir="rtl"
+          >
+            <dialog.DialogClose asChild>
+              <Button
+                className="text-destructive absolute top-4 left-4 has-[>svg]:px-1.5"
+                variant="link"
+              >
+                <X className="size-5 p-0" />
+              </Button>
+            </dialog.DialogClose>
+
+            <dialog.DialogHeader className="sm:text-right mb-4">
+              <dialog.DialogTitle>توضیحات</dialog.DialogTitle>
+              <dialog.DialogDescription className="sr-only">
+                توضیحات
+              </dialog.DialogDescription>
+            </dialog.DialogHeader>
+
+            <p className="md:text-lg">{description}</p>
+          </dialog.DialogContent>
+
+          <dialog.DialogTrigger asChild>
+            <Button variant="ghost">
+              مشاهده همه
+              <ArrowLeft className="size-4.5" />
+            </Button>
+          </dialog.DialogTrigger>
         </div>
       </div>
 
       <Separator />
-    </>
+    </dialog.Dialog>
   );
 };
 

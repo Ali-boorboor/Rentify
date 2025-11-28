@@ -1,18 +1,75 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { toPersianDigits } from "@/utils/convertNumbers";
 
-const mainDetails = [
-  { id: 1, label: "مساحت زیر بنا", value: "۱۳۰ متر" },
-  { id: 2, label: "مساحت زمین", value: "۴۰۰ متر" },
-  { id: 3, label: "طبقات", value: "۱۴" },
-  { id: 4, label: "خواب", value: "۲ خوابه" },
-  { id: 5, label: "سرویس بهداشتی", value: "۳ عدد" },
-  { id: 6, label: "طبقه", value: "۱۲" },
-  { id: 7, label: "هر طبقه", value: "۱" },
-];
+interface MainDetailsProps {
+  cardinalDirection: "west" | "east" | "north" | "south";
+  propertyType: "residential" | "commercial";
+  contractType: string;
+  propertyAge: string;
+  floorsCount: string;
+  roomsCount: string;
+  unitsCount: string;
+  meterage: number;
+  floor: string;
+}
 
-const MainDetails = () => {
+const cardinalDirections = {
+  north: "شمال",
+  south: "جنوب",
+  east: "شرق",
+  west: "غرب",
+};
+
+const propertyTypes = {
+  residential: "مسکونی",
+  commercial: "تجاری",
+};
+
+const MainDetails = ({
+  cardinalDirection,
+  contractType,
+  propertyType,
+  propertyAge,
+  floorsCount,
+  roomsCount,
+  unitsCount,
+  meterage,
+  floor,
+}: MainDetailsProps) => {
+  const mainDetails = [
+    {
+      id: 1,
+      label: "مساحت زیر بنا",
+      value: `${toPersianDigits(meterage)} متر`,
+    },
+    { id: 2, label: "طبقات", value: toPersianDigits(floorsCount) },
+    { id: 3, label: "خواب", value: `${toPersianDigits(roomsCount)} خوابه` },
+    { id: 4, label: "طبقه", value: toPersianDigits(floor) },
+    {
+      id: 5,
+      label: "تعداد واحد هر طبقه",
+      value: toPersianDigits(unitsCount),
+    },
+    {
+      id: 6,
+      label: "موقعیت جغرافیایی ملک",
+      value: cardinalDirections[cardinalDirection],
+    },
+    { id: 7, label: "سن بنا", value: toPersianDigits(propertyAge) },
+    {
+      id: 8,
+      label: "نوع واحد",
+      value: propertyTypes[propertyType],
+    },
+    {
+      id: 9,
+      label: "نوع معامله",
+      value: contractType,
+    },
+  ];
+
   return (
     <>
       <div className="space-y-6 scroll-mt-40 md:scroll-mt-96" id="main-details">
@@ -27,8 +84,8 @@ const MainDetails = () => {
 
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
           {mainDetails.map((detail) => (
-            <p className="md:text-lg" key={detail.id}>
-              {detail.label}:
+            <p className="md:text-lg flex gap-1" key={detail.id}>
+              <span className="flex gap-1">{detail.label}:</span>
               <span className="font-medium"> {detail.value}</span>
             </p>
           ))}

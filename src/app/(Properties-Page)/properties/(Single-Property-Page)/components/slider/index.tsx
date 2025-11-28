@@ -15,7 +15,11 @@ const slides = [
   { id: 4, image: "/test/pic3.png" },
 ];
 
-const Slider = () => {
+interface SliderProps {
+  slidesImage?: string[];
+}
+
+const Slider = ({ slidesImage }: SliderProps) => {
   const {
     sliderRef,
     handleSlideChange,
