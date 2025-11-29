@@ -58,6 +58,7 @@ const Form = () => {
 
           <div className="text-muted-foreground text-sm md:text-base space-y-2">
             <p>فرمت عکس‌ها باید jpg، jpeg یا png باشد. </p>
+            <p>سایز هر عکس حداکثر ۲ مگابایت باشد.</p>
             <p>عکس‌‌های غیر مرتبط توسط پشتیبانی حذف خواهد شد.</p>
           </div>
 

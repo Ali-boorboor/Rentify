@@ -39,7 +39,9 @@ const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
         propertyCategory={property.propertyDetails.propertyCategory}
         province={property.address.province.faName}
         mortgageAmount={property.mortgageAmount}
+        linkTo={`/properties/${property._id}`}
         rentAmount={property.rentAmount}
+        image={property?.images?.[0]}
         key={property._id as string}
         title={property.title}
         isFavourable={false}

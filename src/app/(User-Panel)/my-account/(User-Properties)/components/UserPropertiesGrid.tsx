@@ -9,6 +9,8 @@ const UserPropertiesGrid = () => {
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
       {[...Array(6)].map((_, index) => (
         <PropertyCard
+          // image={property?.images?.[0]}
+          linkTo={`/properties/12`}
           title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
           mortgageAmount="4_000_000_000"
           removeButtonHandler={() => {}}

@@ -51,7 +51,7 @@ const DescriptionDetails = ({ description }: DescriptionDetailsProps) => {
               </dialog.DialogDescription>
             </dialog.DialogHeader>
 
-            <p className="md:text-lg">{description}</p>
+            <p className="text-sm md:text-base">{description}</p>
           </dialog.DialogContent>
 
           <dialog.DialogTrigger asChild>

@@ -9,7 +9,7 @@ const EmptyPropertiesAlert = () => {
     <div className="flex flex-col gap-6 justify-center items-center text-center">
       <Image
         className="w-40 h-40 md:w-60 md:h-60 object-contain object-center"
-        src="/images/png/user-panel/empty-properties.png"
+        src="/images/png/empty-properties.png"
         alt="empty properties image"
         height={300}
         width={300}

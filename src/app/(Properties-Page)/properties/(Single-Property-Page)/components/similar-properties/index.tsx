@@ -56,6 +56,7 @@ const SimilarProperties = async ({
             <PropertyCard
               title={similarProperty.title}
               key={similarProperty._id as string}
+              image={similarProperty?.images?.[0]}
               rentAmount={similarProperty.rentAmount}
               linkTo={`/properties/${similarProperty._id}`}
               mortgageAmount={similarProperty.mortgageAmount}

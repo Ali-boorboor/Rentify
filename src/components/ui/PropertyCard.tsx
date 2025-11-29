@@ -86,7 +86,7 @@ const PropertyCard = ({
               fill
             />
           ) : (
-            <icon.CameraOff className="absolute inset-0 m-auto size-full" />
+            <icon.CameraOff className="absolute inset-0 m-auto size-full text-muted-foreground" />
           )}
         </Link>
 

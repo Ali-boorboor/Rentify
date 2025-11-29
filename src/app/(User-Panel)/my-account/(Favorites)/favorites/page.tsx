@@ -14,6 +14,7 @@ const FavoritesPage = () => {
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
           {[...Array(8)].map((_, index) => (
             <PropertyCard
+              linkTo={`/properties/12`}
               title="{property.title}"
               key={index}
               rentAmount="0"

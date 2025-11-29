@@ -10,6 +10,8 @@ import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+
 interface FileUploadersProps {
   uploadedImages: UploadedImage[];
   setUploadedImages: (value: UploadedImage[]) => void;
@@ -28,6 +30,11 @@ const FileUploaders = ({
 
     if (!file.type.startsWith("image/")) {
       toast.warning("فرمت عکس‌ها باید jpg، jpeg یا png باشد.");
+      return;
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      toast.error("حجم عکس نباید بیشتر از ۲ مگابایت باشد.");
       return;
     }
 

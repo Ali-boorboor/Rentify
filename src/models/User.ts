@@ -7,6 +7,7 @@ interface IUser extends mongoose.Document {
   agencyName: string;
   createdAt: Date;
   updatedAt: Date;
+  profileImage: string;
 }
 
 const schema = new mongoose.Schema(
@@ -25,6 +26,10 @@ const schema = new mongoose.Schema(
       unique: true,
     },
     agencyName: {
+      type: String,
+      required: false,
+    },
+    profileImage: {
       type: String,
       required: false,
     },

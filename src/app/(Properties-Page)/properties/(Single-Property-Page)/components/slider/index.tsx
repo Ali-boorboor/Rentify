@@ -4,36 +4,36 @@ import "swiper/css";
 import React from "react";
 import Image from "next/image";
 import useSliderController from "@singleProperty/hooks/useSliderController";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { CameraOff, ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Button } from "@/components/ui/button";
-
-const slides = [
-  { id: 1, image: "/test/pic1.png" },
-  { id: 2, image: "/test/pic2.png" },
-  { id: 3, image: "/test/pic3.png" },
-  { id: 4, image: "/test/pic3.png" },
-];
 
 interface SliderProps {
   slidesImage?: string[];
 }
 
 const Slider = ({ slidesImage }: SliderProps) => {
+  const imagesCount = slidesImage?.length || 0;
+
   const {
     sliderRef,
     handleSlideChange,
     isAtFirstSlide,
+    canSlide,
     slideNext,
     isAtLastSlide,
     slidePrevious,
-  } = useSliderController();
+    handleInit,
+    handleResize,
+  } = useSliderController(imagesCount);
 
   return (
     <div className="rounded-xl overflow-hidden">
       <Swiper
         onSlideChange={handleSlideChange}
+        onResize={handleResize}
         className="relative"
+        onInit={handleInit}
         spaceBetween={24}
         slidesPerView={1}
         ref={sliderRef}
@@ -48,38 +48,56 @@ const Slider = ({ slidesImage }: SliderProps) => {
           },
         }}
       >
-        {slides.map((slide) => (
-          <SwiperSlide className="w-full aspect-square" key={slide.id}>
-            <Image
-              className="object-cover object-center"
-              alt="property image"
-              src={slide.image}
-              sizes="496px"
-              priority
-              fill
-            />
-          </SwiperSlide>
-        ))}
+        {slidesImage?.length
+          ? slidesImage?.map((image, index) => (
+              <SwiperSlide
+                className="relative w-full aspect-square border shadow-sm rounded-xl overflow-hidden"
+                key={`${image}-${index}`}
+              >
+                <Image
+                  className="object-cover object-center"
+                  alt="property image"
+                  sizes="500px"
+                  src={image}
+                  priority
+                  fill
+                />
+              </SwiperSlide>
+            ))
+          : [...Array(3)].fill(0).map((_, index) => (
+              <SwiperSlide
+                className="w-full aspect-square border shadow-sm rounded-xl overflow-hidden"
+                key={`image-${index}`}
+              >
+                <div className="flex justify-center items-center size-full bg-muted text-muted-foreground">
+                  <CameraOff className="size-2/3" />
+                </div>
+              </SwiperSlide>
+            ))}
 
-        <Button
-          className="absolute top-0 bottom-0 my-auto left-4 z-10"
-          disabled={isAtFirstSlide}
-          onClick={slidePrevious}
-          variant="ternary"
-          size="icon-lg"
-        >
-          <ChevronLeft className="size-fit" />
-        </Button>
+        {canSlide && (
+          <>
+            <Button
+              className="absolute top-0 bottom-0 my-auto left-4 z-10"
+              disabled={isAtFirstSlide}
+              onClick={slidePrevious}
+              variant="ternary"
+              size="icon-lg"
+            >
+              <ChevronLeft className="size-fit" />
+            </Button>
 
-        <Button
-          className="absolute top-0 bottom-0 my-auto right-4 z-10"
-          disabled={isAtLastSlide}
-          onClick={slideNext}
-          variant="ternary"
-          size="icon-lg"
-        >
-          <ChevronRight className="size-fit" />
-        </Button>
+            <Button
+              className="absolute top-0 bottom-0 my-auto right-4 z-10"
+              disabled={isAtLastSlide}
+              onClick={slideNext}
+              variant="ternary"
+              size="icon-lg"
+            >
+              <ChevronRight className="size-fit" />
+            </Button>
+          </>
+        )}
       </Swiper>
     </div>
   );

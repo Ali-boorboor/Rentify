@@ -27,6 +27,8 @@ const Table = () => {
           {[...Array(3)].map((_, index) => (
             <table.TableHead className="p-4" key={index}>
               <PropertyCard
+                // image={property?.images?.[0]}
+                linkTo={`/properties/12`}
                 className="aspect-[3/4] h-80 sm:h-[28rem]"
                 title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
                 mortgageAmount="4_000_000_000"

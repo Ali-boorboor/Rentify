@@ -5,8 +5,10 @@ import authenticate from "@/utils/authenticate";
 import VisitRequestDialog from "@singleProperty/components/property-details/agent-card/VisitRequestDialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { UserRound } from "lucide-react";
 
 interface PropertyAgentCardProps {
+  profileImage?: string;
   agencyName: string;
   name: string;
 }
@@ -14,6 +16,7 @@ interface PropertyAgentCardProps {
 const PropertyAgentCard = async ({
   name,
   agencyName,
+  profileImage,
 }: PropertyAgentCardProps) => {
   const isUserLogin = await authenticate();
 
@@ -21,13 +24,21 @@ const PropertyAgentCard = async ({
     <Card className="w-96 lg:sticky top-28 grow z-20">
       <CardContent className="w-full flex flex-col items-center gap-6">
         <div className="flex items-center gap-6">
-          <Image
-            className="w-24 h-24 object-cover object-center"
-            src="/test/user.png"
-            alt="user image"
-            height={200}
-            width={200}
-          />
+          <div className="relative w-20 h-20">
+            {profileImage ? (
+              <Image
+                className="object-cover object-center"
+                src={profileImage}
+                alt="user image"
+                sizes="100px"
+                fill
+              />
+            ) : (
+              <div className="flex justify-center items-center absolute size-full border shadow-sm rounded-full bg-muted text-muted-foreground">
+                <UserRound className="size-2/3" />
+              </div>
+            )}
+          </div>
 
           <div>
             <h2 className="text-base md:text-lg font-semibold">{name}</h2>
