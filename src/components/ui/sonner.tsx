@@ -35,10 +35,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           title: "!text-sm !font-semibold",
-          success: "!bg-success/80 !text-success-foreground",
-          warning: "!bg-warning/80 !text-foreground",
-          error: "!bg-destructive/80 !text-destructive-foreground",
-          info: "!bg-primary/80 !text-primary-foreground",
+          success: "!bg-success !text-success-foreground",
+          warning: "!bg-warning !text-foreground",
+          error: "!bg-destructive !text-destructive-foreground",
+          info: "!bg-primary !text-primary-foreground",
         },
       }}
       {...props}

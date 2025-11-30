@@ -1,33 +1,101 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
+import * as formik from "formik";
 import Inputs from "@userPanel/editInfos/components/Inputs";
+import * as validators from "@validators/user-panel/editInfos";
+import useEditUserInfos from "@userPanel/editInfos/hooks/useEditUserInfos";
+import { Values } from "@userPanel/editInfos/types";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { IUser } from "@models/User";
 
-const Form = () => {
+interface FormProps {
+  user: IUser;
+}
+
+const Form = ({ user }: FormProps) => {
+  const { mutate, isPending } = useEditUserInfos();
+  const router = useRouter();
+
+  const initialValues: Values = user
+    ? {
+        agencyName: user.agencyName || "",
+        familyName: user.familyName,
+        email: user.email || "",
+        profileImage: null,
+        phone: user.phone,
+        name: user.name,
+      }
+    : {
+        profileImage: null,
+        agencyName: "",
+        familyName: "",
+        email: "",
+        phone: "",
+        name: "",
+      };
+
+  const submitHandler = async (
+    values: Values,
+    { setFieldValue }: formik.FormikHelpers<Values>
+  ) => {
+    const formData = new FormData();
+
+    const formsEntries = [
+      ["name", values.name],
+      ["phone", values.phone],
+      ["email", values.email],
+      ["familyName", values.familyName],
+      ["agencyName", values.agencyName],
+      ["profileImage", values.profileImage],
+    ] as const;
+
+    for (const [key, value] of formsEntries) {
+      if (value) formData.append(key, value);
+    }
+
+    mutate(formData, {
+      onSuccess: () => {
+        setFieldValue("profileImage", null);
+        router.refresh();
+      },
+    });
+  };
+
   return (
-    <form className="flex flex-col gap-6">
-      <div className="bg-card text-card-foreground border shadow-sm p-4 rounded-xl space-y-6">
-        <div className="flex flex-col md:flex-row justify-center md:justify-start md:items-end gap-6">
-          <Image
-            className="w-24 h-24 md:w-28 md:h-28 object-cover object-center mx-auto md:mx-0"
-            src="/test/user.png"
-            alt="user image"
-            height={200}
-            width={200}
-          />
+    <formik.Formik
+      enableReinitialize
+      onSubmit={submitHandler}
+      initialValues={initialValues}
+      validationSchema={
+        user.agencyName
+          ? validators.estateAgencySchema
+          : validators.ownerTenantSchema
+      }
+    >
+      {({ values, errors, handleChange, setFieldValue }) => (
+        <formik.Form className="flex flex-col gap-6">
+          <div className="bg-card text-card-foreground border shadow-sm p-4 rounded-xl space-y-6">
+            <Inputs
+              profileImage={user?.profileImage}
+              setFieldValue={setFieldValue}
+              handleChange={handleChange}
+              values={values}
+              errors={errors}
+            />
+          </div>
 
-          <Button variant="outline" type="button">
-            تغییر عکس
+          <Button
+            className="w-full md:w-fit self-end"
+            disabled={isPending}
+            type="submit"
+          >
+            ثبت تغییرات
           </Button>
-        </div>
-
-        <Inputs />
-      </div>
-
-      <Button className="w-full md:w-fit self-end" type="submit">
-        ثبت تغییرات
-      </Button>
-    </form>
+        </formik.Form>
+      )}
+    </formik.Formik>
   );
 };
 

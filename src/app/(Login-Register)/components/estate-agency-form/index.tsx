@@ -110,7 +110,7 @@ const EstateAgencyForm = () => {
               className="w-full"
               type="submit"
             >
-              تایید و دریافت کد
+              ورود
             </Button>
           </Form>
         )}

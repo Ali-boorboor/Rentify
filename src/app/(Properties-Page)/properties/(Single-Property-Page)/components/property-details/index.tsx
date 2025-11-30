@@ -74,7 +74,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
       </div>
 
       <PropertyAgentCard
-        agencyName={property.user?.agencyName}
+        agencyName={property.user?.agencyName as string}
         name={property.user.name}
       />
     </div>

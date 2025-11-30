@@ -23,8 +23,7 @@ const LinkButtons = () => {
           className={cn(
             pathname.includes(link.href) && ACTIVE_LINK_STYLE,
             "grow justify-center md:justify-start",
-            "[&_svg:not([class*='size-'])]:size-5",
-            "transition-none"
+            "[&_svg:not([class*='size-'])]:size-5"
           )}
           variant="link"
           key={link.id}

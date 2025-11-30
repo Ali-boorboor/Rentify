@@ -77,11 +77,17 @@ export const POST = async (request: Request) => {
 
       const fileName = `${randomUUID()}.${fileExtension}`;
 
-      const filePath = path.join(process.cwd(), "public", "uploads", fileName);
+      const filePath = path.join(
+        process.cwd(),
+        "public",
+        "uploads",
+        "properties",
+        fileName
+      );
 
       await fs.promises.writeFile(filePath, fileBuffer);
 
-      uploadedImages.push(`/uploads/${fileName}`);
+      uploadedImages.push(`/uploads/properties/${fileName}`);
     }
 
     const propertyAddress = await AddressModel.insertOne({

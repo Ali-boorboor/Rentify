@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 
 interface IUser extends mongoose.Document {
   name: string;
+  email?: string;
   familyName: string;
   phone: string;
-  agencyName: string;
+  agencyName?: string;
   createdAt: Date;
   updatedAt: Date;
-  profileImage: string;
+  profileImage?: string;
 }
 
 const schema = new mongoose.Schema(
@@ -15,6 +16,10 @@ const schema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+    },
+    email: {
+      type: String,
+      required: false,
     },
     familyName: {
       type: String,

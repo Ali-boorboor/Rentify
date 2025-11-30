@@ -1,5 +1,4 @@
 import React from "react";
-import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
@@ -18,9 +17,9 @@ const PropertyComparisonPage = () => {
 
       <form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {[...Array(10)].map((_, index) => (
+          {/* {[...Array(10)].map((_, index) => (
             <PropertyComparisonCard key={index} />
-          ))}
+          ))} */}
         </div>
 
         <div className="flex flex-wrap-reverse justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
