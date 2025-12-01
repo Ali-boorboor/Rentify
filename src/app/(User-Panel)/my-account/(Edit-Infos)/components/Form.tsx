@@ -69,7 +69,7 @@ const Form = ({ user }: FormProps) => {
       onSubmit={submitHandler}
       initialValues={initialValues}
       validationSchema={
-        user.agencyName
+        user?.agencyName
           ? validators.estateAgencySchema
           : validators.ownerTenantSchema
       }

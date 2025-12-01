@@ -26,6 +26,8 @@ const useEstateAgencyRegistration = () => {
       if ([201, 200].includes(response.status)) {
         toast.success("با موفقیت وارد شدید");
         router.replace("/");
+      } else if (response.status === 401) {
+        toast.error("کلمه عبور یا شماره تلفن اشتباه است");
       } else {
         toast.error("ورود ناموفق");
       }
@@ -53,6 +55,8 @@ const useOwnerTenantRegistration = () => {
       } else if ([201, 200].includes(response.status)) {
         toast.success("با موفقیت وارد شدید");
         router.replace("/");
+      } else if (response.status === 401) {
+        toast.error("کلمه عبور یا شماره تلفن اشتباه است");
       } else {
         toast.error("ورود ناموفق");
       }

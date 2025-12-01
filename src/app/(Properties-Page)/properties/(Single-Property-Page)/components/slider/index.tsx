@@ -57,7 +57,7 @@ const Slider = ({ slidesImage }: SliderProps) => {
                 <Image
                   className="object-cover object-center"
                   alt="property image"
-                  sizes="500px"
+                  sizes="600px"
                   src={image}
                   priority
                   fill

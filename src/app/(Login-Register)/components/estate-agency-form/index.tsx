@@ -1,25 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import LabeledInput from "@/components/ui/LabeledInput";
 import { useEstateAgencyRegistration } from "@loginRegister/hooks/postRequests";
 import { estateAgencySchema } from "@validators/login-register";
-import { Building2, Phone, UserRound } from "lucide-react";
+import { Building2, Eye, EyeOff, Phone, UserRound } from "lucide-react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const initialValues = {
   hasAcceptTerms: false,
   agencyName: "",
   familyName: "",
+  password: "",
   phone: "",
   name: "",
 };
 
 const EstateAgencyForm = () => {
+  const [shouldShowPassword, setShouldShowPassword] = useState(false);
+
   const { mutate, isPending } = useEstateAgencyRegistration();
 
   const submitHandler = async (
@@ -29,7 +33,7 @@ const EstateAgencyForm = () => {
     const { hasAcceptTerms: _, ...neededDataToSend } = values;
 
     mutate(neededDataToSend, {
-      onSuccess: () => resetForm(),
+      onSuccess: (result) => resetForm(),
     });
   };
 
@@ -66,27 +70,54 @@ const EstateAgencyForm = () => {
               />
             </div>
 
-            <LabeledInput
-              aria-invalid={!!errors.agencyName}
-              value={values.agencyName}
-              onChange={handleChange}
-              placeholder="نام دفتر"
-              icon={<Building2 />}
-              name="agencyName"
-              id="agency-name"
-              label="نام دفتر"
-            />
+            <div className="flex flex-col md:flex-row items-baseline gap-6">
+              <LabeledInput
+                aria-invalid={!!errors.agencyName}
+                value={values.agencyName}
+                onChange={handleChange}
+                placeholder="نام دفتر"
+                icon={<Building2 />}
+                name="agencyName"
+                id="agency-name"
+                label="نام دفتر"
+              />
+
+              <LabeledInput
+                aria-invalid={!!errors.phone}
+                placeholder="۰۹۹۸۵۶۴۳۴۲۹ مثلا"
+                onChange={handleChange}
+                value={values.phone}
+                label="تلفن همراه"
+                icon={<Phone />}
+                maxLength={11}
+                name="phone"
+                id="phone"
+                dir="ltr"
+              />
+            </div>
 
             <LabeledInput
-              aria-invalid={!!errors.phone}
-              placeholder="۰۹۹۸۵۶۴۳۴۲۹ مثلا"
+              icon={
+                shouldShowPassword ? (
+                  <Eye
+                    className="cursor-pointer"
+                    onClick={() => setShouldShowPassword(false)}
+                  />
+                ) : (
+                  <EyeOff
+                    className="cursor-pointer"
+                    onClick={() => setShouldShowPassword(true)}
+                  />
+                )
+              }
+              type={shouldShowPassword ? "text" : "password"}
+              aria-invalid={!!errors.password}
+              placeholder="کلمه عبور"
               onChange={handleChange}
-              value={values.phone}
-              label="تلفن همراه"
-              icon={<Phone />}
-              maxLength={11}
-              name="phone"
-              id="phone"
+              value={values.password}
+              label="کلمه عبور"
+              name="password"
+              id="password"
               dir="ltr"
             />
 

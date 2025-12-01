@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 interface EmptyPropertiesAlertProps {
+  linkButtonText?: string;
   description?: string;
   linkTo?: string;
   image?: string;
@@ -14,6 +15,7 @@ const EmptyPropertiesAlert = ({
   image = "/images/png/empty-properties.png",
   description = "ملکی با این فیلتر یافت نشد",
   title = "ملکی با این اطلاعات وجود ندارد!",
+  linkButtonText = "پاک کردن فیلتر ها",
   linkTo = "/properties",
 }: EmptyPropertiesAlertProps) => {
   return (
@@ -24,6 +26,7 @@ const EmptyPropertiesAlert = ({
         height={300}
         width={300}
         src={image}
+        priority
       />
 
       <h3 className="text-xl md:text-2xl font-semibold">{title}</h3>
@@ -31,7 +34,7 @@ const EmptyPropertiesAlert = ({
       <p className="text-sm md:text-base">{description}</p>
 
       <Button>
-        <Link href={linkTo}>بازگشت به صفحه قبلی</Link>
+        <Link href={linkTo}>{linkButtonText}</Link>
       </Button>
     </div>
   );

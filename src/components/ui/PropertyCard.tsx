@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
@@ -9,8 +9,13 @@ import { toCommaDigits, toPersianDigits } from "@/utils/convertNumbers";
 import { IPropertyCategory } from "@models/PropertyCategory";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { VariantProps } from "class-variance-authority";
+import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  useGetFavouriteProperty,
+  usePutFavouriteProperties,
+} from "@/hook/useFavouritePropertiesRequests";
 
 type BaseProps = {
   title: string;
@@ -18,6 +23,7 @@ type BaseProps = {
   linkTo: string;
   province: string;
   className?: string;
+  propertyID: string;
   isFavourable?: boolean;
   rentAmount: string | number;
   mortgageAmount: string | number;
@@ -62,6 +68,7 @@ const PropertyCard = ({
   province,
   className,
   rentAmount,
+  propertyID,
   mortgageAmount,
   propertyStatus,
   propertyCategory,
@@ -69,6 +76,14 @@ const PropertyCard = ({
   hasRemoveButton = false,
   removeButtonHandler,
 }: PropertyCardProps) => {
+  const { data, isPending: isGetRequestLoading } =
+    useGetFavouriteProperty(title);
+
+  const isFavourite = data?.favourites.properties.includes(propertyID);
+
+  const { mutate, isPending: isPutRequestLoading } =
+    usePutFavouriteProperties();
+
   const statusInfo = propertyStatus ? propertyStatusMap[propertyStatus] : null;
 
   return (
@@ -117,11 +132,21 @@ const PropertyCard = ({
         {isFavourable && (
           <Button
             className="absolute top-3 right-3 bg-card border shadow-sm"
+            onClick={() => mutate(propertyID)}
             variant="link"
             size="icon"
           >
-            <icon.Heart className="size-4.5 fill-muted stroke-destructive" />
-            {/* change fill to fill-destructive when user liked this property */}
+            {isGetRequestLoading || isPutRequestLoading ? (
+              <Spinner />
+            ) : (
+              <icon.Heart
+                className={cn(
+                  "size-4.5 stroke-destructive",
+                  "transition-all duration-200 ease-linear",
+                  isFavourite ? "fill-destructive" : "fill-muted"
+                )}
+              />
+            )}
           </Button>
         )}
       </card.CardHeader>

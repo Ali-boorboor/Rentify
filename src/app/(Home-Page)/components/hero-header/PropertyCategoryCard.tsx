@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import connectToDB from "@configs/database";
 import * as card from "@/components/ui/card";
+import PropertyDetailModel from "@models/PropertyDetail";
 import { toPersianDigits } from "@/utils/convertNumbers";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -9,16 +11,22 @@ import { ArrowLeft } from "lucide-react";
 interface PropertyCategoryCardProps {
   image: string;
   title: string;
-  count?: number;
   linkTo: string;
+  categoryID: string;
 }
 
-const PropertyCategoryCard = ({
+const PropertyCategoryCard = async ({
   image,
   title,
   linkTo,
-  count = 92,
+  categoryID,
 }: PropertyCategoryCardProps) => {
+  connectToDB();
+
+  const count = await PropertyDetailModel.countDocuments({
+    propertyCategory: categoryID,
+  });
+
   const persianCount = toPersianDigits(String(count));
 
   return (

@@ -1,7 +1,8 @@
 import UserModel from "@models/User";
 import connectToDB from "@configs/database";
 import validateRequestBody from "@/utils/validateRequestBody";
-import { ownerTenantSchema } from "@/validators/login-register";
+import { comparePassword, hashPassword } from "@/utils/bcrypt";
+import { ownerTenantSchema } from "@validators/login-register";
 import { generateToken } from "@/utils/token";
 import { cookies } from "next/headers";
 
@@ -10,7 +11,7 @@ export const POST = async (request: Request) => {
     connectToDB();
 
     const requestBody = await request.json();
-    const { phone, ...restOfRequestBody } = requestBody;
+    const { phone, password, ...restOfRequestBody } = requestBody;
 
     const errors = await validateRequestBody({
       schema: ownerTenantSchema,
@@ -35,6 +36,18 @@ export const POST = async (request: Request) => {
         { status: 400 }
       );
     } else if (existedUser) {
+      const isPasswordTrue = await comparePassword(
+        password,
+        existedUser.password
+      );
+
+      if (!isPasswordTrue) {
+        return Response.json(
+          { message: "password or phone is wrong!" },
+          { status: 401 }
+        );
+      }
+
       const token = generateToken({ phone });
 
       const cookieStore = await cookies();
@@ -47,8 +60,11 @@ export const POST = async (request: Request) => {
       return Response.json({ message: "user logged in successfully" });
     }
 
+    const newUserPassword = await hashPassword(password);
+
     await UserModel.create({
       ...restOfRequestBody,
+      password: newUserPassword,
       phone,
     });
 

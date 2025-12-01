@@ -1,24 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import LabeledInput from "@/components/ui/LabeledInput";
 import { useOwnerTenantRegistration } from "@loginRegister/hooks/postRequests";
 import { ownerTenantSchema } from "@validators/login-register";
+import { Eye, EyeOff, Phone, UserRound } from "lucide-react";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TabsContent } from "@/components/ui/tabs";
-import { Phone, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
 const initialValues = {
   hasAcceptTerms: false,
   familyName: "",
+  password: "",
   phone: "",
   name: "",
 };
 
 const OwnerTenantForm = () => {
+  const [shouldShowPassword, setShouldShowPassword] = useState(false);
+
   const { mutate, isPending } = useOwnerTenantRegistration();
 
   const submitHandler = async (
@@ -28,7 +31,7 @@ const OwnerTenantForm = () => {
     const { hasAcceptTerms: _, ...neededDataToSend } = values;
 
     mutate(neededDataToSend, {
-      onSuccess: () => resetForm(),
+      onSuccess: (result) => resetForm(),
     });
   };
 
@@ -65,18 +68,45 @@ const OwnerTenantForm = () => {
               />
             </div>
 
-            <LabeledInput
-              aria-invalid={!!errors.phone}
-              placeholder="۰۹۹۸۵۶۴۳۴۲۹ مثلا"
-              onChange={handleChange}
-              value={values.phone}
-              label="تلفن همراه"
-              icon={<Phone />}
-              maxLength={11}
-              name="phone"
-              id="phone"
-              dir="ltr"
-            />
+            <div className="flex flex-col md:flex-row items-baseline gap-6">
+              <LabeledInput
+                aria-invalid={!!errors.phone}
+                placeholder="۰۹۹۸۵۶۴۳۴۲۹ مثلا"
+                onChange={handleChange}
+                value={values.phone}
+                label="تلفن همراه"
+                icon={<Phone />}
+                maxLength={11}
+                name="phone"
+                id="phone"
+                dir="ltr"
+              />
+
+              <LabeledInput
+                icon={
+                  shouldShowPassword ? (
+                    <Eye
+                      className="cursor-pointer"
+                      onClick={() => setShouldShowPassword(false)}
+                    />
+                  ) : (
+                    <EyeOff
+                      className="cursor-pointer"
+                      onClick={() => setShouldShowPassword(true)}
+                    />
+                  )
+                }
+                type={shouldShowPassword ? "text" : "password"}
+                aria-invalid={!!errors.password}
+                placeholder="کلمه عبور"
+                onChange={handleChange}
+                value={values.password}
+                label="کلمه عبور"
+                name="password"
+                id="password"
+                dir="ltr"
+              />
+            </div>
 
             <div className="flex items-center space-x-2">
               <Checkbox

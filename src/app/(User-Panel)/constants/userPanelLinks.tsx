@@ -11,7 +11,7 @@ const userPanelLinks = [
     id: 2,
     title: "آگهی‌های ذخیره شده",
     icon: <icon.Heart />,
-    href: "/my-account/favorites",
+    href: "/my-account/favourites",
   },
   {
     id: 3,

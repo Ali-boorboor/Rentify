@@ -15,7 +15,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
   connectToDB();
 
   const property = await PropertyModel.findById(propertyID)
-    .populate("user", "name agencyName")
+    .populate("user", "name agencyName profileImage")
     .populate({
       path: "propertyDetails",
       populate: [{ path: "equipments" }, { path: "contractType" }],
@@ -75,6 +75,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
 
       <PropertyAgentCard
         agencyName={property.user?.agencyName as string}
+        profileImage={property.user?.profileImage}
         name={property.user.name}
       />
     </div>

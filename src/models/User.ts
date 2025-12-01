@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 interface IUser extends mongoose.Document {
   name: string;
+  password: string;
   email?: string;
   familyName: string;
   phone: string;
@@ -14,6 +15,10 @@ interface IUser extends mongoose.Document {
 const schema = new mongoose.Schema(
   {
     name: {
+      type: String,
+      required: true,
+    },
+    password: {
       type: String,
       required: true,
     },

@@ -115,7 +115,6 @@ export const POST = async (request: Request) => {
 
     return Response.json("ok", { status: 201 });
   } catch (error) {
-    console.log(error);
     return Response.json(
       { message: "internal server error!", error },
       { status: 500 }

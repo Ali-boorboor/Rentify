@@ -5,6 +5,9 @@ const ONLY_PERSIAN_LETTERS_REGEX =
 
 const PHONE_REGEX = /^۰۹[۰-۹]{9}$/;
 
+const PASSWORD_REGEX =
+  /^(?=.*?[A-Za-z])(?=.*?[۰-۹0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
 const baseSchema = {
   name: Yup.string()
     .matches(ONLY_PERSIAN_LETTERS_REGEX, "نام باید فقط شامل حروف فارسی باشد.")
@@ -23,6 +26,13 @@ const baseSchema = {
       "شماره تلفن همراه باید با ۰۹ شروع شده و شامل ۱۱ رقم فارسی باشد."
     )
     .required("وارد کردن شماره تلفن همراه الزامی است."),
+
+  password: Yup.string()
+    .matches(
+      PASSWORD_REGEX,
+      "رمز عبور باید حداقل ۸ کاراکتر بوده و شامل حداقل یک حرف انگلیسی، یک عدد و یک کاراکتر خاص باشد."
+    )
+    .required("وارد کردن رمز عبور الزامی است."),
 };
 
 const estateAgencySchema = Yup.object().shape({

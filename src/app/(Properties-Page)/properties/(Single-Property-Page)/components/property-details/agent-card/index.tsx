@@ -27,10 +27,10 @@ const PropertyAgentCard = async ({
           <div className="relative w-20 h-20">
             {profileImage ? (
               <Image
-                className="object-cover object-center"
+                className="object-cover object-center rounded-full border shadow-sm"
                 src={profileImage}
                 alt="user image"
-                sizes="100px"
+                sizes="200px"
                 fill
               />
             ) : (

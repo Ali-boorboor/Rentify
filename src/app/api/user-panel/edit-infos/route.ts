@@ -75,7 +75,6 @@ export const PUT = async (request: Request) => {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error);
     return Response.json(
       { message: "internal server error!", error },
       { status: 500 }

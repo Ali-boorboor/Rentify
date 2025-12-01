@@ -44,8 +44,8 @@
       "@userPanel/editInfos/*": [
         "./src/app/(User-Panel)/my-account/(Edit-Infos)/*"
       ],
-      "@userPanel/favorites/*": [
-        "./src/app/(User-Panel)/my-account/(Favorites)/*"
+      "@userPanel/favourites/*": [
+        "./src/app/(User-Panel)/my-account/(Favourites)/*"
       ],
       "@userPanel/userProperties/*": [
         "./src/app/(User-Panel)/my-account/(User-Properties)/*"

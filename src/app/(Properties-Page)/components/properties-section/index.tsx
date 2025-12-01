@@ -7,6 +7,7 @@ import useGetPropertiesRequest from "@/hook/useGetPropertiesRequest";
 import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
+import { parseJson } from "@/utils/json";
 
 const PropertiesSection = () => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
@@ -28,10 +29,13 @@ const PropertiesSection = () => {
             <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
               {allProperties?.map((property) => (
                 <PropertyCard
-                  propertyCategory={property.propertyDetails.propertyCategory}
+                  propertyCategory={parseJson(
+                    property.propertyDetails.propertyCategory
+                  )}
                   province={property.address.province.faName}
                   mortgageAmount={property.mortgageAmount}
                   linkTo={`/properties/${property._id}`}
+                  propertyID={String(property._id)}
                   rentAmount={property.rentAmount}
                   image={property?.images?.[0]}
                   key={property._id as string}

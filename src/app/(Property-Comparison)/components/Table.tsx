@@ -31,6 +31,7 @@ const Table = () => {
                 linkTo={`/properties/12`}
                 className="aspect-[3/4] h-80 sm:h-[28rem]"
                 title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
+                propertyID="{property._id as string}"
                 mortgageAmount="4_000_000_000"
                 removeButtonHandler={() => {}}
                 rentAmount="50_000_000"

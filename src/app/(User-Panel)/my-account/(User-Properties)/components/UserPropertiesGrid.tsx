@@ -1,28 +1,61 @@
 "use client";
 
+import React, { useState } from "react";
 import PropertyCard from "@/components/ui/PropertyCard";
-import { IPropertyCategory } from "@/models/PropertyCategory";
-import React from "react";
+import DeleteDialog from "@userPanel/userProperties/components/DeleteDialog";
+import useDeleteUserProperty from "@userPanel/userProperties/hooks/useDeleteUserProperty";
+import { IProperty } from "@/models/Property";
+import { useRouter } from "next/navigation";
+import { parseJson } from "@/utils/json";
 
-const UserPropertiesGrid = () => {
+interface UserPropertiesGridProps {
+  userProperties: IProperty[];
+}
+
+const UserPropertiesGrid = ({ userProperties }: UserPropertiesGridProps) => {
+  const router = useRouter();
+
+  const [shouldShowDeleteDialog, setShouldShowDeleteDialog] = useState(false);
+
+  const { mutate } = useDeleteUserProperty();
+
+  const onOpenChangeHandler = (open: boolean) => {
+    setShouldShowDeleteDialog(open);
+  };
+
+  const deletePropertyHandler = (propertyID: string) => {
+    mutate(propertyID, { onSuccess: () => router.refresh() });
+  };
+
   return (
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-      {[...Array(6)].map((_, index) => (
-        <PropertyCard
-          // image={property?.images?.[0]}
-          linkTo={`/properties/12`}
-          title="۷۰ متری‌۲‌خوابه - تهران محمدیه"
-          mortgageAmount="4_000_000_000"
-          removeButtonHandler={() => {}}
-          propertyStatus="warning"
-          rentAmount="50_000_000"
-          province="تهران-الهیه"
-          isFavourable={false}
-          hasRemoveButton
-          propertyCategory={
-            { faTitle: "test", labelColor: "orange" } as IPropertyCategory
-          }
-        />
+      {userProperties.map((property) => (
+        <React.Fragment key={property._id as string}>
+          <PropertyCard
+            propertyCategory={parseJson(
+              property.propertyDetails.propertyCategory
+            )}
+            removeButtonHandler={() => setShouldShowDeleteDialog(true)}
+            province={property.address.province.faName}
+            mortgageAmount={property.mortgageAmount}
+            propertyStatus={property.propertyStatus}
+            linkTo={`/properties/${property._id}`}
+            propertyID={String(property._id)}
+            rentAmount={property.rentAmount}
+            image={property?.images?.[0]}
+            title={property.title}
+            isFavourable={false}
+            hasRemoveButton
+          />
+
+          <DeleteDialog
+            onOpenChangeHandler={onOpenChangeHandler}
+            shouldShowDeleteDialog={shouldShowDeleteDialog}
+            deletePropertyHandler={() => {
+              deletePropertyHandler(property._id as string);
+            }}
+          />
+        </React.Fragment>
       ))}
     </div>
   );
