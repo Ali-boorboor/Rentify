@@ -1,10 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import * as formik from "formik";
 import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { IProperty } from "@models/Property";
+import { useRouter } from "next/navigation";
 
 interface FormProps {
   allProperties: IProperty[] | undefined;
@@ -14,6 +14,10 @@ interface FormProps {
   isPending: boolean;
 }
 
+const initialValues = {
+  properties: [],
+};
+
 const Form = ({
   isFetchingNextPage,
   fetchNextPage,
@@ -21,15 +25,23 @@ const Form = ({
   hasNextPage,
   isPending,
 }: FormProps) => {
-  const initialValues = {
-    selectedProperties: [],
+  const router = useRouter();
+
+  const handleSubmit = (values: typeof initialValues) => {
+    const searchParam = new URLSearchParams();
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        searchParam.delete(key);
+        Array.from(new Set(value)).forEach((v) => searchParam.append(key, v));
+      }
+    });
+
+    router.push(`/property-comparison?${searchParam.toString()}`);
   };
 
   return (
-    <formik.Formik
-      initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
-    >
+    <formik.Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <formik.Form className="flex flex-col gap-6">
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 container m-auto px-4 sm:px-0">
           {allProperties?.map((property) => (
@@ -57,10 +69,13 @@ const Form = ({
 
         <div className="p-4 sticky bottom-0 bg-card border shadow-sm z-40">
           <div className="flex flex-wrap-reverse justify-center items-center gap-6 container m-auto">
-            <Button className="flex-1" variant="outline" type="button" asChild>
-              <Link href="/property-comparison">
-                بازگشت به صفحه مقایسه املاک
-              </Link>
+            <Button
+              onClick={() => router.back()}
+              className="flex-1"
+              variant="outline"
+              type="button"
+            >
+              بازگشت به صفحه قبلی
             </Button>
 
             <Button className="flex-1" type="submit">

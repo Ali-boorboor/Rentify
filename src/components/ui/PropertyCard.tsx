@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
@@ -76,10 +76,9 @@ const PropertyCard = ({
   hasRemoveButton = false,
   removeButtonHandler,
 }: PropertyCardProps) => {
-  const { data, isPending: isGetRequestLoading } =
-    useGetFavouriteProperty(title);
+  const { data, isPending: isGetRequestLoading } = useGetFavouriteProperty();
 
-  const isFavourite = data?.favourites.properties.includes(propertyID);
+  const isFavourite = data?.favourites?.properties.includes(propertyID);
 
   const { mutate, isPending: isPutRequestLoading } =
     usePutFavouriteProperties();

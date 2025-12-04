@@ -3,7 +3,6 @@ import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import PropertyDetailModel from "@models/PropertyDetail";
 import PropertyCard from "@/components/ui/PropertyCard";
-import QueryProvider from "@/components/providers/QueryProvider";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { parseJson } from "@/utils/json";
@@ -53,23 +52,21 @@ const SimilarProperties = async ({
         </div>
 
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          <QueryProvider>
-            {similarProperties.map((similarProperty) => (
-              <PropertyCard
-                title={similarProperty.title}
-                key={similarProperty._id as string}
-                image={similarProperty?.images?.[0]}
-                rentAmount={similarProperty.rentAmount}
-                propertyID={similarProperty._id as string}
-                linkTo={`/properties/${similarProperty._id}`}
-                mortgageAmount={similarProperty.mortgageAmount}
-                province={similarProperty.address.province.faName}
-                propertyCategory={parseJson(
-                  similarProperty.propertyDetails.propertyCategory
-                )}
-              />
-            ))}
-          </QueryProvider>
+          {similarProperties.map((similarProperty) => (
+            <PropertyCard
+              title={similarProperty.title}
+              key={similarProperty._id as string}
+              image={similarProperty?.images?.[0]}
+              rentAmount={similarProperty.rentAmount}
+              propertyID={similarProperty._id as string}
+              linkTo={`/properties/${similarProperty._id}`}
+              mortgageAmount={similarProperty.mortgageAmount}
+              province={similarProperty.address.province.faName}
+              propertyCategory={parseJson(
+                similarProperty.propertyDetails.propertyCategory
+              )}
+            />
+          ))}
         </div>
       </div>
     </section>

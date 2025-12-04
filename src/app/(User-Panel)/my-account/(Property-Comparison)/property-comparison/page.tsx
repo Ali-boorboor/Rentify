@@ -1,8 +1,32 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import UserModel from "@models/User";
+import connectToDB from "@configs/database";
+import FavouriteModel from "@models/Favourite";
+import authenticate from "@/utils/authenticate";
+import Form from "@userPanel/propertyComparison/components/Form";
+import { parseJson } from "@/utils/json";
 
-const PropertyComparisonPage = () => {
+const PropertyComparisonPage = async () => {
+  connectToDB();
+
+  const authenticatedUser = (await authenticate()) as { phone: string };
+
+  const user = await UserModel.findOne({
+    phone: authenticatedUser.phone,
+  }).lean();
+
+  const favouriteProperties = await FavouriteModel.findOne({
+    user: user?._id,
+  })
+    .populate({
+      path: "properties",
+      populate: [
+        { path: "address", populate: "province" },
+        { path: "propertyDetails", populate: "propertyCategory" },
+      ],
+    })
+    .lean();
+
   return (
     <section className="w-full space-y-6">
       <div className="text-center md:text-right space-y-2">
@@ -15,24 +39,7 @@ const PropertyComparisonPage = () => {
         </p>
       </div>
 
-      <form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
-        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {/* {[...Array(10)].map((_, index) => (
-            <PropertyComparisonCard key={index} />
-          ))} */}
-        </div>
-
-        <div className="flex flex-wrap-reverse justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
-          <Button className="flex-1" variant="outline" type="button">
-            <Search />
-            جستجو
-          </Button>
-
-          <Button className="flex-1" type="submit">
-            تأیید
-          </Button>
-        </div>
-      </form>
+      <Form properties={parseJson(favouriteProperties?.properties)} />
     </section>
   );
 };

@@ -3,7 +3,6 @@ import UserModel from "@models/User";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import authenticate from "@/utils/authenticate";
-import QueryProvider from "@/components/providers/QueryProvider";
 import UserPropertiesGrid from "@userPanel/userProperties/components/UserPropertiesGrid";
 import EmptyPropertiesAlert from "@userPanel/userProperties/components/EmptyPropertiesAlert";
 import { parseJson } from "@/utils/json";
@@ -36,9 +35,7 @@ const UserPropertiesPage = async () => {
 
       <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-4">
         {userProperties.length ? (
-          <QueryProvider>
-            <UserPropertiesGrid userProperties={parseJson(userProperties)} />
-          </QueryProvider>
+          <UserPropertiesGrid userProperties={parseJson(userProperties)} />
         ) : (
           <EmptyPropertiesAlert />
         )}

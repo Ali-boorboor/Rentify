@@ -1,0 +1,65 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import * as formik from "formik";
+import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
+import { Button } from "@/components/ui/button";
+import { IProperty } from "@models/Property";
+import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
+
+interface FormProps {
+  properties: IProperty[];
+}
+
+const initialValues = {
+  properties: [],
+};
+
+const Form = ({ properties }: FormProps) => {
+  const router = useRouter();
+
+  const handleSubmit = (values: typeof initialValues) => {
+    const searchParam = new URLSearchParams();
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        searchParam.delete(key);
+        Array.from(new Set(value)).forEach((v) => searchParam.append(key, v));
+      }
+    });
+
+    router.push(`/property-comparison?${searchParam.toString()}`);
+  };
+
+  return (
+    <formik.Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <formik.Form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
+        <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+          {properties?.map((property) => (
+            <PropertyComparisonCard
+              key={property._id as string}
+              property={property}
+            />
+          ))}
+        </div>
+
+        <div className="flex flex-wrap-reverse justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
+          <Button className="flex-1" variant="outline" type="button" asChild>
+            <Link href="/property-comparison/search">
+              <Search />
+              جستجو
+            </Link>
+          </Button>
+
+          <Button className="flex-1" type="submit">
+            تأیید
+          </Button>
+        </div>
+      </formik.Form>
+    </formik.Formik>
+  );
+};
+
+export default Form;

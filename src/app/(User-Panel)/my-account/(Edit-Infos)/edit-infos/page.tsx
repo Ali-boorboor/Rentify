@@ -3,7 +3,6 @@ import UserModel from "@models/User";
 import connectToDB from "@configs/database";
 import authenticate from "@/utils/authenticate";
 import Form from "@userPanel/editInfos/components/Form";
-import QueryProvider from "@/components/providers/QueryProvider";
 import { parseJson } from "@/utils/json";
 
 const EditInfosPage = async () => {
@@ -21,9 +20,7 @@ const EditInfosPage = async () => {
         ویرایش اطلاعات
       </h2>
 
-      <QueryProvider>
-        <Form user={parseJson(user)} />
-      </QueryProvider>
+      <Form user={parseJson(user)} />
     </section>
   );
 };

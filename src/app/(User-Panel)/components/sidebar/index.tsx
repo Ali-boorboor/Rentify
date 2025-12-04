@@ -1,9 +1,7 @@
 import React from "react";
+import Logout from "@userPanel/components/sidebar/Logout";
 import UserInfo from "@userPanel/components/sidebar/UserInfo";
 import LinkButtons from "@userPanel/components/sidebar/LinkButtons";
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const Sidebar = () => {
   return (
@@ -13,16 +11,7 @@ const Sidebar = () => {
 
         <LinkButtons />
 
-        <Button
-          className={cn(
-            "grow justify-center md:justify-start text-destructive [&_svg]:stroke-destructive",
-            "[&_svg:not([class*='size-'])]:size-5"
-          )}
-          variant="link"
-        >
-          <LogOut />
-          <span className="hidden md:inline">خروج از حساب کاربری</span>
-        </Button>
+        <Logout />
       </nav>
     </aside>
   );

@@ -4,7 +4,6 @@ import connectToDB from "@configs/database";
 import FavouriteModel from "@models/Favourite";
 import authenticate from "@/utils/authenticate";
 import PropertyCard from "@/components/ui/PropertyCard";
-import QueryProvider from "@/components/providers/QueryProvider";
 import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { parseJson } from "@/utils/json";
 
@@ -38,22 +37,20 @@ const FavouritesPage = async () => {
       <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-4">
         {favouriteProperties?.properties?.length ? (
           <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-            <QueryProvider>
-              {favouriteProperties?.properties?.map((property) => (
-                <PropertyCard
-                  propertyCategory={parseJson(
-                    property.propertyDetails.propertyCategory
-                  )}
-                  province={property.address.province.faName}
-                  mortgageAmount={property.mortgageAmount}
-                  linkTo={`/properties/${property._id}`}
-                  propertyID={String(property._id)}
-                  rentAmount={property.rentAmount}
-                  key={property._id as string}
-                  title={property.title}
-                />
-              ))}
-            </QueryProvider>
+            {favouriteProperties?.properties?.map((property) => (
+              <PropertyCard
+                propertyCategory={parseJson(
+                  property.propertyDetails.propertyCategory
+                )}
+                province={property.address.province.faName}
+                mortgageAmount={property.mortgageAmount}
+                linkTo={`/properties/${property._id}`}
+                propertyID={String(property._id)}
+                rentAmount={property.rentAmount}
+                key={property._id as string}
+                title={property.title}
+              />
+            ))}
           </div>
         ) : (
           <EmptyPropertiesAlert

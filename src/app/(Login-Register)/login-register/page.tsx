@@ -1,6 +1,5 @@
 import React from "react";
 import MainLogo from "@/components/ui/MainLogo";
-import QueryProvider from "@/components/providers/QueryProvider";
 import OwnerTenantForm from "@loginRegister/components/owner-tenant-form";
 import EstateAgencyForm from "@loginRegister/components/estate-agency-form";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -23,11 +22,9 @@ const LoginRegisterPage = () => {
             <TabsTrigger value="estate-agency-form">آژانس املاک</TabsTrigger>
           </TabsList>
 
-          <QueryProvider>
-            <OwnerTenantForm />
+          <OwnerTenantForm />
 
-            <EstateAgencyForm />
-          </QueryProvider>
+          <EstateAgencyForm />
         </Tabs>
       </div>
     </section>

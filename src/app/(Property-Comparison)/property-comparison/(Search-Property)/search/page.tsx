@@ -1,6 +1,5 @@
 import React from "react";
 import FiltersBar from "@/components/filters-bar";
-import QueryProvider from "@/components/providers/QueryProvider";
 import PropertiesSection from "@comparisonSearch/components/PropertiesSection";
 
 const PropertyComparisonSearchPage = () => {
@@ -8,9 +7,7 @@ const PropertyComparisonSearchPage = () => {
     <section>
       <FiltersBar />
 
-      <QueryProvider>
-        <PropertiesSection />
-      </QueryProvider>
+      <PropertiesSection />
     </section>
   );
 };

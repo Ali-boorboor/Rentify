@@ -1,6 +1,5 @@
 import React from "react";
 import PropertyCard from "@/components/ui/PropertyCard";
-import QueryProvider from "@/components/providers/QueryProvider";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -14,16 +13,24 @@ interface PropertyComparisonCardProps {
 }
 
 const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
-  const [field, _, helpers] = useField("selectedProperties");
+  const [field, _, helpers] = useField("properties");
 
   const onCheckedChange = (checked: CheckedState) => {
-    if (checked && !field.value.includes(property._id)) {
-      helpers.setValue([...field.value, property._id]);
+    let updated = [...field.value];
+
+    if (checked) {
+      if (!updated.includes(property._id)) {
+        updated.push(property._id);
+      }
+
+      if (updated.length > 3) {
+        updated = updated.slice(1);
+      }
     } else {
-      helpers.setValue(
-        field.value.filter((value: string) => value !== property._id)
-      );
+      updated = updated.filter((v) => v !== property._id);
     }
+
+    helpers.setValue(updated);
   };
 
   return (
@@ -36,23 +43,19 @@ const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
       )}
       htmlFor={property._id as string}
     >
-      <QueryProvider>
-        <PropertyCard
-          className="border-0 shadow-none pointer-events-none grow"
-          propertyCategory={parseJson(
-            property.propertyDetails.propertyCategory
-          )}
-          province={property.address.province.faName}
-          mortgageAmount={property.mortgageAmount}
-          linkTo={`/properties/${property._id}`}
-          propertyID={String(property._id)}
-          rentAmount={property.rentAmount}
-          image={property?.images?.[0]}
-          key={property._id as string}
-          title={property.title}
-          isFavourable={false}
-        />
-      </QueryProvider>
+      <PropertyCard
+        className="border-0 shadow-none pointer-events-none grow"
+        propertyCategory={parseJson(property.propertyDetails.propertyCategory)}
+        province={property.address.province.faName}
+        mortgageAmount={property.mortgageAmount}
+        linkTo={`/properties/${property._id}`}
+        propertyID={String(property._id)}
+        rentAmount={property.rentAmount}
+        image={property?.images?.[0]}
+        key={property._id as string}
+        title={property.title}
+        isFavourable={false}
+      />
       <Checkbox
         className={cn(
           "data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",

@@ -35,11 +35,21 @@ const usePutFavouriteProperties = () => {
   });
 };
 
-const useGetFavouriteProperty = (dynamicQueryKey: string) => {
+const useGetFavouriteProperty = () => {
   return useQuery({
-    queryKey: ["favourite-property", dynamicQueryKey],
+    queryKey: ["favourite-properties"],
 
     queryFn: async () => await getRequest("/favourite-property"),
+
+    staleTime: 24 * 60 * 60 * 1000,
+
+    gcTime: 24 * 60 * 60 * 1000,
+
+    refetchOnMount: false,
+
+    refetchOnWindowFocus: false,
+
+    refetchOnReconnect: false,
   });
 };
 
