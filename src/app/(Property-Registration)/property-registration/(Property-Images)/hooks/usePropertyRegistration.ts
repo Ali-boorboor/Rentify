@@ -22,7 +22,9 @@ const usePostRequest = () => {
     },
 
     onSuccess: () => {
-      toast.success("آگهی شما با موفقیت ثبت شد");
+      toast.success(
+        "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید"
+      );
       router.push("/my-account/my-properties");
     },
 
