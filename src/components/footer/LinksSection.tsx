@@ -1,5 +1,6 @@
 import React from "react";
 import { linkGroups } from "@/constants/footerDatas";
+import Link from "next/link";
 
 const LinksSection = () => {
   return (
@@ -17,7 +18,11 @@ const LinksSection = () => {
               className="text-sm md:text-base hover:text-card-foreground transition-all duration-200 ease-linear"
               key={link.id}
             >
-              {link.title}
+              {link.href === "#" ? (
+                link.title
+              ) : (
+                <Link href={link.href}>{link.title}</Link>
+              )}
             </li>
           ))}
         </ul>

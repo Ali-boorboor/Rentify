@@ -42,44 +42,61 @@ const enamadBadges = [
 const linkGroups = [
   {
     id: 1,
-    title: "محصول",
+    title: "امکانات",
     links: [
-      { id: "1-1", title: "ویژگی ها" },
-      { id: "1-2", title: "قیمت گذاری" },
-      { id: "1-3", title: "مطالعات موردی" },
-      { id: "1-4", title: "بررسی کردن" },
-      { id: "1-5", title: "قیمت گذاری" },
+      { id: "1-1", title: "رهن و اجاره‌ی خانه", href: "/properties" },
+      {
+        id: "1-2",
+        title: "رهن و اجاره‌ی ویلا",
+        href: "/properties?property-category=villa",
+      },
+      {
+        id: "1-3",
+        title: "رهن و اجاره‌ی آپارتمان",
+        href: "/properties?property-category=apartment",
+      },
+      {
+        id: "1-4",
+        title: "رهن و اجاره‌ی خانه ویلایی",
+        href: "/properties?property-category=villa-house",
+      },
+      {
+        id: "1-5",
+        title: "ثبت آگهی رایگان",
+        href: "/property-registration/property-type",
+      },
+      { id: "1-6", title: "مقایسه املاک", href: "/property-comparison/search" },
     ],
   },
   {
     id: 2,
     title: "شرکت",
     links: [
-      { id: "2-1", title: "ارتباط با ما" },
-      { id: "2-2", title: "وبلاگ" },
-      { id: "2-3", title: "فرهنگ" },
-      { id: "2-4", title: "درباره" },
-      { id: "2-5", title: "وبلاگ" },
+      {
+        id: "2-1",
+        title: "ورود | ثبت نام",
+        href: "/login-register",
+      },
+      { id: "2-2", title: "ارتباط با ما", href: "/contact-us" },
+      { id: "2-3", title: "درباره ما", href: "/contact-us" },
     ],
   },
   {
     id: 3,
     title: "پشتیبانی",
     links: [
-      { id: "3-1", title: "شروع کردن" },
-      { id: "3-2", title: "مرکز کمک" },
-      { id: "3-3", title: "تنظیمات سرور" },
-      { id: "3-4", title: "گزارش اشکال" },
-      { id: "3-5", title: "پشتیبانی چت" },
+      { id: "3-1", title: "مرکز کمک", href: "/contact-us" },
+      { id: "3-2", title: "گزارش اشکال", href: "/contact-us" },
+      { id: "3-3", title: "پشتیبانی", href: "/contact-us" },
     ],
   },
   {
     id: 4,
     title: "ارتباط با ما",
     links: [
-      { id: "4-1", title: "rentify@gmail.com" },
-      { id: "4-2", title: "۰۲۱-۴۳۵۳۶۳" },
-      { id: "4-3", title: "تهران - زعفرانیه - پلاک ۲۱۳" },
+      { id: "4-1", title: "rentify@gmail.com", href: "#" },
+      { id: "4-2", title: "۰۲۱-۴۳۵۳۶۳", href: "#" },
+      { id: "4-3", title: "تهران - زعفرانیه - پلاک ۲۱۳", href: "#" },
     ],
   },
 ];

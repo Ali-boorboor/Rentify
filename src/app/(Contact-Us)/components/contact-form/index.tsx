@@ -50,6 +50,7 @@ const ContactForm = () => {
               <Form className="grow basis-1/2 flex flex-col gap-6 bg-card p-4 rounded-xl border shadow-sm">
                 <div className="flex flex-wrap gap-6 items-baseline">
                   <LabeledInput
+                    containerClassName="min-w-40"
                     aria-invalid={!!errors.name}
                     onChange={handleChange}
                     icon={<UserRound />}
@@ -62,6 +63,7 @@ const ContactForm = () => {
 
                   <LabeledInput
                     aria-invalid={!!errors.familyName}
+                    containerClassName="min-w-40"
                     placeholder="نام‌ خانوادگی"
                     value={values.familyName}
                     onChange={handleChange}
@@ -74,6 +76,7 @@ const ContactForm = () => {
 
                 <div className="flex flex-wrap gap-6 items-baseline">
                   <LabeledInput
+                    containerClassName="min-w-40"
                     aria-invalid={!!errors.email}
                     onChange={handleChange}
                     value={values.email}
@@ -86,6 +89,7 @@ const ContactForm = () => {
                   />
 
                   <LabeledInput
+                    containerClassName="min-w-40"
                     aria-invalid={!!errors.phone}
                     placeholder="تلفن همراه"
                     onChange={handleChange}

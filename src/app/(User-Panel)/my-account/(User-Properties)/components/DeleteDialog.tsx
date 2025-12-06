@@ -41,19 +41,23 @@ const DeleteDialog = ({
           آیا از حذف آگهی اطمینان دارید ؟
         </dialog.DialogTitle>
 
-        <dialog.DialogClose className="flex gap-2 items-center justify-center flex-wrap w-full">
-          <Button
-            onClick={deletePropertyHandler}
-            className="flex-1"
-            variant="success"
-          >
-            بله
-          </Button>
+        <div className="flex flex-wrap-reverse gap-2 items-center w-full">
+          <dialog.DialogClose className="flex-1" asChild>
+            <Button className="min-w-32" variant="destructive">
+              خیر
+            </Button>
+          </dialog.DialogClose>
 
-          <Button className="flex-1" variant="destructive">
-            خیر
-          </Button>
-        </dialog.DialogClose>
+          <dialog.DialogClose className="flex-1" asChild>
+            <Button
+              onClick={deletePropertyHandler}
+              className="min-w-32"
+              variant="success"
+            >
+              بله
+            </Button>
+          </dialog.DialogClose>
+        </div>
       </dialog.DialogContent>
     </dialog.Dialog>
   );

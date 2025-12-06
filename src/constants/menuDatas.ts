@@ -11,8 +11,8 @@ const menuItems = [
   },
   {
     id: 3,
-    title: "بلاگ رنتی فای",
-    href: "/",
+    title: "مقایسه املاک",
+    href: "/property-comparison/search",
   },
   {
     id: 4,

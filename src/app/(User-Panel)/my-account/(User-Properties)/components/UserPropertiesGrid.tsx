@@ -16,6 +16,9 @@ const UserPropertiesGrid = ({ userProperties }: UserPropertiesGridProps) => {
   const router = useRouter();
 
   const [shouldShowDeleteDialog, setShouldShowDeleteDialog] = useState(false);
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(
+    null
+  );
 
   const { mutate } = useDeleteUserProperty();
 
@@ -23,19 +26,25 @@ const UserPropertiesGrid = ({ userProperties }: UserPropertiesGridProps) => {
     setShouldShowDeleteDialog(open);
   };
 
-  const deletePropertyHandler = (propertyID: string) => {
-    mutate(propertyID, { onSuccess: () => router.refresh() });
+  const deletePropertyHandler = () => {
+    if (!selectedPropertyId) return;
+
+    mutate(selectedPropertyId, { onSuccess: () => router.refresh() });
   };
 
   return (
-    <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-      {userProperties.map((property) => (
-        <React.Fragment key={property._id as string}>
+    <>
+      <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+        {userProperties.map((property) => (
           <PropertyCard
+            key={property._id as string}
             propertyCategory={parseJson(
               property.propertyDetails.propertyCategory
             )}
-            removeButtonHandler={() => setShouldShowDeleteDialog(true)}
+            removeButtonHandler={() => {
+              setSelectedPropertyId(property._id as string);
+              setShouldShowDeleteDialog(true);
+            }}
             province={property.address.province.faName}
             mortgageAmount={property.mortgageAmount}
             propertyStatus={property.propertyStatus}
@@ -47,17 +56,15 @@ const UserPropertiesGrid = ({ userProperties }: UserPropertiesGridProps) => {
             isFavourable={false}
             hasRemoveButton
           />
+        ))}
+      </div>
 
-          <DeleteDialog
-            onOpenChangeHandler={onOpenChangeHandler}
-            shouldShowDeleteDialog={shouldShowDeleteDialog}
-            deletePropertyHandler={() => {
-              deletePropertyHandler(property._id as string);
-            }}
-          />
-        </React.Fragment>
-      ))}
-    </div>
+      <DeleteDialog
+        onOpenChangeHandler={onOpenChangeHandler}
+        deletePropertyHandler={deletePropertyHandler}
+        shouldShowDeleteDialog={shouldShowDeleteDialog}
+      />
+    </>
   );
 };
 
