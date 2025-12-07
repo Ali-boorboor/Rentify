@@ -1,8 +1,7 @@
 import React from "react";
 import { toCommaDigits, toPersianDigits } from "@/utils/convertNumbers";
-import { Clock, Flag, Heart, MapPin, Share2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { Clock, MapPin } from "lucide-react";
 
 interface PropertyHeroProps {
   createdAt: Date;
@@ -33,20 +32,7 @@ const PropertyHero = ({
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h1 className="text-lg md:text-2xl font-semibold">{title}</h1>
-
-          <div className="space-x-2">
-            <Button variant="link" size="icon">
-              <Share2 className="size-4.5" />
-            </Button>
-
-            <Button className="bg-muted" variant="link" size="icon">
-              <Heart className="size-4.5 fill-muted stroke-destructive" />
-              {/* change fill to fill-destructive when user liked this property */}
-            </Button>
-          </div>
-        </div>
+        <h1 className="text-lg md:text-2xl font-semibold">{title}</h1>
 
         <div className="flex gap-2 max-w-60 h-9 text-sm md:text-base font-normal text-muted-foreground">
           <p className="flex items-center gap-2">
@@ -69,19 +55,12 @@ const PropertyHero = ({
         <p>اجاره {toPersianDigits(toCommaDigits(rentAmount))} تومان</p>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Separator />
 
-        <div className="flex flex-wrap items-center justify-between">
-          <p className="text-sm md:text-base font-normal">
-            شناسه آگهی: {propertyID}
-          </p>
-
-          <Button variant="link">
-            <Flag className="size-4.5" />
-            گزارش
-          </Button>
-        </div>
+        <p className="text-sm md:text-base font-normal">
+          شناسه آگهی: {propertyID}
+        </p>
       </div>
     </div>
   );

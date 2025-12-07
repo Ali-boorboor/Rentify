@@ -18,12 +18,17 @@ const useEditUserInfos = () => {
       return await putRequest("/user-panel/edit-infos", body);
     },
 
-    onSuccess: () => {
-      toast.success("اطلاعات شما با موفقیت ویرایش شد");
+    onMutate: () => {
+      const id = toast.loading("در حال ارسال اطلاعات...");
+      return { id };
     },
 
-    onError: () => {
-      toast.error("خطا هنگام ویرایش اطلاعات");
+    onSuccess: (_, __, context) => {
+      toast.success("اطلاعات شما با موفقیت ویرایش شد", { id: context.id });
+    },
+
+    onError: (_, __, context) => {
+      toast.error("خطا هنگام ویرایش اطلاعات", { id: context?.id });
     },
   });
 };

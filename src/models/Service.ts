@@ -38,3 +38,4 @@ const ServiceModel: mongoose.Model<IService> =
   mongoose.models.Service || mongoose.model("Service", schema);
 
 export default ServiceModel;
+export type { IService };

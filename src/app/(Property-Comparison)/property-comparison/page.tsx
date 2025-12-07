@@ -1,13 +1,9 @@
-import React from "react";
-import connectToDB from "@configs/database";
-import PropertyModel from "@models/Property";
-import Table from "@propertyComparison/components/Table";
+import React, { Suspense } from "react";
+import Table from "@propertyComparison/components/table";
 import FiltersBar from "@propertyComparison/components/FiltersBar";
+import TableLoading from "@propertyComparison/components/table/TableLoading";
 import { redirect, RedirectType } from "next/navigation";
 import { isValidObjectId } from "mongoose";
-import { parseJson } from "@/utils/json";
-import { Filter } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface PropertyComparisonPageProps {
   searchParams: Promise<{ [key: string]: string[] | undefined }>;
@@ -36,21 +32,6 @@ const PropertyComparisonPage = async ({
     redirect("/property-comparison/search", RedirectType.replace);
   }
 
-  connectToDB();
-
-  const selectedProperties = await PropertyModel.find({
-    _id: { $in: normalizeSearchParamsToArray },
-  })
-    .populate({
-      path: "propertyDetails",
-      populate: [{ path: "propertyCategory" }, { path: "contractType" }],
-    })
-    .populate({
-      path: "address",
-      populate: { path: "province" },
-    })
-    .lean();
-
   return (
     <section className="px-4">
       <div className="container m-auto space-y-6">
@@ -63,7 +44,9 @@ const PropertyComparisonPage = async ({
           </p>
         </div>
 
-        <Table selectedProperties={parseJson(selectedProperties)} />
+        <Suspense fallback={<TableLoading />}>
+          <Table searchParamProperties={normalizeSearchParamsToArray} />
+        </Suspense>
       </div>
     </section>
   );

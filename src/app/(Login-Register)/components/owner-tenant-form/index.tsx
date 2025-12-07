@@ -31,7 +31,7 @@ const OwnerTenantForm = () => {
     const { hasAcceptTerms: _, ...neededDataToSend } = values;
 
     mutate(neededDataToSend, {
-      onSuccess: (result) => resetForm(),
+      onSuccess: () => resetForm(),
     });
   };
 

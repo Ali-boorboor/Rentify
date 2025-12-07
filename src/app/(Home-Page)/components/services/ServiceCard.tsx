@@ -20,7 +20,7 @@ const ServiceCard = ({
   buttonHref,
 }: ServiceCardProps) => {
   return (
-    <card.Card className="grow w-60 border-0 justify-between lg:nth-[2]:scale-y-105">
+    <card.Card className="grow w-60 border-0 lg:nth-[2]:scale-y-105">
       <card.CardHeader>
         <Image
           className="object-cover object-center w-full h-full"

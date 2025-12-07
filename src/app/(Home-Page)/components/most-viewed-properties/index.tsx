@@ -1,27 +1,11 @@
-import React from "react";
 import Link from "next/link";
-import connectToDB from "@configs/database";
-import PropertyModel from "@models/Property";
-import PropertyCard from "@/components/ui/PropertyCard";
+import React, { Suspense } from "react";
+import PropertyCards from "@home/components/most-viewed-properties/PropertyCards";
+import PropertyCardsLoading from "@home/components/most-viewed-properties/PropertyCardsLoading";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { parseJson } from "@/utils/json";
 
-const MostViewedProperties = async () => {
-  connectToDB();
-  const properties = await PropertyModel.find({})
-    .populate({
-      path: "propertyDetails",
-      populate: { path: "propertyCategory" },
-    })
-    .populate({
-      path: "address",
-      populate: { path: "province" },
-    })
-    .sort({ _id: -1 })
-    .limit(8)
-    .lean();
-
+const MostViewedProperties = () => {
   return (
     <section className="container mx-auto space-y-6">
       <div className="flex flex-col sm:flex-row items-center sm:justify-between">
@@ -37,23 +21,9 @@ const MostViewedProperties = async () => {
         </Button>
       </div>
 
-      <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-        {properties.map((property) => (
-          <PropertyCard
-            title={property.title}
-            key={property._id as string}
-            image={property?.images?.[0]}
-            rentAmount={property.rentAmount}
-            propertyID={String(property._id)}
-            linkTo={`/properties/${property._id}`}
-            mortgageAmount={property.mortgageAmount}
-            province={property.address.province.faName}
-            propertyCategory={parseJson(
-              property.propertyDetails.propertyCategory
-            )}
-          />
-        ))}
-      </div>
+      <Suspense fallback={<PropertyCardsLoading />}>
+        <PropertyCards />
+      </Suspense>
     </section>
   );
 };

@@ -39,7 +39,9 @@ const Toaster = ({ ...props }: ToasterProps) => {
           warning: "!bg-warning !text-foreground",
           error: "!bg-destructive !text-destructive-foreground",
           info: "!bg-primary !text-primary-foreground",
+          loading: "!bg-primary !text-primary-foreground",
         },
+        className: "!transition-all !duration-200 !ease-linear",
       }}
       {...props}
     />

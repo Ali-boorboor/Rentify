@@ -2,13 +2,17 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
 import { LatLngExpression } from "leaflet";
 import { cn } from "@/lib/utils";
 
 const Map = dynamic(
   () =>
     import("@singleProperty/components/property-details/details/location/Map"),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-96" />,
+  }
 );
 
 interface LocationDetailsProps {

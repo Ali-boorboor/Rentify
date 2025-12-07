@@ -4,6 +4,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import { useLocationStore } from "@propertyLocationRegistration/stores/locationState";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { MapPinned } from "lucide-react";
 import { toast } from "sonner";
@@ -12,7 +13,7 @@ const MapComponent = dynamic(
   () => import("@propertyLocationRegistration/components/map/Map"),
   {
     ssr: false,
-    loading: () => <div className="h-96 bg-muted animate-pulse rounded-xl" />,
+    loading: () => <Skeleton className="h-96" />,
   }
 );
 

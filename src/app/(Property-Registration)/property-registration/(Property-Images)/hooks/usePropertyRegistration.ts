@@ -21,15 +21,21 @@ const usePostRequest = () => {
       return await postRequest("/property-registration", body);
     },
 
-    onSuccess: () => {
+    onMutate: () => {
+      const id = toast.loading("در حال ارسال اطلاعات...");
+      return { id };
+    },
+
+    onSuccess: (_, __, context) => {
       toast.success(
-        "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید"
+        "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید",
+        { id: context.id }
       );
       router.push("/my-account/my-properties");
     },
 
-    onError: () => {
-      toast.error("خطا هنگام ثبت آگهی");
+    onError: (_, __, context) => {
+      toast.error("خطا هنگام ثبت آگهی", { id: context?.id });
     },
   });
 };

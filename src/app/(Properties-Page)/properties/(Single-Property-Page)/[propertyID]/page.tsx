@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import Slider from "@singleProperty/components/slider";

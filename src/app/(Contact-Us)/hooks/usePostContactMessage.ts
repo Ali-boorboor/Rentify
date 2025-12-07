@@ -19,12 +19,17 @@ const usePostContactMessage = () => {
       return await postRequest("/contact-us-message", body);
     },
 
-    onSuccess: () => {
-      toast.success("پیام شما با موفقیت ثبت شد");
+    onMutate: () => {
+      const id = toast.loading("در حال ارسال اطلاعات...");
+      return { id };
     },
 
-    onError: () => {
-      toast.error("خطا هنگام ثبت پیام");
+    onSuccess: (_, __, context) => {
+      toast.success("پیام شما با موفقیت ثبت شد", { id: context.id });
+    },
+
+    onError: (_, __, context) => {
+      toast.error("خطا هنگام ثبت پیام", { id: context?.id });
     },
   });
 };

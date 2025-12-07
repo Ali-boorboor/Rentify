@@ -1,32 +1,8 @@
-import React from "react";
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
-import PropertyModel from "@models/Property";
-import authenticate from "@/utils/authenticate";
-import UserPropertiesGrid from "@userPanel/userProperties/components/UserPropertiesGrid";
-import EmptyPropertiesAlert from "@userPanel/userProperties/components/EmptyPropertiesAlert";
-import { parseJson } from "@/utils/json";
+import UserPropertiesGridWrapper from "@userPanel/userProperties/components/UserPropertiesGridWrapper";
+import UserPropertiesGridLoading from "@userPanel/userProperties/components/UserPropertiesGridLoading";
+import React, { Suspense } from "react";
 
-const UserPropertiesPage = async () => {
-  connectToDB();
-
-  const authenticatedUser = (await authenticate()) as { phone: string };
-
-  const user = await UserModel.findOne({
-    phone: authenticatedUser.phone,
-  }).lean();
-
-  const userProperties = await PropertyModel.find({ user: user?._id })
-    .populate({
-      path: "propertyDetails",
-      populate: { path: "propertyCategory" },
-    })
-    .populate({
-      path: "address",
-      populate: { path: "province" },
-    })
-    .lean();
-
+const UserPropertiesPage = () => {
   return (
     <section className="w-full space-y-6">
       <h2 className="text-xl md:text-2xl font-semibold text-center md:text-right">
@@ -34,11 +10,9 @@ const UserPropertiesPage = async () => {
       </h2>
 
       <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-4">
-        {userProperties.length ? (
-          <UserPropertiesGrid userProperties={parseJson(userProperties)} />
-        ) : (
-          <EmptyPropertiesAlert />
-        )}
+        <Suspense fallback={<UserPropertiesGridLoading />}>
+          <UserPropertiesGridWrapper />
+        </Suspense>
       </div>
     </section>
   );

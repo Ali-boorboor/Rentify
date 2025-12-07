@@ -1,12 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import React from "react";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Map = dynamic(
   () => import("@contactUs/components/contact-location/Map"),
   {
     ssr: false,
+    loading: () => <Skeleton className="h-96" />,
   }
 );
 

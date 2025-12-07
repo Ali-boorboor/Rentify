@@ -52,7 +52,7 @@ const Form = ({
           ))}
 
           {(isPending || isFetchingNextPage) &&
-            [...Array(8).fill(0)].map((_, index) => (
+            [...Array(4).fill(0)].map((_, index) => (
               <Skeleton className="h-96 sm:h-[28rem]" key={index} />
             ))}
         </div>

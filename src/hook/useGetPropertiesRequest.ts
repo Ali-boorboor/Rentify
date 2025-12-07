@@ -5,7 +5,7 @@ import { IProperty } from "@models/Property";
 import { toast } from "sonner";
 
 const INITIAL_PAGE_PARAM = 1;
-const CACHE_TIME = 86400000;
+const CACHE_TIME = 24 * 60 * 60 * 1000;
 
 interface PaginatedResponse {
   properties: IProperty[];

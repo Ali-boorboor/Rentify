@@ -22,19 +22,24 @@ const useEstateAgencyRegistration = () => {
       return await postRequest("/login-register/estate-agency", body);
     },
 
-    onSuccess: (response) => {
+    onMutate: () => {
+      const id = toast.loading("در حال لود اطلاعات...");
+      return { id };
+    },
+
+    onSuccess: (response, _, context) => {
       if ([201, 200].includes(response.status)) {
-        toast.success("با موفقیت وارد شدید");
+        toast.success("با موفقیت وارد شدید", { id: context.id });
         router.replace("/");
       } else if (response.status === 401) {
-        toast.error("کلمه عبور یا شماره تلفن اشتباه است");
+        toast.error("کلمه عبور یا شماره تلفن اشتباه است", { id: context.id });
       } else {
-        toast.error("ورود ناموفق");
+        toast.error("ورود ناموفق", { id: context.id });
       }
     },
 
-    onError: () => {
-      toast.error("ورود ناموفق");
+    onError: (_, __, context) => {
+      toast.error("ورود ناموفق", { id: context?.id });
     },
   });
 };
@@ -47,23 +52,29 @@ const useOwnerTenantRegistration = () => {
       return await postRequest("/login-register/owner-tenant", body);
     },
 
-    onSuccess: (response) => {
+    onMutate: () => {
+      const id = toast.loading("در حال لود اطلاعات...");
+      return { id };
+    },
+
+    onSuccess: (response, _, context) => {
       if (response.status === 400) {
         toast.warning(
-          "حساب کاربری شما از نوع آژانس املاک است لطفا از طریق فرم آژانس املاک برای ورود اقدام کنید"
+          "حساب کاربری شما از نوع آژانس املاک است لطفا از طریق فرم آژانس املاک برای ورود اقدام کنید",
+          { id: context.id }
         );
       } else if ([201, 200].includes(response.status)) {
-        toast.success("با موفقیت وارد شدید");
+        toast.success("با موفقیت وارد شدید", { id: context.id });
         router.replace("/");
       } else if (response.status === 401) {
-        toast.error("کلمه عبور یا شماره تلفن اشتباه است");
+        toast.error("کلمه عبور یا شماره تلفن اشتباه است", { id: context.id });
       } else {
-        toast.error("ورود ناموفق");
+        toast.error("ورود ناموفق", { id: context.id });
       }
     },
 
-    onError: () => {
-      toast.error("ورود ناموفق");
+    onError: (_, __, context) => {
+      toast.error("ورود ناموفق", { id: context?.id });
     },
   });
 };

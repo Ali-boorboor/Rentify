@@ -10,7 +10,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
 
 const initialValues = {
   hasAcceptTerms: false,
@@ -33,7 +32,7 @@ const EstateAgencyForm = () => {
     const { hasAcceptTerms: _, ...neededDataToSend } = values;
 
     mutate(neededDataToSend, {
-      onSuccess: (result) => resetForm(),
+      onSuccess: () => resetForm(),
     });
   };
 
