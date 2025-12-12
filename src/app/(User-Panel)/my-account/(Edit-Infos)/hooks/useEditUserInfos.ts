@@ -23,8 +23,12 @@ const useEditUserInfos = () => {
       return { id };
     },
 
-    onSuccess: (_, __, context) => {
-      toast.success("اطلاعات شما با موفقیت ویرایش شد", { id: context.id });
+    onSuccess: (response, __, context) => {
+      if (response.status === 200) {
+        toast.success("اطلاعات شما با موفقیت ویرایش شد", { id: context.id });
+      } else {
+        toast.error("خطا هنگام ویرایش اطلاعات", { id: context?.id });
+      }
     },
 
     onError: (_, __, context) => {

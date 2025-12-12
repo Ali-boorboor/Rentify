@@ -1,7 +1,8 @@
 import React from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import PropertyCard from "@/components/ui/PropertyCard";
+import authenticate from "@/utils/authenticate";
+import PropertyCard from "@/components/property-card";
 import PropertyDetailModel from "@models/PropertyDetail";
 import { parseJson } from "@/utils/json";
 
@@ -35,15 +36,18 @@ const PropertyCards = async ({
     .limit(4)
     .lean();
 
+  const isUserLogin = await authenticate();
+
   return (
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
       {similarProperties.map((similarProperty) => (
         <PropertyCard
           title={similarProperty.title}
+          isUserLoggedIn={!!isUserLogin}
           key={similarProperty._id as string}
           image={similarProperty?.images?.[0]}
           rentAmount={similarProperty.rentAmount}
-          propertyID={similarProperty._id as string}
+          propertyID={parseJson(similarProperty._id)}
           linkTo={`/properties/${similarProperty._id}`}
           mortgageAmount={similarProperty.mortgageAmount}
           province={similarProperty.address.province.faName}

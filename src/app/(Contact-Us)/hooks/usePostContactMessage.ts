@@ -24,8 +24,12 @@ const usePostContactMessage = () => {
       return { id };
     },
 
-    onSuccess: (_, __, context) => {
-      toast.success("پیام شما با موفقیت ثبت شد", { id: context.id });
+    onSuccess: (response, __, context) => {
+      if (response.status === 201) {
+        toast.success("پیام شما با موفقیت ثبت شد", { id: context.id });
+      } else {
+        toast.error("خطا هنگام ثبت پیام", { id: context?.id });
+      }
     },
 
     onError: (_, __, context) => {

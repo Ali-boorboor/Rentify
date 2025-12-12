@@ -1,7 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 import SearchForm from "@home/components/hero-header/search-form";
 import PropertyCategories from "@home/components/hero-header/PropertyCategories";
-import PropertyCategoriesLoading from "@home/components/hero-header/PropertyCategoriesLoading";
 import { NavigationMenu } from "@/components/header";
 import { cn } from "@/lib/utils";
 
@@ -27,9 +26,7 @@ const HeroHeader = () => {
         <SearchForm />
       </section>
 
-      <Suspense fallback={<PropertyCategoriesLoading />}>
-        <PropertyCategories />
-      </Suspense>
+      <PropertyCategories />
     </header>
   );
 };

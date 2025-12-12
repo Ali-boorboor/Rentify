@@ -3,7 +3,7 @@ import UserModel from "@models/User";
 import connectToDB from "@/configs/database";
 import FavouriteModel from "@models/Favourite";
 import authenticate from "@/utils/authenticate";
-import PropertyCard from "@/components/ui/PropertyCard";
+import PropertyCard from "@/components/property-card";
 import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { parseJson } from "@/utils/json";
 
@@ -21,6 +21,7 @@ const PropertyCards = async () => {
   })
     .populate({
       path: "properties",
+      match: { propertyStatus: "success" },
       populate: [
         { path: "address", populate: "province" },
         { path: "propertyDetails", populate: "propertyCategory" },
@@ -44,6 +45,7 @@ const PropertyCards = async () => {
               rentAmount={property.rentAmount}
               key={property._id as string}
               title={property.title}
+              isUserLoggedIn
             />
           ))}
         </div>

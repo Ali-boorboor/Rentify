@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import * as formik from "formik";
+import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import PropertyComparisonCard from "@/components/ui/PropertyComparisonCard";
 import { Button } from "@/components/ui/button";
 import { IProperty } from "@models/Property";
@@ -37,12 +38,21 @@ const Form = ({ properties }: FormProps) => {
     <formik.Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <formik.Form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {properties?.map((property) => (
-            <PropertyComparisonCard
-              key={property._id as string}
-              property={property}
+          {properties.length ? (
+            properties?.map((property) => (
+              <PropertyComparisonCard
+                key={property._id as string}
+                property={property}
+              />
+            ))
+          ) : (
+            <EmptyPropertiesAlert
+              description="از طریق آیکون «نشان‌کردن» می‌تونید آگهی‌های مورد نظرتون رو در این لیست ذخیره کنید."
+              image="/images/png/user-panel/empty-favourites.png"
+              title="شما هنوز آگهی‌ای رو ذخیره نکردید!"
+              linkButtonText="مشاهده املاک"
             />
-          ))}
+          )}
         </div>
 
         <div className="flex flex-wrap-reverse justify-center items-center gap-6 p-4 sticky bottom-0 bg-card border shadow-sm rounded-xl z-40">
@@ -53,9 +63,11 @@ const Form = ({ properties }: FormProps) => {
             </Link>
           </Button>
 
-          <Button className="flex-1" type="submit">
-            تأیید
-          </Button>
+          {properties.length > 0 && (
+            <Button className="flex-1" type="submit">
+              تأیید
+            </Button>
+          )}
         </div>
       </formik.Form>
     </formik.Formik>

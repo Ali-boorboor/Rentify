@@ -34,7 +34,7 @@ const PropertyHero = ({
       <div className="space-y-2">
         <h1 className="text-lg md:text-2xl font-semibold">{title}</h1>
 
-        <div className="flex gap-2 max-w-60 h-9 text-sm md:text-base font-normal text-muted-foreground">
+        <div className="flex gap-2 h-9 text-sm md:text-base font-normal text-muted-foreground">
           <p className="flex items-center gap-2">
             <MapPin className="size-4.5" />
             {provinceName}

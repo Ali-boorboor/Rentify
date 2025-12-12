@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import Slider from "@singleProperty/components/slider";
@@ -6,6 +6,8 @@ import PropertyDetails from "@singleProperty/components/property-details";
 import SimilarProperties from "@singleProperty/components/similar-properties";
 import { redirect, RedirectType } from "next/navigation";
 import { isValidObjectId } from "mongoose";
+
+export const dynamic = "force-dynamic";
 
 const SinglePropertyPage = async ({
   params,

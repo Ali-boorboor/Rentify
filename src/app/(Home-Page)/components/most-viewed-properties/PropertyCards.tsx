@@ -1,13 +1,13 @@
-import React from "react";
+import React, { cache } from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import PropertyCard from "@/components/ui/PropertyCard";
+import authenticate from "@/utils/authenticate";
+import PropertyCard from "@/components/property-card";
 import { parseJson } from "@/utils/json";
 
-const PropertyCards = async () => {
-  connectToDB();
-
-  const properties = await PropertyModel.find({})
+const getProperties = cache(async () => {
+  await connectToDB();
+  return await PropertyModel.find({ propertyStatus: "success" })
     .populate({
       path: "propertyDetails",
       populate: { path: "propertyCategory" },
@@ -19,6 +19,12 @@ const PropertyCards = async () => {
     .sort({ _id: -1 })
     .limit(8)
     .lean();
+});
+
+const PropertyCards = async () => {
+  const properties = await getProperties();
+
+  const isUserLogin = await authenticate();
 
   return (
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
@@ -27,6 +33,7 @@ const PropertyCards = async () => {
           title={property.title}
           key={property._id as string}
           image={property?.images?.[0]}
+          isUserLoggedIn={!!isUserLogin}
           rentAmount={property.rentAmount}
           propertyID={String(property._id)}
           linkTo={`/properties/${property._id}`}

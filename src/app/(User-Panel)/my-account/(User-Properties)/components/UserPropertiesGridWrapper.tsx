@@ -30,7 +30,10 @@ const UserPropertiesGridWrapper = async () => {
   return (
     <>
       {userProperties.length ? (
-        <UserPropertiesGrid userProperties={parseJson(userProperties)} />
+        <UserPropertiesGrid
+          userProperties={parseJson(userProperties)}
+          isUserLogin
+        />
       ) : (
         <EmptyPropertiesAlert />
       )}

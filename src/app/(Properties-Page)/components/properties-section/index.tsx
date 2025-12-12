@@ -2,14 +2,18 @@
 
 import React from "react";
 import SortBar from "@/components/sort-bar";
-import PropertyCard from "@/components/ui/PropertyCard";
+import PropertyCard from "@/components/property-card";
 import useGetPropertiesRequest from "@/hook/useGetPropertiesRequest";
 import EmptyPropertiesAlert from "@/components/empty-properties-alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { parseJson } from "@/utils/json";
 
-const PropertiesSection = () => {
+interface PropertiesSectionProps {
+  isUserLogin: boolean;
+}
+
+const PropertiesSection = ({ isUserLogin }: PropertiesSectionProps) => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
     useGetPropertiesRequest();
 
@@ -39,6 +43,7 @@ const PropertiesSection = () => {
                   rentAmount={property.rentAmount}
                   image={property?.images?.[0]}
                   key={property._id as string}
+                  isUserLoggedIn={isUserLogin}
                   title={property.title}
                 />
               ))}

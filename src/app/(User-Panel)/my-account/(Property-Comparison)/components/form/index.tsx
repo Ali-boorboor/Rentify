@@ -20,6 +20,7 @@ const FormWrapper = async () => {
   })
     .populate({
       path: "properties",
+      match: { propertyStatus: "success" },
       populate: [
         { path: "address", populate: "province" },
         { path: "propertyDetails", populate: "propertyCategory" },

@@ -1,6 +1,5 @@
-import ServicesLoading from "@home/components/services/ServicesLoading";
 import ServiceCards from "@home/components/services/ServiceCards";
-import React, { Suspense } from "react";
+import React from "react";
 
 const Services = () => {
   return (
@@ -9,9 +8,7 @@ const Services = () => {
         با خدمات <span className="text-primary">رنتی‌فای</span> آشنا شوید
       </h3>
 
-      <Suspense fallback={<ServicesLoading />}>
-        <ServiceCards />
-      </Suspense>
+      <ServiceCards />
     </section>
   );
 };

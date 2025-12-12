@@ -35,8 +35,10 @@ const usePutFavouriteProperties = () => {
   });
 };
 
-const useGetFavouriteProperty = () => {
+const useGetFavouriteProperty = (isUserLoggedIn: boolean) => {
   return useQuery({
+    enabled: isUserLoggedIn,
+
     queryKey: ["favourite-properties"],
 
     queryFn: async () => await getRequest("/favourite-property"),

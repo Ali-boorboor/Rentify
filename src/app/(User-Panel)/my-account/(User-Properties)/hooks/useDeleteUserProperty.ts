@@ -19,8 +19,12 @@ const useDeleteUserProperty = () => {
       return { id };
     },
 
-    onSuccess: (_, __, context) => {
-      toast.success("آگهی شما با موفقیت حذف شد", { id: context.id });
+    onSuccess: (response, __, context) => {
+      if (response.status === 200) {
+        toast.success("آگهی شما با موفقیت حذف شد", { id: context.id });
+      } else {
+        toast.error("خطا هنگام حذف آگهی", { id: context?.id });
+      }
     },
 
     onError: (_, __, context) => {

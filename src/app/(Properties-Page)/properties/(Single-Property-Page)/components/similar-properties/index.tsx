@@ -1,7 +1,6 @@
+import React from "react";
 import Link from "next/link";
-import React, { Suspense } from "react";
 import PropertyCards from "@singleProperty/components/similar-properties/PropertyCards";
-import PropertyCardsLoading from "@singleProperty/components/similar-properties/PropertyCardsLoading";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
@@ -30,12 +29,10 @@ const SimilarProperties = async ({
           </Button>
         </div>
 
-        <Suspense fallback={<PropertyCardsLoading />}>
-          <PropertyCards
-            propertyCategory={propertyCategory}
-            propertyID={propertyID}
-          />
-        </Suspense>
+        <PropertyCards
+          propertyCategory={propertyCategory}
+          propertyID={propertyID}
+        />
       </div>
     </section>
   );

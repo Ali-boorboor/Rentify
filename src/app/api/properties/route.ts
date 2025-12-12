@@ -32,7 +32,10 @@ export const GET = async (request: Request) => {
         sort = { _id: -1 };
     }
 
-    const properties = await PropertyModel.find(filterQuery)
+    const properties = await PropertyModel.find({
+      ...filterQuery,
+      propertyStatus: "success",
+    })
       .populate({
         path: "propertyDetails",
         populate: { path: "propertyCategory" },

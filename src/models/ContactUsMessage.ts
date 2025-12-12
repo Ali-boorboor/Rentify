@@ -27,7 +27,6 @@ const schema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-      unique: true,
     },
     message: {
       type: String,

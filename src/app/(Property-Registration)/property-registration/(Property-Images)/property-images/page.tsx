@@ -1,4 +1,3 @@
-import SuccessDialog from "@propertyImagesRegistration/components/SuccessDialog";
 import Form from "@propertyImagesRegistration/components/form";
 import React from "react";
 
@@ -10,8 +9,6 @@ const PropertyImagesPage = () => {
       </h4>
 
       <Form />
-
-      <SuccessDialog />
     </section>
   );
 };

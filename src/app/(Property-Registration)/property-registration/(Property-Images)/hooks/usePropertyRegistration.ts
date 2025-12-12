@@ -26,12 +26,16 @@ const usePostRequest = () => {
       return { id };
     },
 
-    onSuccess: (_, __, context) => {
-      toast.success(
-        "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید",
-        { id: context.id }
-      );
-      router.push("/my-account/my-properties");
+    onSuccess: (response, __, context) => {
+      if (response.status === 201) {
+        toast.success(
+          "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید",
+          { id: context.id }
+        );
+        router.push("/my-account/my-properties");
+      } else {
+        toast.error("خطا هنگام ثبت آگهی", { id: context?.id });
+      }
     },
 
     onError: (_, __, context) => {

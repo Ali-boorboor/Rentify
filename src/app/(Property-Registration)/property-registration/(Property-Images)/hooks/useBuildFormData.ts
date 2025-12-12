@@ -19,7 +19,7 @@ const useBuildFormData = () => {
     ] as const;
 
     for (const [key, value] of formsEntries) {
-      if (value) formData.append(key, stringifyJson(value));
+      if (value) formData.append(key, stringifyJson(value)!);
     }
 
     values.uploadedImages.forEach(({ file }) => {

@@ -37,6 +37,7 @@ const PropertyCategoryCard = async ({
           alt="property category image"
           sizes="600px"
           src={image}
+          priority
           fill
         />
       </card.CardHeader>

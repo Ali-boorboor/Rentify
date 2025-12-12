@@ -9,7 +9,7 @@ import { UserRound } from "lucide-react";
 
 interface PropertyAgentCardProps {
   profileImage?: string;
-  agencyName: string;
+  agencyName?: string;
   name: string;
 }
 

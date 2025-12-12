@@ -1,12 +1,18 @@
-import React from "react";
+import React, { cache } from "react";
 import ServiceModel from "@models/Service";
 import connectToDB from "@configs/database";
 import ServiceCard from "@home/components/services/ServiceCard";
 
-const ServiceCards = async () => {
-  connectToDB();
+export const dynamic = "force-static";
+export const revalidate = 24 * 60 * 60;
 
-  const services = await ServiceModel.find({}).lean();
+const getServices = cache(async () => {
+  await connectToDB();
+  return await ServiceModel.find({}).lean();
+});
+
+const ServiceCards = async () => {
+  const services = await getServices();
 
   return (
     <div className="flex flex-wrap justify-between gap-6">

@@ -17,7 +17,6 @@ const FiltersBar = async () => {
 
   return (
     <section className="bg-card shadow-sm border p-2 sm:p-4">
-      {/* change variant="outline" to variant="default" when a filter added */}
       <div className="container m-auto flex gap-2 h-10">
         <FiltersDialog
           propertyCategories={parseJson(propertyCategories)}

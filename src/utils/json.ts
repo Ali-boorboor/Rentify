@@ -1,8 +1,11 @@
 function parseJson<Type>(input: Type) {
+  if (!input) return;
   return JSON.parse(JSON.stringify(input));
 }
 
 function stringifyJson<Type>(input: Type) {
+  if (!input) return;
+
   return JSON.stringify(input);
 }
 

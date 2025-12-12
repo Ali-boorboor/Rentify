@@ -4,6 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 const visitingHours = [
   { id: 1, time: "۱۰:۰۰" },
@@ -20,7 +21,16 @@ const visitingHours = [
   { id: 12, time: "۲۱:۰۰" },
 ];
 
-const TimePicker = () => {
+interface TimePickerProps {
+  setFieldValue: (field: string, value: string) => void;
+  values: { time: string };
+}
+
+const TimePicker = ({ values, setFieldValue }: TimePickerProps) => {
+  const onCheckedChange = (checked: CheckedState, selectedTime: string) => {
+    if (checked) setFieldValue("time", selectedTime);
+  };
+
   return (
     <div className="bg-accent text-accent-foreground border shadow-sm p-3 rounded-xl space-y-4">
       <p className="text-center md:text-right">
@@ -37,7 +47,13 @@ const TimePicker = () => {
             )}
             key={hour.id}
           >
-            <Checkbox className="sr-only" />
+            <Checkbox
+              onCheckedChange={(checked) => {
+                onCheckedChange(checked, hour.time);
+              }}
+              checked={values.time === hour.time}
+              className="sr-only"
+            />
 
             <p className="font-medium text-sm leading-none">{hour.time}</p>
           </Label>

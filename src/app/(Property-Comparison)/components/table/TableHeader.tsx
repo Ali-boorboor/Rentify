@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import * as icons from "lucide-react";
 import * as table from "@/components/ui/table";
-import PropertyCard from "@/components/ui/PropertyCard";
+import PropertyCard from "@/components/property-card";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { IProperty } from "@models/Property";
@@ -13,9 +13,10 @@ import { toast } from "sonner";
 
 interface TableHeaderProps {
   selectedProperties: IProperty[];
+  isUserLogin: boolean;
 }
 
-const TableHeader = ({ selectedProperties }: TableHeaderProps) => {
+const TableHeader = ({ selectedProperties, isUserLogin }: TableHeaderProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -66,6 +67,7 @@ const TableHeader = ({ selectedProperties }: TableHeaderProps) => {
             <PropertyCard
               hasRemoveButton
               title={property.title}
+              isUserLoggedIn={isUserLogin}
               image={property?.images?.[0]}
               rentAmount={property.rentAmount}
               propertyID={property._id as string}

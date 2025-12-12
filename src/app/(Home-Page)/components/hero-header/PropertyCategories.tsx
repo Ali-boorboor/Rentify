@@ -1,12 +1,18 @@
 import PropertyCategoryCard from "@home/components/hero-header/PropertyCategoryCard";
 import PropertyCategoryModel from "@models/PropertyCategory";
 import connectToDB from "@configs/database";
-import React from "react";
+import React, { cache } from "react";
+
+export const dynamic = "force-static";
+export const revalidate = 24 * 60 * 60;
+
+const getPropertyCategories = cache(async () => {
+  await connectToDB();
+  return await PropertyCategoryModel.find({}).lean();
+});
 
 const PropertyCategories = async () => {
-  connectToDB();
-
-  const propertyCategories = await PropertyCategoryModel.find({}).lean();
+  const propertyCategories = await getPropertyCategories();
 
   return (
     <section className="container m-auto flex flex-wrap gap-6 items-center justify-center md:justify-between lg:translate-y-[30%]">
