@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Table from "@propertyComparison/components/table";
 import FiltersBar from "@propertyComparison/components/FiltersBar";
+import FiltersBarLoading from "@/components/filters-bar/FiltersBarLoading";
 import TableLoading from "@propertyComparison/components/table/TableLoading";
 import { redirect, RedirectType } from "next/navigation";
 import { isValidObjectId } from "mongoose";
@@ -35,7 +36,9 @@ const PropertyComparisonPage = async ({
   return (
     <section className="px-4">
       <div className="container m-auto space-y-6">
-        <FiltersBar />
+        <Suspense fallback={<FiltersBarLoading />}>
+          <FiltersBar />
+        </Suspense>
 
         <div className="text-muted-foreground text-sm md:text-base space-y-2 flex items-baseline gap-2">
           <p>

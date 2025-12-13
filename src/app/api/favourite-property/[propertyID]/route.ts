@@ -35,7 +35,7 @@ export const PUT = async (
     }).lean<{ properties: string[] }>();
 
     const isPropertyAlreadyInFavourites = userFavourites?.properties?.some(
-      (id: any) => id.toString() === propertyID
+      (id: string) => id.toString() === propertyID
     );
 
     if (isPropertyAlreadyInFavourites) {

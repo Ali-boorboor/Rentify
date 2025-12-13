@@ -3,9 +3,6 @@ import ServiceModel from "@models/Service";
 import connectToDB from "@configs/database";
 import ServiceCard from "@home/components/services/ServiceCard";
 
-export const dynamic = "force-static";
-export const revalidate = 24 * 60 * 60;
-
 const getServices = cache(async () => {
   await connectToDB();
   return await ServiceModel.find({}).lean();

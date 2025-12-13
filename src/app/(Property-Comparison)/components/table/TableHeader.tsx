@@ -13,10 +13,9 @@ import { toast } from "sonner";
 
 interface TableHeaderProps {
   selectedProperties: IProperty[];
-  isUserLogin: boolean;
 }
 
-const TableHeader = ({ selectedProperties, isUserLogin }: TableHeaderProps) => {
+const TableHeader = ({ selectedProperties }: TableHeaderProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -67,7 +66,6 @@ const TableHeader = ({ selectedProperties, isUserLogin }: TableHeaderProps) => {
             <PropertyCard
               hasRemoveButton
               title={property.title}
-              isUserLoggedIn={isUserLogin}
               image={property?.images?.[0]}
               rentAmount={property.rentAmount}
               propertyID={property._id as string}

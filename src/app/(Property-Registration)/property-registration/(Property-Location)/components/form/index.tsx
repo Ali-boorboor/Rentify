@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import * as formik from "formik";
 import React, { memo } from "react";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
@@ -69,9 +70,11 @@ const Form = ({ provinces }: FormProps) => {
           />
 
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <Button className="flex-1" variant="ghost" type="button">
-              <ArrowRight className="size-4.5" />
-              مرحله قبل
+            <Button className="flex-1" variant="ghost" type="button" asChild>
+              <Link href="/property-registration/property-type">
+                <ArrowRight className="size-4.5" />
+                مرحله قبل
+              </Link>
             </Button>
 
             <Button className="flex-1" type="submit">

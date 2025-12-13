@@ -1,7 +1,6 @@
 import React, { cache } from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import authenticate from "@/utils/authenticate";
 import PropertyCard from "@/components/property-card";
 import { parseJson } from "@/utils/json";
 
@@ -24,8 +23,6 @@ const getProperties = cache(async () => {
 const PropertyCards = async () => {
   const properties = await getProperties();
 
-  const isUserLogin = await authenticate();
-
   return (
     <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
       {properties.map((property) => (
@@ -33,7 +30,6 @@ const PropertyCards = async () => {
           title={property.title}
           key={property._id as string}
           image={property?.images?.[0]}
-          isUserLoggedIn={!!isUserLogin}
           rentAmount={property.rentAmount}
           propertyID={String(property._id)}
           linkTo={`/properties/${property._id}`}

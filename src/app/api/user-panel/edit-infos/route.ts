@@ -7,6 +7,12 @@ import validateRequestBody from "@/utils/validateRequestBody";
 import * as validators from "@validators/user-panel/editInfos";
 import { randomUUID } from "crypto";
 
+interface EditUserBody {
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+}
+
 export const PUT = async (request: Request) => {
   try {
     connectToDB();
@@ -19,9 +25,11 @@ export const PUT = async (request: Request) => {
 
     const formData = await request.formData();
 
-    const requestBody: Record<string, any> = {};
+    const requestBody: EditUserBody = {};
     formData.forEach((value, key) => {
-      requestBody[key] = value;
+      if (!(value instanceof File)) {
+        requestBody[key as keyof EditUserBody] = value.toString();
+      }
     });
 
     const errors = await validateRequestBody({
@@ -39,7 +47,7 @@ export const PUT = async (request: Request) => {
       );
     }
 
-    const profileImage = requestBody.profileImage as File;
+    const profileImage = formData.get("profileImage") as File;
     let file = null;
 
     if (profileImage) {

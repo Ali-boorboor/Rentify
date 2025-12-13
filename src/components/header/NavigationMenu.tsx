@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import menuItems from "@/constants/menuDatas";
-import authenticate from "@/utils/authenticate";
 import MainLogo from "@/components/ui/MainLogo";
+import useAuthenticate from "@/hook/useAuthenticate";
 import MobileMenu from "@/components/header/MobileMenu";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Plus, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,11 +16,13 @@ interface NavigationMenuProps {
   className?: string;
 }
 
-const NavigationMenu = async ({
+const NavigationMenu = ({
   logoSrc = "/images/png/white-main-logo.png",
   className,
 }: NavigationMenuProps) => {
-  const isUserLogin = await authenticate();
+  const { data, isPending } = useAuthenticate();
+
+  const isUserLogin = data?.status === 200;
 
   return (
     <nav
@@ -38,10 +43,12 @@ const NavigationMenu = async ({
         ))}
       </ul>
 
-      <MobileMenu />
+      <MobileMenu isUserLogin={isUserLogin} isPending={isPending} />
 
       <div className="hidden lg:flex items-center gap-2">
-        {isUserLogin ? (
+        {isPending ? (
+          <Skeleton className="w-26 h-9 rounded-md" />
+        ) : isUserLogin ? (
           <Button variant="link" asChild>
             <Link href="/my-account/edit-infos">
               <UserRound />

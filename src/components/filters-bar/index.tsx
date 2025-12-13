@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import connectToDB from "@configs/database";
 import ProvinceModel from "@models/Province";
 import PropertyCategoryModel from "@models/PropertyCategory";
@@ -10,7 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { parseJson } from "@/utils/json";
 
 const FiltersBar = async () => {
-  connectToDB();
+  await connectToDB();
+
   const propertyCategories = await PropertyCategoryModel.find({}).lean();
   const equipments = await EquipmentAndFacilitieModel.find({}).lean();
   const provinces = await ProvinceModel.find({}).lean();
@@ -18,11 +19,13 @@ const FiltersBar = async () => {
   return (
     <section className="bg-card shadow-sm border p-2 sm:p-4">
       <div className="container m-auto flex gap-2 h-10">
-        <FiltersDialog
-          propertyCategories={parseJson(propertyCategories)}
-          equipments={parseJson(equipments)}
-          provinces={parseJson(provinces)}
-        />
+        <Suspense>
+          <FiltersDialog
+            propertyCategories={parseJson(propertyCategories)}
+            equipments={parseJson(equipments)}
+            provinces={parseJson(provinces)}
+          />
+        </Suspense>
 
         <Separator className="mr-2 hidden sm:block" orientation="vertical" />
 
@@ -30,11 +33,13 @@ const FiltersBar = async () => {
           className="line-clamp-1 whitespace-nowrap hidden sm:block"
           dir="rtl"
         >
-          <FiltersBadge
-            propertyCategories={parseJson(propertyCategories)}
-            equipments={parseJson(equipments)}
-            provinces={parseJson(provinces)}
-          />
+          <Suspense>
+            <FiltersBadge
+              propertyCategories={parseJson(propertyCategories)}
+              equipments={parseJson(equipments)}
+              provinces={parseJson(provinces)}
+            />
+          </Suspense>
 
           <ScrollBar orientation="horizontal" />
         </ScrollArea>

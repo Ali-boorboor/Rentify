@@ -8,7 +8,7 @@ import PropertyAgentCard from "@singleProperty/components/property-details/agent
 import LocationDetails from "@singleProperty/components/property-details/details/location";
 import EquipmentDetails from "@singleProperty/components/property-details/details/Equipment";
 import DescriptionDetails from "@singleProperty/components/property-details/details/Description";
-import { redirect, RedirectType } from "next/navigation";
+import { notFound } from "next/navigation";
 import { parseJson } from "@/utils/json";
 
 const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
@@ -26,7 +26,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
     })
     .lean();
 
-  if (!property) redirect("/", RedirectType.replace);
+  if (!property) return notFound();
 
   return (
     <div className="flex flex-wrap-reverse items-end justify-between gap-6">

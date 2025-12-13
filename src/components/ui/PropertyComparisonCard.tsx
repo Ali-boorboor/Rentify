@@ -53,7 +53,6 @@ const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
         rentAmount={property.rentAmount}
         image={property?.images?.[0]}
         key={property._id as string}
-        isUserLoggedIn={false}
         title={property.title}
         isFavourable={false}
       />

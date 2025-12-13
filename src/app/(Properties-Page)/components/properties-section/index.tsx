@@ -9,11 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { parseJson } from "@/utils/json";
 
-interface PropertiesSectionProps {
-  isUserLogin: boolean;
-}
-
-const PropertiesSection = ({ isUserLogin }: PropertiesSectionProps) => {
+const PropertiesSection = () => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
     useGetPropertiesRequest();
 
@@ -43,7 +39,6 @@ const PropertiesSection = ({ isUserLogin }: PropertiesSectionProps) => {
                   rentAmount={property.rentAmount}
                   image={property?.images?.[0]}
                   key={property._id as string}
-                  isUserLoggedIn={isUserLogin}
                   title={property.title}
                 />
               ))}

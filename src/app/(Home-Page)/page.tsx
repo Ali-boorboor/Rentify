@@ -5,7 +5,9 @@ import ScrollToTop from "@/components/scroll-to-top";
 import Services from "@home/components/services";
 import React from "react";
 
-const HomePage = () => {
+export const revalidate = 86400;
+
+const HomePage = async () => {
   return (
     <>
       <MostViewedProperties />

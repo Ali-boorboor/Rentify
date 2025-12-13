@@ -13,10 +13,7 @@ export const GET = async (request: Request) => {
 
     const sortParam = searchParams.get("sort-by");
 
-    let sort:
-      | { [key: string]: SortOrder | { $meta: any } }
-      | [string, SortOrder][]
-      | null = {};
+    let sort: Record<string, SortOrder> = {};
 
     switch (sortParam) {
       case "cheapest":

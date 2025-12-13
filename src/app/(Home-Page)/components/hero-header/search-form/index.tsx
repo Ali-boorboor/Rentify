@@ -5,9 +5,6 @@ import PropertyCategoryModel from "@models/PropertyCategory";
 import Form from "@home/components/hero-header/search-form/Form";
 import { parseJson } from "@/utils/json";
 
-export const dynamic = "force-static";
-export const revalidate = 24 * 60 * 60;
-
 connectToDB();
 
 const getPropertyCategories = cache(async () => {

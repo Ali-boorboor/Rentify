@@ -1,16 +1,18 @@
+import FiltersBarLoading from "@/components/filters-bar/FiltersBarLoading";
 import PropertiesSection from "@properties/components/properties-section";
 import FiltersBar from "@/components/filters-bar";
-import authenticate from "@/utils/authenticate";
-import React from "react";
+import React, { Suspense } from "react";
 
-const PropertiesPage = async () => {
-  const isUserLogin = await authenticate();
-
+const PropertiesPage = () => {
   return (
     <>
-      <FiltersBar />
+      <Suspense fallback={<FiltersBarLoading />}>
+        <FiltersBar />
+      </Suspense>
 
-      <PropertiesSection isUserLogin={!!isUserLogin} />
+      <Suspense>
+        <PropertiesSection />
+      </Suspense>
     </>
   );
 };

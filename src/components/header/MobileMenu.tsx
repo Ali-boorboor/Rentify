@@ -2,13 +2,16 @@ import React from "react";
 import Link from "next/link";
 import * as icon from "lucide-react";
 import menuItems from "@/constants/menuDatas";
-import authenticate from "@/utils/authenticate";
 import * as dropdownMenu from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
-const MobileMenu = async () => {
-  const isUserLogin = await authenticate();
+interface MobileMenuProps {
+  isUserLogin: boolean;
+  isPending: boolean;
+}
 
+const MobileMenu = ({ isUserLogin, isPending }: MobileMenuProps) => {
   return (
     <div className="block lg:hidden">
       <dropdownMenu.DropdownMenu dir="rtl">
@@ -47,8 +50,9 @@ const MobileMenu = async () => {
           </dropdownMenu.DropdownMenuItem>
 
           <dropdownMenu.DropdownMenuSeparator />
-
-          {isUserLogin ? (
+          {isPending ? (
+            <Skeleton className="w-full h-9 rounded-md" />
+          ) : isUserLogin ? (
             <dropdownMenu.DropdownMenuItem
               className="cursor-pointer justify-center"
               asChild

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function PageLayout({ children }: LayoutProps) {
   const isUserLogin = await authenticate();
 
-  if (!isUserLogin) redirect("/", RedirectType.replace);
+  if (!isUserLogin) redirect("/login-register", RedirectType.replace);
 
   return (
     <>

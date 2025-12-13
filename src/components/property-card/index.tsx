@@ -13,7 +13,6 @@ type BaseProps = {
   className?: string;
   propertyID: string;
   isFavourable?: boolean;
-  isUserLoggedIn: boolean;
   rentAmount: string | number;
   mortgageAmount: string | number;
   propertyCategory: IPropertyCategory;
@@ -42,7 +41,6 @@ const PropertyCard = ({
   propertyID,
   mortgageAmount,
   propertyStatus,
-  isUserLoggedIn,
   propertyCategory,
   isFavourable = true,
   hasRemoveButton = false,
@@ -57,7 +55,6 @@ const PropertyCard = ({
         linkTo={linkTo}
         propertyID={propertyID}
         isFavourable={isFavourable}
-        isUserLoggedIn={isUserLoggedIn}
         propertyStatus={propertyStatus}
         hasRemoveButton={hasRemoveButton}
         removeButtonHandler={removeButtonHandler}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import * as icon from "lucide-react";
 import * as card from "@/components/ui/card";
+import useAuthenticate from "@/hook/useAuthenticate";
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,7 +37,6 @@ interface CardHeaderProps {
   linkTo: string;
   propertyID: string;
   isFavourable?: boolean;
-  isUserLoggedIn: boolean;
   hasRemoveButton: boolean;
   removeButtonHandler?: () => void;
   propertyStatus?: "success" | "error" | "warning";
@@ -47,18 +47,19 @@ const CardHeader = ({
   linkTo,
   propertyID,
   propertyStatus,
-  isUserLoggedIn,
   isFavourable = true,
   hasRemoveButton = false,
   removeButtonHandler,
 }: CardHeaderProps) => {
-  const favouriteQuery = isUserLoggedIn
-    ? useGetFavouriteProperty(true)
-    : { data: undefined, isPending: false };
+  const { data: authenticateData } = useAuthenticate();
 
-  const { data, isPending } = favouriteQuery;
+  const isUserLogin = authenticateData?.status === 200;
 
-  const isFavourite = data?.favourites?.properties.includes(propertyID);
+  const { data: getFavouriteData, isPending: getFavouriteLoading } =
+    useGetFavouriteProperty(true);
+
+  const isFavourite =
+    getFavouriteData?.favourites?.properties.includes(propertyID);
 
   const { mutate, isPending: isPutRequestLoading } =
     usePutFavouriteProperties();
@@ -105,14 +106,14 @@ const CardHeader = ({
         </Button>
       )}
 
-      {isFavourable && isUserLoggedIn && (
+      {isFavourable && isUserLogin && (
         <Button
           className="absolute top-3 right-3 bg-card border shadow-sm"
           onClick={() => mutate(propertyID)}
           variant="link"
           size="icon"
         >
-          {isPending || isPutRequestLoading ? (
+          {getFavouriteLoading || isPutRequestLoading ? (
             <Spinner />
           ) : (
             <icon.Heart

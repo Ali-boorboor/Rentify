@@ -16,7 +16,7 @@ function parseFormData<Type>(value: FormDataEntryValue | null): Type | null {
 
   try {
     return JSON.parse(value) as Type;
-  } catch (err) {
+  } catch (_) {
     return null;
   }
 }

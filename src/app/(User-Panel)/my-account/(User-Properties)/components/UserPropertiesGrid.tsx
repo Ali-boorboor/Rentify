@@ -10,13 +10,9 @@ import { parseJson } from "@/utils/json";
 
 interface UserPropertiesGridProps {
   userProperties: IProperty[];
-  isUserLogin: boolean;
 }
 
-const UserPropertiesGrid = ({
-  userProperties,
-  isUserLogin,
-}: UserPropertiesGridProps) => {
+const UserPropertiesGrid = ({ userProperties }: UserPropertiesGridProps) => {
   const router = useRouter();
 
   const [shouldShowDeleteDialog, setShouldShowDeleteDialog] = useState(false);
@@ -56,7 +52,6 @@ const UserPropertiesGrid = ({
             propertyID={String(property._id)}
             rentAmount={property.rentAmount}
             image={property?.images?.[0]}
-            isUserLoggedIn={isUserLogin}
             title={property.title}
             isFavourable={false}
             hasRemoveButton

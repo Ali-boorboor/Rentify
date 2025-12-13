@@ -2,7 +2,6 @@ import React from "react";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import * as table from "@/components/ui/table";
-import authenticate from "@/utils/authenticate";
 import TableBody from "@propertyComparison/components/table/TableBody";
 import TableHeader from "@propertyComparison/components/table/TableHeader";
 import { parseJson } from "@/utils/json";
@@ -27,14 +26,9 @@ const Table = async ({ searchParamProperties }: TableProps) => {
     })
     .lean();
 
-  const isUserLogin = await authenticate();
-
   return (
     <table.Table>
-      <TableHeader
-        selectedProperties={parseJson(selectedProperties)}
-        isUserLogin={!!isUserLogin}
-      />
+      <TableHeader selectedProperties={parseJson(selectedProperties)} />
 
       <TableBody selectedProperties={parseJson(selectedProperties)} />
     </table.Table>

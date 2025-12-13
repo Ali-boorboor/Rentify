@@ -29,7 +29,7 @@ const usePostRequest = () => {
     onSuccess: (response, __, context) => {
       if (response.status === 201) {
         toast.success(
-          "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین به نمایش همه درمیاید",
+          "آگهی شما با موفقیت ثبت شد و پس از بررسی توسط ادمین و گذشت ۲۴ ساعت به نمایش همه درمیاید",
           { id: context.id }
         );
         router.push("/my-account/my-properties");

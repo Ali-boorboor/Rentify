@@ -3,9 +3,6 @@ import PropertyCategoryModel from "@models/PropertyCategory";
 import connectToDB from "@configs/database";
 import React, { cache } from "react";
 
-export const dynamic = "force-static";
-export const revalidate = 24 * 60 * 60;
-
 const getPropertyCategories = cache(async () => {
   await connectToDB();
   return await PropertyCategoryModel.find({}).lean();

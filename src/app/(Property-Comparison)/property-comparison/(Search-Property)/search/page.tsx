@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Suspense } from "react";
 import FiltersBar from "@/components/filters-bar";
+import FiltersBarLoading from "@/components/filters-bar/FiltersBarLoading";
 import PropertiesSection from "@comparisonSearch/components/PropertiesSection";
 
 const PropertyComparisonSearchPage = () => {
   return (
     <section>
-      <FiltersBar />
+      <Suspense fallback={<FiltersBarLoading />}>
+        <FiltersBar />
+      </Suspense>
 
-      <PropertiesSection />
+      <Suspense>
+        <PropertiesSection />
+      </Suspense>
     </section>
   );
 };

@@ -45,7 +45,6 @@ const PropertyCards = async () => {
               rentAmount={property.rentAmount}
               key={property._id as string}
               title={property.title}
-              isUserLoggedIn
             />
           ))}
         </div>

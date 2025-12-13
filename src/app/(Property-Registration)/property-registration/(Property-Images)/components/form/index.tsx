@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import * as formik from "formik";
 import useFormsState from "@propertyRegistration/stores/useFormsState";
 import useBuildFormData from "@propertyImagesRegistration/hooks/useBuildFormData";
@@ -63,9 +64,11 @@ const Form = () => {
           </div>
 
           <div className="md:self-end self-center flex flex-wrap items-center justify-center gap-2">
-            <Button className="min-w-36" variant="ghost" type="button">
-              <ArrowRight className="size-4.5" />
-              مرحله قبل
+            <Button className="min-w-36" variant="ghost" type="button" asChild>
+              <Link href="/property-registration/property-description">
+                <ArrowRight className="size-4.5" />
+                مرحله قبل
+              </Link>
             </Button>
 
             <Button disabled={isPending} className="min-w-36" type="submit">

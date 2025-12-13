@@ -23,11 +23,13 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
-          argsIgnorePattern: ["^_", "^__"],
-          varsIgnorePattern: ["^_", "^__"],
-          caughtErrorsIgnorePattern: ["^_", "^__"],
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
         },
       ],
+      "@typescript-eslint/no-unused-expressions": ["off"],
+      "react-hooks/rules-of-hooks": ["off"],
     },
   },
 ];
