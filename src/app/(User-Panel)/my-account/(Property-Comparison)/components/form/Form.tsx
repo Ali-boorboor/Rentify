@@ -38,7 +38,7 @@ const Form = ({ properties }: FormProps) => {
     <formik.Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <formik.Form className="bg-card border shadow-sm rounded-xl space-y-6 p-4">
         <div className="grid sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
-          {properties.length ? (
+          {properties?.length ? (
             properties?.map((property) => (
               <PropertyComparisonCard
                 key={property._id as string}
@@ -63,7 +63,7 @@ const Form = ({ properties }: FormProps) => {
             </Link>
           </Button>
 
-          {properties.length > 0 && (
+          {properties?.length > 0 && (
             <Button className="flex-1" type="submit">
               تأیید
             </Button>

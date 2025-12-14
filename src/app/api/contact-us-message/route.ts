@@ -30,9 +30,9 @@ export const POST = async (request: Request) => {
       { message: "message saved successfully" },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (_) {
     return Response.json(
-      { message: "internal server error!", error },
+      { message: "internal server error!" },
       { status: 500 }
     );
   }

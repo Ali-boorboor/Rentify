@@ -60,9 +60,9 @@ export const PUT = async (
         { status: 200 }
       );
     }
-  } catch (error) {
+  } catch (_) {
     return Response.json(
-      { message: "internal server error!", error },
+      { message: "internal server error!" },
       { status: 500 }
     );
   }

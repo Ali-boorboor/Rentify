@@ -77,6 +77,14 @@
       ],
       "@propertyImagesRegistration/*": [
         "./src/app/(Property-Registration)/property-registration/(Property-Images)/*"
+      ],
+
+      "@adminPanel/*": ["./src/app/(Admin-Panel)/*"],
+      "@adminPanel/contactMessages/*": [
+        "./src/app/(Admin-Panel)/admin-panel/(Contact-Messages)/*"
+      ],
+      "@adminPanel/pendingAds/*": [
+        "./src/app/(Admin-Panel)/admin-panel/(Pending-Ads)/*"
       ]
     }
   },

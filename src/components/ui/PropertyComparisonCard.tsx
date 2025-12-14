@@ -10,9 +10,15 @@ import { cn } from "@/lib/utils";
 
 interface PropertyComparisonCardProps {
   property: IProperty;
+  className?: string;
+  children?: React.ReactNode;
 }
 
-const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
+const PropertyComparisonCard = ({
+  property,
+  children,
+  className,
+}: PropertyComparisonCardProps) => {
   const [field, _, helpers] = useField("properties");
 
   const onCheckedChange = (checked: CheckedState) => {
@@ -39,7 +45,8 @@ const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
         "rounded-xl border shadow-sm relative hover:opacity-80",
         "has-[[aria-checked=true]]:ring-2 has-[[aria-checked=true]]:ring-primary",
         "transition-all duration-200 ease-linear",
-        "cursor-pointer"
+        "cursor-pointer",
+        className
       )}
       htmlFor={property._id as string}
     >
@@ -65,6 +72,8 @@ const PropertyComparisonCard = ({ property }: PropertyComparisonCardProps) => {
         onCheckedChange={(checked) => onCheckedChange(checked)}
         id={property._id as string}
       />
+
+      {children}
     </Label>
   );
 };

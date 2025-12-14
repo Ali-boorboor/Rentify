@@ -114,9 +114,9 @@ export const POST = async (request: Request) => {
     });
 
     return Response.json("ok", { status: 201 });
-  } catch (error) {
+  } catch (_) {
     return Response.json(
-      { message: "internal server error!", error },
+      { message: "internal server error!" },
       { status: 500 }
     );
   }

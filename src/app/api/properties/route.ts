@@ -56,9 +56,9 @@ export const GET = async (request: Request) => {
       limit,
       page,
     });
-  } catch (error) {
+  } catch (_) {
     return Response.json(
-      { message: "internal server error!", error },
+      { message: "internal server error!" },
       { status: 500 }
     );
   }

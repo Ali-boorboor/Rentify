@@ -82,9 +82,9 @@ export const PUT = async (request: Request) => {
       { message: "user datas edited successfully" },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (_) {
     return Response.json(
-      { message: "internal server error!", error },
+      { message: "internal server error!" },
       { status: 500 }
     );
   }

@@ -10,6 +10,7 @@ interface IUser extends mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
   profileImage?: string;
+  role?: "ADMIN" | "USER";
 }
 
 const schema = new mongoose.Schema(
@@ -41,6 +42,12 @@ const schema = new mongoose.Schema(
     },
     profileImage: {
       type: String,
+      required: false,
+    },
+    role: {
+      type: String,
+      enum: ["ADMIN", "USER"],
+      default: "USER",
       required: false,
     },
   },
