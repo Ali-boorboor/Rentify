@@ -2,6 +2,8 @@ import UserModel from "@models/User";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import authenticate from "@/utils/authenticate";
+import validateRequestBody from "@/utils/validateRequestBody";
+import { pendingAdsValidations } from "@validators/admin-panel";
 
 export const DELETE = async (request: Request) => {
   try {
@@ -21,9 +23,24 @@ export const DELETE = async (request: Request) => {
       return Response.json({ message: "unauthorized!" }, { status: 403 });
     }
 
-    const propertyIDs = (await request.json()) as string[];
+    const requestBody = (await request.json()) as { properties: string[] };
 
-    await PropertyModel.deleteMany({ _id: { $in: propertyIDs } });
+    const errors = await validateRequestBody({
+      schema: pendingAdsValidations,
+      requestBody,
+    });
+
+    if (errors) {
+      return Response.json(
+        {
+          message: "request body is invalid!",
+          errors: errors,
+        },
+        { status: 422 }
+      );
+    }
+
+    await PropertyModel.deleteMany({ _id: { $in: requestBody.properties } });
 
     return Response.json(
       { message: "properties deleted successfully" },

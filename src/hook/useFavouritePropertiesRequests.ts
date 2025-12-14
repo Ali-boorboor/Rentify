@@ -28,7 +28,7 @@ const usePutFavouriteProperties = () => {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["favourite-property"] });
+      queryClient.invalidateQueries({ queryKey: ["favourite-properties"] });
 
       router.refresh();
     },
