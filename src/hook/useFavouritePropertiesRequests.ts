@@ -1,6 +1,5 @@
 import fetcher from "@/utils/fetcher";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 const putRequest = async (url: string) => {
   const { response } = await fetcher({ method: "PUT", url });
@@ -18,8 +17,6 @@ const getRequest = async (url: string) => {
 };
 
 const usePutFavouriteProperties = () => {
-  const router = useRouter();
-
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -29,8 +26,6 @@ const usePutFavouriteProperties = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["favourite-properties"] });
-
-      router.refresh();
     },
   });
 };
