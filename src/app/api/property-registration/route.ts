@@ -1,18 +1,18 @@
+import authenticate from "@/utils/authenticate";
+import { parseFormData } from "@/utils/json";
+import connectToDB from "@configs/database";
+import AddressModel from "@models/Address";
+import PropertyModel from "@models/Property";
+import PropertyDetailModel from "@models/PropertyDetail";
+import UserModel from "@models/User";
+import { randomUUID } from "crypto";
 import fs from "node:fs";
 import path from "node:path";
-import UserModel from "@models/User";
-import AddressModel from "@models/Address";
-import connectToDB from "@configs/database";
-import PropertyModel from "@models/Property";
-import authenticate from "@/utils/authenticate";
-import PropertyDetailModel from "@models/PropertyDetail";
-import { parseFormData } from "@/utils/json";
-import { randomUUID } from "crypto";
 
 import { Values as PropertyDescriptionValues } from "@propertyDescriptionRegistration/types";
+import { Values as PropertyDetailsValues } from "@propertyDetailsRegistration/types";
 import { Values as PropertyEquipmentsValues } from "@propertyEquipmentsRegistration/types";
 import { Values as PropertyLocationValues } from "@propertyLocationRegistration/types";
-import { Values as PropertyDetailsValues } from "@propertyDetailsRegistration/types";
 import { Values as PropertyTypeValues } from "@propertyTypeRegistration/types";
 import { LatLngExpression } from "leaflet";
 
@@ -31,25 +31,25 @@ export const POST = async (request: Request) => {
     const formData = await request.formData();
 
     const propertyTypeDatas = parseFormData(
-      formData.get("propertyTypeDatas")
+      formData.get("propertyTypeDatas"),
     ) as PropertyTypeValues;
     const propertyLocationDatas = parseFormData(
-      formData.get("propertyLocationDatas")
+      formData.get("propertyLocationDatas"),
     ) as PropertyLocationValues;
     const propertyLocationCoordinates = parseFormData(
-      formData.get("propertyLocationCoordinates")
+      formData.get("propertyLocationCoordinates"),
     ) as LatLngExpression;
     const propertyDetailsDatas = parseFormData(
-      formData.get("propertyDetailsDatas")
+      formData.get("propertyDetailsDatas"),
     ) as PropertyDetailsValues;
     const propertyEquipmentsDatas = parseFormData(
-      formData.get("propertyEquipmentsDatas")
+      formData.get("propertyEquipmentsDatas"),
     ) as PropertyEquipmentsValues;
     const propertyDescriptionDatas = parseFormData(
-      formData.get("propertyDescriptionDatas")
+      formData.get("propertyDescriptionDatas"),
     ) as PropertyDescriptionValues;
     const propertyImagesDatas = formData.getAll(
-      "propertyImagesDatas"
+      "propertyImagesDatas",
     ) as File[];
 
     const uploadedImages: string[] = [];
@@ -60,14 +60,14 @@ export const POST = async (request: Request) => {
       if (file.size > MAX_SIZE) {
         return Response.json(
           { message: `image is too large, Max size is 2MB!` },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
       if (!ALLOWED_TYPES.includes(file.type)) {
         return Response.json(
           { message: `invalid file type!` },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -82,7 +82,7 @@ export const POST = async (request: Request) => {
         "public",
         "uploads",
         "properties",
-        fileName
+        fileName,
       );
 
       await fs.promises.writeFile(filePath, fileBuffer);
@@ -114,10 +114,12 @@ export const POST = async (request: Request) => {
     });
 
     return Response.json("ok", { status: 201 });
-  } catch (_) {
+  } catch (error) {
+    console.error("PROPERTY_REGISTRATION_ERROR:", error);
+
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
