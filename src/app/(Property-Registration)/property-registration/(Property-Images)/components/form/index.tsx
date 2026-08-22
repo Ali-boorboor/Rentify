@@ -1,15 +1,14 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import * as formik from "formik";
-import useFormsState from "@propertyRegistration/stores/useFormsState";
-import useBuildFormData from "@propertyImagesRegistration/hooks/useBuildFormData";
+import { Button } from "@/components/ui/button";
 import FileUploaders from "@propertyImagesRegistration/components/form/FileUploaders";
+import useBuildFormData from "@propertyImagesRegistration/hooks/useBuildFormData";
 import usePropertyRegistration from "@propertyImagesRegistration/hooks/usePropertyRegistration";
 import { FormValues } from "@propertyImagesRegistration/types";
-import { Button } from "@/components/ui/button";
+import useFormsState from "@propertyRegistration/stores/useFormsState";
+import * as formik from "formik";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { toast } from "sonner";
 
 const initialValues: FormValues = {
@@ -26,11 +25,11 @@ const Form = () => {
 
   const submitHandler = async (
     values: typeof initialValues,
-    { resetForm }: formik.FormikHelpers<typeof initialValues>
+    { resetForm }: formik.FormikHelpers<typeof initialValues>,
   ) => {
     if (!formsStates.isAllFormsComplete()) {
       return toast.warning(
-        "لطفا ابتدا تمامی مراحل و فرم ها را کامل کنید سپس برای ثبت نهایی اقدام کنید"
+        "لطفا ابتدا تمامی مراحل و فرم ها را کامل کنید سپس برای ثبت نهایی اقدام کنید",
       );
     }
 
@@ -59,7 +58,7 @@ const Form = () => {
 
           <div className="text-muted-foreground text-sm md:text-base space-y-2">
             <p>فرمت عکس‌ها باید jpg، jpeg یا png باشد. </p>
-            <p>سایز هر عکس حداکثر ۲ مگابایت باشد.</p>
+            <p>سایز هر عکس حداکثر ۷۰۰ کیلوبایت باشد.</p>
             <p>عکس‌‌های غیر مرتبط توسط پشتیبانی حذف خواهد شد.</p>
           </div>
 

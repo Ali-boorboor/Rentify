@@ -18,14 +18,14 @@ const baseSchema = {
   familyName: Yup.string()
     .matches(
       ONLY_PERSIAN_LETTERS_REGEX,
-      "نام خانوادگی باید فقط شامل حروف فارسی باشد."
+      "نام خانوادگی باید فقط شامل حروف فارسی باشد.",
     )
     .required("وارد کردن نام خانوادگی الزامی است."),
 
   phone: Yup.string()
     .matches(
       PHONE_REGEX,
-      "شماره تلفن همراه باید با ۰۹ شروع شده و شامل ۱۱ رقم فارسی باشد."
+      "شماره تلفن همراه باید با ۰۹ شروع شده و شامل ۱۱ رقم فارسی باشد.",
     )
     .required("وارد کردن شماره تلفن همراه الزامی است."),
 
@@ -33,7 +33,7 @@ const baseSchema = {
 
   profileImage: Yup.mixed()
     .nullable()
-    .test("fileSize", "حجم عکس نباید بیشتر از ۲ مگابایت باشد.", (file) => {
+    .test("fileSize", "حجم عکس نباید بیشتر از ۷۰۰ کیلوبایت باشد.", (file) => {
       if (!(file instanceof File)) return true;
       return file.size <= FILE_SIZE;
     })
@@ -49,7 +49,7 @@ const estateAgencySchema = Yup.object().shape({
   agencyName: Yup.string()
     .matches(
       ONLY_PERSIAN_LETTERS_REGEX,
-      "نام دفتر املاک باید فقط شامل حروف فارسی باشد."
+      "نام دفتر املاک باید فقط شامل حروف فارسی باشد.",
     )
     .required("وارد کردن نام دفتر املاک الزامی است."),
 });
@@ -61,8 +61,9 @@ const editInfosApiValidations = Yup.object().shape({
 
   agencyName: Yup.string().matches(
     ONLY_PERSIAN_LETTERS_REGEX,
-    "نام دفتر املاک باید فقط شامل حروف فارسی باشد."
+    "نام دفتر املاک باید فقط شامل حروف فارسی باشد.",
   ),
 });
 
-export { estateAgencySchema, ownerTenantSchema, editInfosApiValidations };
+export { editInfosApiValidations, estateAgencySchema, ownerTenantSchema };
+

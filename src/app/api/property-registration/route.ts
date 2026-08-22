@@ -52,7 +52,7 @@ export const POST = async (request: Request) => {
     ) as File[];
 
     const uploadedImages: string[] = [];
-    const MAX_SIZE = 2 * 1024 * 1024;
+    const MAX_SIZE = 700 * 1024;
     const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
     for (const file of propertyImagesDatas) {

@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import React, { useEffect } from "react";
-import { UploadedImage } from "@propertyImagesRegistration/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { UploadedImage } from "@propertyImagesRegistration/types";
+import { ImagePlus, X } from "lucide-react";
+import Image from "next/image";
+import { useEffect } from "react";
 import { toast } from "sonner";
 
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
@@ -24,7 +24,7 @@ const FileUploaders = ({
   const handleImageChange = (
     index: number,
     file?: File,
-    input?: HTMLInputElement
+    input?: HTMLInputElement,
   ) => {
     if (!file) return;
 
@@ -34,7 +34,7 @@ const FileUploaders = ({
     }
 
     if (file.size > MAX_IMAGE_SIZE) {
-      toast.error("حجم عکس نباید بیشتر از ۲ مگابایت باشد.");
+      toast.error("حجم عکس نباید بیشتر از ۷۰۰ کیلوبایت باشد.");
       return;
     }
 
@@ -78,7 +78,7 @@ const FileUploaders = ({
           key={index}
           className={cn(
             "relative min-w-20 sm:min-w-44 max-h-60 aspect-square flex-1 flex justify-center items-center rounded-xl overflow-hidden border-2",
-            image.file ? "border-primary" : "border-dashed"
+            image.file ? "border-primary" : "border-dashed",
           )}
         >
           <Label

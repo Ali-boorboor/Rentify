@@ -49,7 +49,7 @@ export const PUT = async (request: Request) => {
     const profileImage = formData.get("profileImage");
     let file = null;
 
-    const MAX_SIZE = 2 * 1024 * 1024;
+    const MAX_SIZE = 700 * 1024;
     const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
     if (profileImage instanceof File) {
