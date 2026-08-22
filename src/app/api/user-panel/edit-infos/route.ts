@@ -1,10 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
 import authenticate from "@/utils/authenticate";
 import validateRequestBody from "@/utils/validateRequestBody";
+import connectToDB from "@configs/database";
+import UserModel from "@models/User";
 import * as validators from "@validators/user-panel/editInfos";
+import { put } from "@vercel/blob";
 import { randomUUID } from "crypto";
 
 interface EditUserBody {
@@ -43,49 +42,60 @@ export const PUT = async (request: Request) => {
           message: "request body is invalid!",
           errors: errors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
-    const profileImage = formData.get("profileImage") as File;
+    const profileImage = formData.get("profileImage");
     let file = null;
 
-    if (profileImage) {
-      const fileBuffer = Buffer.from(await profileImage.arrayBuffer());
+    const MAX_SIZE = 2 * 1024 * 1024;
+    const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png"];
+
+    if (profileImage instanceof File) {
+      if (profileImage.size > MAX_SIZE) {
+        return Response.json(
+          { message: `image is too large, Max size is 2MB!` },
+          { status: 400 },
+        );
+      }
+
+      if (!ALLOWED_TYPES.includes(profileImage.type)) {
+        return Response.json(
+          { message: `invalid file type!` },
+          { status: 400 },
+        );
+      }
 
       const fileExtension = profileImage.name.split(".").pop();
 
       const fileName = `${randomUUID()}.${fileExtension}`;
 
-      const filePath = path.join(
-        process.cwd(),
-        "public",
-        "uploads",
-        "profiles",
-        fileName
-      );
+      const blob = await put(`profiles/${fileName}`, profileImage, {
+        access: "public",
+      });
 
-      await fs.promises.writeFile(filePath, fileBuffer);
-
-      file = fileName;
+      file = blob.url;
     }
 
     await UserModel.findOneAndUpdate(
       { phone: user?.phone },
       {
         ...requestBody,
-        profileImage: profileImage && `/uploads/profiles/${file}`,
-      }
+        ...(file && {
+          profileImage: file,
+        }),
+      },
     );
 
     return Response.json(
       { message: "user datas edited successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

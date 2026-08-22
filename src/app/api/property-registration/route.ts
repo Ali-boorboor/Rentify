@@ -5,9 +5,8 @@ import AddressModel from "@models/Address";
 import PropertyModel from "@models/Property";
 import PropertyDetailModel from "@models/PropertyDetail";
 import UserModel from "@models/User";
+import { put } from "@vercel/blob";
 import { randomUUID } from "crypto";
-import fs from "node:fs";
-import path from "node:path";
 
 import { Values as PropertyDescriptionValues } from "@propertyDescriptionRegistration/types";
 import { Values as PropertyDetailsValues } from "@propertyDetailsRegistration/types";
@@ -71,23 +70,15 @@ export const POST = async (request: Request) => {
         );
       }
 
-      const fileBuffer = Buffer.from(await file.arrayBuffer());
-
       const fileExtension = file.name.split(".").pop();
 
       const fileName = `${randomUUID()}.${fileExtension}`;
 
-      const filePath = path.join(
-        process.cwd(),
-        "public",
-        "uploads",
-        "properties",
-        fileName,
-      );
+      const blob = await put(`properties/${fileName}`, file, {
+        access: "public",
+      });
 
-      await fs.promises.writeFile(filePath, fileBuffer);
-
-      uploadedImages.push(`/uploads/properties/${fileName}`);
+      uploadedImages.push(blob.url);
     }
 
     const propertyAddress = await AddressModel.insertOne({
