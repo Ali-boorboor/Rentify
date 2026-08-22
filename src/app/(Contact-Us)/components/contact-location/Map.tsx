@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
-import "leaflet/dist/leaflet.css";
 import leaflet, { LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 const position: LatLngExpression = [35.69977180653842, 51.33803060889542];
 
 const pinLocationIcon = leaflet.icon({
-  iconUrl: "/images/png/location-pin.png",
+  iconUrl: "/images/location-pin.webp",
   iconSize: [45, 45],
 });
 

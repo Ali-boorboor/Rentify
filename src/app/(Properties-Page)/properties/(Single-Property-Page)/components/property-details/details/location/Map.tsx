@@ -6,7 +6,7 @@ import leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 
 const pinLocationIcon = leaflet.icon({
-  iconUrl: "/images/png/location-pin.png",
+  iconUrl: "/images/location-pin.webp",
   iconSize: [45, 45],
 });
 

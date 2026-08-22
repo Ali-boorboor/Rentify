@@ -1,14 +1,14 @@
 "use client";
 
-import "leaflet/dist/leaflet.css";
-import leaflet from "leaflet";
-import React, { useEffect } from "react";
-import useFormsState from "@propertyRegistration/stores/useFormsState";
 import { useLocationStore } from "@propertyLocationRegistration/stores/locationState";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import useFormsState from "@propertyRegistration/stores/useFormsState";
+import leaflet from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { useEffect } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 const pinLocationIcon = leaflet.icon({
-  iconUrl: "/images/png/location-pin.png",
+  iconUrl: "/images/location-pin.webp",
   iconSize: [45, 45],
 });
 

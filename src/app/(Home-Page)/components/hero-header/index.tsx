@@ -1,11 +1,9 @@
-import React from "react";
-import SearchForm from "@home/components/hero-header/search-form";
-import PropertyCategories from "@home/components/hero-header/PropertyCategories";
 import { NavigationMenu } from "@/components/header";
 import { cn } from "@/lib/utils";
+import PropertyCategories from "@home/components/hero-header/PropertyCategories";
+import SearchForm from "@home/components/hero-header/search-form";
 
-const backgroundImage =
-  "bg-[url('/images/png/home-page/hero-header-background.png')]";
+const backgroundImage = "bg-[url('/images/hero-header-background.webp')]";
 
 const HeroHeader = () => {
   return (
@@ -13,7 +11,7 @@ const HeroHeader = () => {
       className={cn(
         backgroundImage,
         "bg-no-repeat bg-cover text-card min-h-[90svh] rounded-b-4xl px-4",
-        "flex flex-col gap-20 md:gap-40 justify-between items-center"
+        "flex flex-col gap-20 md:gap-40 justify-between items-center",
       )}
     >
       <NavigationMenu />
