@@ -1,13 +1,12 @@
-import React from "react";
-import UserModel from "@models/User";
+import authenticate from "@/utils/authenticate";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import FavouriteModel from "@models/Favourite";
-import authenticate from "@/utils/authenticate";
+import UserModel from "@models/User";
 import Form from "@userPanel/propertyComparison/components/form/Form";
-import { parseJson } from "@/utils/json";
 
 const FormWrapper = async () => {
-  connectToDB();
+  await connectToDB();
 
   const authenticatedUser = (await authenticate()) as { phone: string };
 

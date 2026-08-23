@@ -1,12 +1,11 @@
-import React from "react";
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
 import authenticate from "@/utils/authenticate";
-import Form from "@userPanel/editInfos/components/Form";
 import { parseJson } from "@/utils/json";
+import connectToDB from "@configs/database";
+import UserModel from "@models/User";
+import Form from "@userPanel/editInfos/components/Form";
 
 const EditInfosPage = async () => {
-  connectToDB();
+  await connectToDB();
 
   const authenticatedUser = (await authenticate()) as { phone: string };
 

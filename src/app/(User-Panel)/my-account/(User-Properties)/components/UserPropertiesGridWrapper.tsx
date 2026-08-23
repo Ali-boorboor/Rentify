@@ -1,14 +1,13 @@
-import React from "react";
-import UserModel from "@models/User";
+import authenticate from "@/utils/authenticate";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import authenticate from "@/utils/authenticate";
-import UserPropertiesGrid from "@userPanel/userProperties/components/UserPropertiesGrid";
+import UserModel from "@models/User";
 import EmptyPropertiesAlert from "@userPanel/userProperties/components/EmptyPropertiesAlert";
-import { parseJson } from "@/utils/json";
+import UserPropertiesGrid from "@userPanel/userProperties/components/UserPropertiesGrid";
 
 const UserPropertiesGridWrapper = async () => {
-  connectToDB();
+  await connectToDB();
 
   const authenticatedUser = (await authenticate()) as { phone: string };
 

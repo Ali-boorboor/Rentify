@@ -1,18 +1,17 @@
-import React from "react";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import MainDetails from "@singleProperty/components/property-details/details/Main";
-import PropertyMenu from "@singleProperty/components/property-details/PropertyMenu";
-import PropertyHero from "@singleProperty/components/property-details/PropertyHero";
 import PropertyAgentCard from "@singleProperty/components/property-details/agent-card";
-import LocationDetails from "@singleProperty/components/property-details/details/location";
-import EquipmentDetails from "@singleProperty/components/property-details/details/Equipment";
 import DescriptionDetails from "@singleProperty/components/property-details/details/Description";
+import EquipmentDetails from "@singleProperty/components/property-details/details/Equipment";
+import LocationDetails from "@singleProperty/components/property-details/details/location";
+import MainDetails from "@singleProperty/components/property-details/details/Main";
+import PropertyHero from "@singleProperty/components/property-details/PropertyHero";
+import PropertyMenu from "@singleProperty/components/property-details/PropertyMenu";
 import { notFound } from "next/navigation";
-import { parseJson } from "@/utils/json";
 
 const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
-  connectToDB();
+  await connectToDB();
 
   const property = await PropertyModel.findById(propertyID)
     .populate("user", "name agencyName profileImage")
@@ -44,7 +43,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
 
         <MainDetails
           cardinalDirection={parseJson(
-            property.propertyDetails.cardinalDirection
+            property.propertyDetails.cardinalDirection,
           )}
           contractType={parseJson(property.propertyDetails.contractType.title)}
           propertyType={parseJson(property.propertyDetails.propertyType)}
@@ -66,7 +65,7 @@ const PropertyDetails = async ({ propertyID }: { propertyID: string }) => {
 
         <LocationDetails
           locationCoordinates={parseJson(
-            property.address?.propertyLocationCoordinates
+            property.address?.propertyLocationCoordinates,
           )}
           province={parseJson(property.address.province.faName)}
           fullAddress={parseJson(property.address.fullAddress)}

@@ -1,14 +1,14 @@
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
-import validateRequestBody from "@/utils/validateRequestBody";
 import { comparePassword, hashPassword } from "@/utils/bcrypt";
-import { ownerTenantSchema } from "@validators/login-register";
 import { generateToken } from "@/utils/token";
+import validateRequestBody from "@/utils/validateRequestBody";
+import connectToDB from "@configs/database";
+import UserModel from "@models/User";
+import { ownerTenantSchema } from "@validators/login-register";
 import { cookies } from "next/headers";
 
 export const POST = async (request: Request) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const requestBody = await request.json();
     const { phone, password, ...restOfRequestBody } = requestBody;
@@ -24,7 +24,7 @@ export const POST = async (request: Request) => {
           message: "request body is invalid!",
           errors: errors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -33,18 +33,18 @@ export const POST = async (request: Request) => {
     if (existedUser?.agencyName) {
       return Response.json(
         { message: "this account is estate-agency not owner-tenant" },
-        { status: 400 }
+        { status: 400 },
       );
     } else if (existedUser) {
       const isPasswordTrue = await comparePassword(
         password,
-        existedUser.password
+        existedUser.password,
       );
 
       if (!isPasswordTrue) {
         return Response.json(
           { message: "password or phone is wrong!" },
-          { status: 401 }
+          { status: 401 },
         );
       }
 
@@ -79,12 +79,12 @@ export const POST = async (request: Request) => {
 
     return Response.json(
       { message: "user signed up successfully" },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

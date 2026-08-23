@@ -1,13 +1,13 @@
-import React, { Suspense } from "react";
-import connectToDB from "@configs/database";
-import ProvinceModel from "@models/Province";
-import PropertyCategoryModel from "@models/PropertyCategory";
 import FiltersBadge from "@/components/filters-bar/FiltersBadge";
 import FiltersDialog from "@/components/filters-bar/filters-dialog";
-import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { parseJson } from "@/utils/json";
+import connectToDB from "@configs/database";
+import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
+import PropertyCategoryModel from "@models/PropertyCategory";
+import ProvinceModel from "@models/Province";
+import { Suspense } from "react";
 
 const FiltersBar = async () => {
   await connectToDB();

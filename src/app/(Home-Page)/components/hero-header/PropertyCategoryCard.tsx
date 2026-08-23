@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import connectToDB from "@configs/database";
-import * as card from "@/components/ui/card";
-import PropertyDetailModel from "@models/PropertyDetail";
-import { toPersianDigits } from "@/utils/convertNumbers";
 import { Button } from "@/components/ui/button";
+import * as card from "@/components/ui/card";
+import { toPersianDigits } from "@/utils/convertNumbers";
+import connectToDB from "@configs/database";
+import PropertyDetailModel from "@models/PropertyDetail";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface PropertyCategoryCardProps {
   image: string;
@@ -21,7 +20,7 @@ const PropertyCategoryCard = async ({
   linkTo,
   categoryID,
 }: PropertyCategoryCardProps) => {
-  connectToDB();
+  await connectToDB();
 
   const count = await PropertyDetailModel.countDocuments({
     propertyCategory: categoryID,

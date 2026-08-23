@@ -1,6 +1,6 @@
 import authenticate from "@/utils/authenticate";
-import PropertyModel from "@models/Property";
 import connectToDB from "@configs/database";
+import PropertyModel from "@models/Property";
 import { isValidObjectId } from "mongoose";
 
 export const DELETE = async (
@@ -9,10 +9,10 @@ export const DELETE = async (
     params,
   }: {
     params: Promise<{ propertyID: string }>;
-  }
+  },
 ) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const user = (await authenticate()) as { phone: string };
 
@@ -25,7 +25,7 @@ export const DELETE = async (
     if (!isValidObjectId(propertyID)) {
       return Response.json(
         { message: "property id is invalid!" },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -33,12 +33,12 @@ export const DELETE = async (
 
     return Response.json(
       { message: "property deleted successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

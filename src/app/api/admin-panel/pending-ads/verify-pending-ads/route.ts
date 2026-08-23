@@ -1,13 +1,13 @@
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
-import PropertyModel from "@models/Property";
 import authenticate from "@/utils/authenticate";
 import validateRequestBody from "@/utils/validateRequestBody";
+import connectToDB from "@configs/database";
+import PropertyModel from "@models/Property";
+import UserModel from "@models/User";
 import { pendingAdsValidations } from "@validators/admin-panel";
 
 export const PUT = async (request: Request) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const authenticatedUser = (await authenticate()) as { phone: string };
 
@@ -36,23 +36,23 @@ export const PUT = async (request: Request) => {
           message: "request body is invalid!",
           errors: errors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
     await PropertyModel.updateMany(
       { _id: { $in: requestBody.properties } },
-      { propertyStatus: "success" }
+      { propertyStatus: "success" },
     );
 
     return Response.json(
       { message: "property status changed successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

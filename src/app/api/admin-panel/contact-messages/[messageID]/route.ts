@@ -1,7 +1,7 @@
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
 import authenticate from "@/utils/authenticate";
+import connectToDB from "@configs/database";
 import ContactUsMessageModel from "@models/ContactUsMessage";
+import UserModel from "@models/User";
 import { isValidObjectId } from "mongoose";
 
 export const DELETE = async (
@@ -10,10 +10,10 @@ export const DELETE = async (
     params,
   }: {
     params: Promise<{ messageID: string }>;
-  }
+  },
 ) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const authenticatedUser = (await authenticate()) as { phone: string };
 
@@ -34,7 +34,7 @@ export const DELETE = async (
     if (!isValidObjectId(messageID)) {
       return Response.json(
         { message: "message id is invalid!" },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -42,12 +42,12 @@ export const DELETE = async (
 
     return Response.json(
       { message: "message deleted successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

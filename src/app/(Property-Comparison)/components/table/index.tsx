@@ -1,17 +1,16 @@
-import React from "react";
+import * as table from "@/components/ui/table";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import * as table from "@/components/ui/table";
 import TableBody from "@propertyComparison/components/table/TableBody";
 import TableHeader from "@propertyComparison/components/table/TableHeader";
-import { parseJson } from "@/utils/json";
 
 interface TableProps {
   searchParamProperties: string[];
 }
 
 const Table = async ({ searchParamProperties }: TableProps) => {
-  connectToDB();
+  await connectToDB();
 
   const selectedProperties = await PropertyModel.find({
     _id: { $in: searchParamProperties },

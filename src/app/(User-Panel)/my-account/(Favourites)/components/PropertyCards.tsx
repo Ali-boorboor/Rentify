@@ -1,14 +1,13 @@
-import React from "react";
-import UserModel from "@models/User";
-import connectToDB from "@/configs/database";
-import FavouriteModel from "@models/Favourite";
-import authenticate from "@/utils/authenticate";
-import PropertyCard from "@/components/property-card";
 import EmptyPropertiesAlert from "@/components/empty-properties-alert";
+import PropertyCard from "@/components/property-card";
+import connectToDB from "@/configs/database";
+import authenticate from "@/utils/authenticate";
 import { parseJson } from "@/utils/json";
+import FavouriteModel from "@models/Favourite";
+import UserModel from "@models/User";
 
 const PropertyCards = async () => {
-  connectToDB();
+  await connectToDB();
 
   const authenticatedUser = (await authenticate()) as { phone: string };
 
@@ -36,7 +35,7 @@ const PropertyCards = async () => {
           {favouriteProperties?.properties?.map((property) => (
             <PropertyCard
               propertyCategory={parseJson(
-                property.propertyDetails.propertyCategory
+                property.propertyDetails.propertyCategory,
               )}
               province={property.address.province.faName}
               mortgageAmount={property.mortgageAmount}

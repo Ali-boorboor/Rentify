@@ -1,19 +1,19 @@
-import adminPanelLinks from "@adminPanel/constants/adminPanelLinks";
-import ContactUsMessageModel from "@models/ContactUsMessage";
 import LinkCard from "@adminPanel/components/LinkCard";
-import PropertyModel from "@models/Property";
+import adminPanelLinks from "@adminPanel/constants/adminPanelLinks";
 import connectToDB from "@configs/database";
-import React, { cache } from "react";
-
-connectToDB();
+import ContactUsMessageModel from "@models/ContactUsMessage";
+import PropertyModel from "@models/Property";
+import { cache } from "react";
 
 const getPendingPropertiesCount = cache(async () => {
+  await connectToDB();
   return await PropertyModel.countDocuments({
     propertyStatus: "warning",
   }).lean();
 });
 
 const getContactUsMessagesCount = cache(async () => {
+  await connectToDB();
   return await ContactUsMessageModel.countDocuments({}).lean();
 });
 

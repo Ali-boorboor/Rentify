@@ -14,7 +14,7 @@ interface EditUserBody {
 
 export const PUT = async (request: Request) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const user = (await authenticate()) as { phone: string };
 

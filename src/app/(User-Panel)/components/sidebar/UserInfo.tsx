@@ -1,12 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import UserModel from "@models/User";
-import connectToDB from "@configs/database";
 import authenticate from "@/utils/authenticate";
+import connectToDB from "@configs/database";
+import UserModel from "@models/User";
 import { UserRound } from "lucide-react";
+import Image from "next/image";
 
 const UserInfo = async () => {
-  connectToDB();
+  await connectToDB();
 
   const authenticatedUser = (await authenticate()) as { phone: string };
 

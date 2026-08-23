@@ -1,13 +1,12 @@
-import React from "react";
-import connectToDB from "@configs/database";
-import Form from "@propertyEquipmentsRegistration/components/Form";
-import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
 import { parseJson } from "@/utils/json";
+import connectToDB from "@configs/database";
+import EquipmentAndFacilitieModel from "@models/EquipmentAndFacilitie";
+import Form from "@propertyEquipmentsRegistration/components/Form";
 
 const PropertyEquipmentsPage = async () => {
-  connectToDB();
+  await connectToDB();
   const equipmentsAndFacilities = await EquipmentAndFacilitieModel.find(
-    {}
+    {},
   ).lean();
 
   return (

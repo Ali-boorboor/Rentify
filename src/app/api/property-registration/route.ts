@@ -17,7 +17,7 @@ import { LatLngExpression } from "leaflet";
 
 export const POST = async (request: Request) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const tokenPayload = await authenticate();
 

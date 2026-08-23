@@ -1,11 +1,11 @@
-import UserModel from "@models/User";
+import authenticate from "@/utils/authenticate";
 import connectToDB from "@configs/database";
 import FavouriteModel from "@models/Favourite";
-import authenticate from "@/utils/authenticate";
+import UserModel from "@models/User";
 
 export const GET = async () => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const authenticatedUser = (await authenticate()) as { phone: string };
 
@@ -26,12 +26,12 @@ export const GET = async () => {
         message: "favourites fetched successfully",
         favourites: userFavourites,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

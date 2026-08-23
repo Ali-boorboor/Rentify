@@ -1,15 +1,15 @@
-import UserModel from "@models/User";
+import authenticate from "@/utils/authenticate";
 import connectToDB from "@configs/database";
 import FavouriteModel from "@models/Favourite";
-import authenticate from "@/utils/authenticate";
+import UserModel from "@models/User";
 import { isValidObjectId } from "mongoose";
 
 export const PUT = async (
   _: Request,
-  { params }: { params: Promise<{ propertyID: string }> }
+  { params }: { params: Promise<{ propertyID: string }> },
 ) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const authenticatedUser = (await authenticate()) as { phone: string };
 
@@ -22,7 +22,7 @@ export const PUT = async (
     if (!isValidObjectId(propertyID)) {
       return Response.json(
         { message: "property id is invalid!" },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -35,35 +35,35 @@ export const PUT = async (
     }).lean<{ properties: string[] }>();
 
     const isPropertyAlreadyInFavourites = userFavourites?.properties?.some(
-      (id: string) => id.toString() === propertyID
+      (id: string) => id.toString() === propertyID,
     );
 
     if (isPropertyAlreadyInFavourites) {
       await FavouriteModel.findOneAndUpdate(
         { user: user?._id },
-        { $pull: { properties: propertyID } }
+        { $pull: { properties: propertyID } },
       ).lean();
 
       return Response.json(
         { message: "property removed from favourites successfully" },
-        { status: 200 }
+        { status: 200 },
       );
     } else {
       await FavouriteModel.findOneAndUpdate(
         { user: user?._id },
         { $addToSet: { properties: propertyID } },
-        { upsert: true }
+        { upsert: true },
       ).lean();
 
       return Response.json(
         { message: "property added to favourites successfully" },
-        { status: 200 }
+        { status: 200 },
       );
     }
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

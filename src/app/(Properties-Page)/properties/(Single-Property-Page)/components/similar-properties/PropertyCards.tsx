@@ -1,9 +1,8 @@
-import React from "react";
+import PropertyCard from "@/components/property-card";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
-import PropertyCard from "@/components/property-card";
 import PropertyDetailModel from "@models/PropertyDetail";
-import { parseJson } from "@/utils/json";
 
 interface PropertyCardsProps {
   propertyCategory: string;
@@ -14,7 +13,7 @@ const PropertyCards = async ({
   propertyCategory,
   propertyID,
 }: PropertyCardsProps) => {
-  connectToDB();
+  await connectToDB();
 
   const propertyDetailsID = await PropertyDetailModel.find({
     propertyCategory: propertyCategory,
@@ -48,7 +47,7 @@ const PropertyCards = async ({
           mortgageAmount={similarProperty.mortgageAmount}
           province={similarProperty.address.province.faName}
           propertyCategory={parseJson(
-            similarProperty.propertyDetails.propertyCategory
+            similarProperty.propertyDetails.propertyCategory,
           )}
         />
       ))}

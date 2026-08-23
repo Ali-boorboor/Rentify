@@ -1,12 +1,11 @@
-import React from "react";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import ContractTypeModel from "@models/ContractType";
-import Form from "@propertyTypeRegistration/components/form";
 import PropertyCategoryModel from "@models/PropertyCategory";
-import { parseJson } from "@/utils/json";
+import Form from "@propertyTypeRegistration/components/form";
 
 const PropertyTypePage = async () => {
-  connectToDB();
+  await connectToDB();
   const propertyCategories = await PropertyCategoryModel.find({}).lean();
   const contractTypes = await ContractTypeModel.find({}).lean();
 

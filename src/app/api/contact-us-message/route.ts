@@ -1,11 +1,11 @@
+import validateRequestBody from "@/utils/validateRequestBody";
 import connectToDB from "@configs/database";
 import ContactUsMessageModel from "@models/ContactUsMessage";
-import validateRequestBody from "@/utils/validateRequestBody";
 import { contactUsMessageValidations } from "@validators/contact-us-message";
 
 export const POST = async (request: Request) => {
   try {
-    connectToDB();
+    await connectToDB();
 
     const requestBody = await request.json();
 
@@ -20,7 +20,7 @@ export const POST = async (request: Request) => {
           message: "request body is invalid!",
           errors: errors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -28,12 +28,12 @@ export const POST = async (request: Request) => {
 
     return Response.json(
       { message: "message saved successfully" },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

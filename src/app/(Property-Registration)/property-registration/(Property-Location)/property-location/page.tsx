@@ -1,12 +1,11 @@
-import React from "react";
+import { parseJson } from "@/utils/json";
 import connectToDB from "@configs/database";
 import ProvinceModel from "@models/Province";
-import Map from "@propertyLocationRegistration/components/map";
 import Form from "@propertyLocationRegistration/components/form";
-import { parseJson } from "@/utils/json";
+import Map from "@propertyLocationRegistration/components/map";
 
 const PropertyLocationPage = async () => {
-  connectToDB();
+  await connectToDB();
   const provinces = await ProvinceModel.find({}).lean();
 
   return (
