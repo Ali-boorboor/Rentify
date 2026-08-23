@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
 const visitingHours = [
@@ -16,7 +15,7 @@ const visitingHours = [
   { id: 7, time: "۱۶:۰۰" },
   { id: 8, time: "۱۷:۰۰" },
   { id: 9, time: "۱۸:۰۰" },
-  { id: 10, time: "۱۹۰۰" },
+  { id: 10, time: "۱۹:۰۰" },
   { id: 11, time: "۲۰:۰۰" },
   { id: 12, time: "۲۱:۰۰" },
 ];
@@ -43,7 +42,7 @@ const TimePicker = ({ values, setFieldValue }: TimePickerProps) => {
             className={cn(
               "grow w-32 justify-center rounded-xl border shadow-sm p-3 text-accent-foreground",
               "hover:bg-primary/10 has-[[aria-checked=true]]:bg-primary",
-              "transition-all duration-200 ease-linear"
+              "transition-all duration-200 ease-linear",
             )}
             key={hour.id}
           >
