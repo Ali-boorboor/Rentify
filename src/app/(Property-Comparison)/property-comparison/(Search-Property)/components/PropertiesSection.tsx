@@ -10,7 +10,7 @@ const PropertiesSection = () => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
     useGetPropertiesRequest();
 
-  const allProperties = data?.pages.flatMap((page) => page.data.properties);
+  const allProperties = data?.pages.flatMap((page) => page.data?.properties);
 
   return (
     <div className="flex flex-col gap-6 mt-10 md:mt-20">

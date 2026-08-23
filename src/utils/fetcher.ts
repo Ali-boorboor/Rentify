@@ -19,6 +19,8 @@ async function fetcher<Type>(configs: FetcherProps) {
 
   const data = (await response.json()) as Type;
 
+  if (!response.ok) throw new Error("Request failed");
+
   return { response, data };
 }
 

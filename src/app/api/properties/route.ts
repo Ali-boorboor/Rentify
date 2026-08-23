@@ -1,9 +1,12 @@
 import buildFilters from "@api/properties/utils/buildFilters";
+import connectToDB from "@configs/database";
 import PropertyModel from "@models/Property";
 import { SortOrder } from "mongoose";
 
 export const GET = async (request: Request) => {
   try {
+    await connectToDB();
+
     const { searchParams } = new URL(request.url);
 
     const limit = Number(searchParams.get("limit")) || 8;
@@ -59,7 +62,7 @@ export const GET = async (request: Request) => {
   } catch (_) {
     return Response.json(
       { message: "internal server error!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

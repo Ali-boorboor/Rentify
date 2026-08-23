@@ -13,7 +13,7 @@ const PropertiesSection = () => {
   const { fetchNextPage, data, isPending, isFetchingNextPage, hasNextPage } =
     useGetPropertiesRequest();
 
-  const allProperties = data?.pages.flatMap((page) => page.data.properties);
+  const allProperties = data?.pages.flatMap((page) => page.data?.properties);
 
   return (
     <section className="px-4">
